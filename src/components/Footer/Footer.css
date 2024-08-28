@@ -1,0 +1,87 @@
+.footer-whole-container{
+    width: 100%;
+    background-color: #02033B;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+.footer-container{
+    max-width: var(--max-screen-width);
+    width: 100%;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    padding: 70px;
+    display: flex;
+}
+
+
+.footer-left{
+    width: 30%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+
+.footer-left .title{
+    word-spacing: 5px;
+    font-size: 20px;
+    margin-bottom: 50px;
+}
+
+.footer-left .footer-contact{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+.footer-contact .footer-logo{
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    margin-right: 50px;
+    margin-bottom: 40px;
+}
+
+.footer-left .policy{
+    width: 100%;
+    display: flex;
+    font-size: 10px;
+}
+.footer-left .policy p{
+    font-size: 12px;
+    font-weight: lighter;
+    margin-right: 50px;
+    cursor: pointer;
+}
+.footer-left .policy p:hover{
+    text-decoration: underline;
+}
+
+.footer-left .content{
+    font-size: 12px;
+    font-weight: lighter;
+}
+
+
+.footer-middle{
+    width: 30%
+}
+
+.footer-middle .title{
+    font-size: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid white;
+}
+.footer-middle .content{
+    color: #FFC247
+}
+.footer-middle .content span{
+    margin-left: 30px;
+}
+
+
+.footer-right{
+    width: 40%
+}
