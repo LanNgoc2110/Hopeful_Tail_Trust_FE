@@ -4,6 +4,7 @@ import './Footer.css'
 import twitter from '/assets/twitter.png'
 import facebook from '/assets/facebook.png'
 import youtube from '/assets/youtube.png'
+import logo from '/assets/Logo_No_Word.png'
 
 const Footer = () => {
     return (
@@ -12,9 +13,9 @@ const Footer = () => {
                 <div className="footer-left">
                     <p className='title'>Kết nối thông qua</p>
                     <div className="footer-contact">
-                        <img src={twitter} className='footer-logo'/>
-                        <img src={facebook} className='footer-logo'/>
-                        <img src={youtube} className='footer-logo'/>
+                        <img src={twitter} className='footer-logo' />
+                        <img src={facebook} className='footer-logo' />
+                        <img src={youtube} className='footer-logo' />
                     </div>
                     <div className="policy">
                         <p>Chính sách</p>
@@ -29,7 +30,11 @@ const Footer = () => {
                     <p className='content'> ── <span>Mạng xã hội</span></p>
                 </div>
                 <div className="footer-right">
-                    
+                    <div className="footer-register">
+                        <p>Đăng ký để nhận thông tin mới nhất </p>
+                        <button> 🫰 Đăng ký</button>
+                        <img src={logo}/>
+                    </div>
                 </div>
             </div>
         </div>

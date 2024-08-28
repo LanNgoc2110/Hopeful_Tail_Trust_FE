@@ -1,8 +1,16 @@
 import React from 'react'
 import './Header.css'
 import logo from '/assets/Logo.png'
+import { useNavigate } from 'react-router-dom'
 
 const Header = () => {
+
+    const navigate = useNavigate()
+
+    const handleClick = () => {
+        navigate("/");
+        window.scrollTo(0, 0); // Cuộn lên đầu trang
+    }
     return (
         <div className="header-whole-container">
             <div className='header-container'>
@@ -10,7 +18,7 @@ const Header = () => {
                     <img src={logo} className='header-logo' />
                 </div>
                 <div className="header-right">
-                    <li>Trang chủ</li>
+                    <li onClick={handleClick}>Trang chủ</li>
                     <li>Giới thiệu</li>
                     <li>Nhận nuôi</li>
                     <li>Sản phẩm</li>
