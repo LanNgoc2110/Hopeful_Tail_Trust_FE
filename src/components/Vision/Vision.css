@@ -1,0 +1,36 @@
+.vision-container{
+    max-width: var(--max-screen-width);
+    width: 100%;
+    background-image: linear-gradient(#F3F8FF, #E7EFFA);
+    padding: 80px 0 150px;
+    display: flex;
+    
+}
+
+.vision-left{
+    width: 50%;
+    display: flex;
+    justify-content: flex-end;
+}
+.vision-left img{
+    width: 550px;
+    height: 315px;
+    padding-top: 70px;
+}
+
+.vision-right{
+    width: 50%;
+    padding-left: 150px;
+}
+.vision-right .title{
+    color: #02033B;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+}
+.vision-right .content{
+    color: #02033B;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    line-height: 25px;
+}

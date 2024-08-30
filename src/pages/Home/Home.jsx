@@ -5,6 +5,7 @@ import Footer from '../../components/Footer/Footer'
 import Slide from '../../components/Slide/Slide'
 import Introduce from '../../components/Introduce/Introduce'
 import Commitment from '../../components/Commitment/Commitment'
+import BlogNews from '../../components/BlogNews/BlogNews'
 
 
 const Home = () => {
@@ -15,6 +16,7 @@ const Home = () => {
         <Slide />
         <Introduce/>
         <Commitment/>
+        <BlogNews/>
       </div>
       <Footer />
     </div>

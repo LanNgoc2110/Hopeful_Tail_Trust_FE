@@ -23,7 +23,7 @@
     width: 100%;
     display: flex;
     padding-top: 5px;
-    border-bottom: 3px solid rgba(235, 235, 235, 0.8);
+    /* border-bottom: 3px solid rgba(235, 235, 235, 0.8); */
     transition: 0.3s ease;
     height: 85px;
     transform: translateY(-100%);
@@ -60,5 +60,9 @@
     border-radius: 10px;
 }
 .header-right li:hover{
+    background-color: antiquewhite;
+}
+
+.header-right li.active{
     background-color: antiquewhite;
 }

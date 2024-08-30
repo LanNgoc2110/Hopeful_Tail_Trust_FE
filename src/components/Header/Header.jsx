@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './Header.css'
 import logo from '/assets/Logo.png'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
     const navigate = useNavigate()
+    const location = useLocation()
 
     const handleClick = () => {
         navigate("/");
@@ -46,8 +47,18 @@ const Header = () => {
                     <img src={logo} className='header-logo' onClick={handleClick}/>
                 </div>
                 <div className="header-right">
-                    <li onClick={handleClick}>Trang chủ</li>
-                    <li>Giới thiệu</li>
+                    <li 
+                        onClick={handleClick}
+                        className={location.pathname == "/" ? "active" : ""}
+                    >
+                        Trang chủ
+                    </li>
+                    <li
+                        onClick={() => navigate("/introduction")}
+                        className={location.pathname == "/introduction" ? "active" : ""}
+                    >
+                        Giới thiệu
+                    </li>
                     <li>Nhận nuôi</li>
                     <li>Sản phẩm</li>
                     <li>Tin tức</li>
