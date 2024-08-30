@@ -12,26 +12,26 @@ const Commitment = () => {
             id: 1, 
             img: content_img,
             title: 'Nội dung',
-            content: <p>Nội dung chất lượng, <br/>
+            content: <div>Nội dung chất lượng, <br/>
                         chính xác, có nguồn <br/>
-                        uy tín.</p>
+                        uy tín.</div>
         },
         {
             id: 2, 
             img: product_img,
             title: 'Sản phẩm',
-            content: <p>Sản phẩm gợi ý công bằng, <br/>
+            content: <div>Sản phẩm gợi ý công bằng, <br/>
                         được phân tích review chi <br/>
-                        tiết, chính xác.</p>
+                        tiết, chính xác.</div>
         },
         {
             id: 3, 
             img: support_img,
             title: 'Hỗ trợ',
-            content: <p>Hỗ trợ hết mình, hướng <br/>
+            content: <div>Hỗ trợ hết mình, hướng <br/>
                         dẫn những nguồn khám <br/>
                         bệnh thú cưng uy tín, <br/>
-                        chất lượng.</p>
+                        chất lượng.</div>
         }
     ]
 
@@ -45,7 +45,7 @@ const Commitment = () => {
                     <div className="board-content" key={item.id}>
                         <img src={item.img}/>
                         <p className='sub-title'>{item.title}</p>
-                        <p className='sub-content'>{item.content}</p>
+                        <div className='sub-content'>{item.content}</div>
                     </div>
                 ))}
             </div>

@@ -1,7 +1,7 @@
 .commitment-container{
     max-width: var(--max-screen-width);
     width: 100%;
-    background-color: #F2F7FF;
+    background-image: linear-gradient(#F3F8FF, #E7EFFA);
     padding: 40px 0;
     display: flex;
     justify-content: center;
