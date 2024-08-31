@@ -2,6 +2,7 @@
     --max-screen-width: 1530px;
     --color-bg-auth: #FEF6E7;
     --color-btn-auth: #D9AB62;
+    --font-btn-auth: "Inter", sans-serif;
 }
 
 body {

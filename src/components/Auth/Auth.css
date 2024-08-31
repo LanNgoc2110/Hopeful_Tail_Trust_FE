@@ -10,6 +10,33 @@
 .auth-container {
     max-width: var(--max-screen-width);
     width: 100%;
-    margin-top: 80px;
-    height: 50vh;
+    height: 100vh;
+    display: flex;
+}
+
+.form_auth{
+    width: 40%;
+    /* border: solid 10px aqua; */
+}
+
+.image_login{
+    position: relative;
+    width: 60%;
+    /* border: solid 10px black; */
+}
+
+.image_login img{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    /* border: solid 10px black; */
+}
+
+.message-error{
+    color: red;
+    font-family: var(--font-btn-auth);
+}
+
+.btn-auth{
+    font-family: var(--font-btn-auth);
 }
