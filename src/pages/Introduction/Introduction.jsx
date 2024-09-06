@@ -12,7 +12,6 @@ const Introduction = () => {
     <div className='introduction-whole-container'>
         <Header />
         <div className="introduction-container">
-            <Slide/>
             <Vision/>
             <Mission/>
             <ContactUs/>

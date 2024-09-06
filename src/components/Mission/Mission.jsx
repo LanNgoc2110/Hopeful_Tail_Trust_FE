@@ -18,7 +18,7 @@ const Mission = () => {
                                 cạnh đó còn là trải nghiệm thực tế của chúng tôi trong quá <br/>
                                 trình nuôi thúc cưng để đem đến cho mọi người những <br/>
                                 thông tin chính xác và hữu ích nhất.</p>
-            <button className='detail-btn'>Chi tiết</button>
+            {/* <button className='detail-btn'>Chi tiết</button> */}
         </div>
         <div className="mission-right">
             <img src={image}/>
