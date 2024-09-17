@@ -54,12 +54,23 @@ const Header = () => {
                         Trang chủ
                     </li>
                     <li
-                        onClick={() => navigate("/introduction")}
+                        onClick={() => {
+                            navigate("/introduction")
+                            window.scrollTo(0, 0);
+                        }}
                         className={location.pathname == "/introduction" ? "active" : ""}
                     >
                         Giới thiệu
                     </li>
-                    <li>Nhận nuôi</li>
+                    <li
+                        onClick={() => {
+                            navigate("/adoption")
+                            window.scrollTo(0, 0);
+                        }}
+                        className={location.pathname == "/adoption" ? "active" : ""}
+                    >
+                        Nhận nuôi
+                    </li>
                     <li>Sản phẩm</li>
                     <li>Tin tức</li>
                     <li>Đăng nhập</li>

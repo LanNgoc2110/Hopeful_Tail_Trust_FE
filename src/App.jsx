@@ -4,6 +4,7 @@ import Home from './pages/Home/Home'
 import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
 import Introduction from './pages/Introduction/Introduction'
+import Adoption from './pages/Adoption/Adoption'
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>}/>
         <Route path="/introduction" element={<Introduction/>}/>
+        <Route path="/adoption" element={<Adoption/>}/>
 
         {/* Auth */}
         <Route path="/login" element={<Login/>}/>
