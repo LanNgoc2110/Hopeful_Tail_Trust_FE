@@ -1,14 +1,12 @@
 .vision-container{
     max-width: var(--max-screen-width);
     width: 100%;
-    
-    
-    
 }
 
 .vision-slide {
     width: 100%;
     position: relative;
+    background-color: #F3F8FF;
 }
 .vision-slide img{
     width: 100%;

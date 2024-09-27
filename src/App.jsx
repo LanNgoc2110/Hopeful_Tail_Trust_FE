@@ -5,18 +5,30 @@ import Login from './pages/Auth/Login'
 import Register from './pages/Auth/Register'
 import Introduction from './pages/Introduction/Introduction'
 import Adoption from './pages/Adoption/Adoption'
+import PetDetail from './components/Pet/PetDetail'
+import Pet from './components/Pet/Pet'
+import Products from './pages/Products/Products'
+import Product from './components/Product/Product'
+import ProductDetail from './components/Product/ProductDetail'
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/introduction" element={<Introduction/>}/>
-        <Route path="/adoption" element={<Adoption/>}/>
+        <Route path="/" element={<Home />} />
+        <Route path="/introduction" element={<Introduction />} />
+        <Route path="/adoption/*" element={<Adoption />}>
+          <Route path="" element={<Pet/>}/>
+          <Route path=":id" element={<PetDetail />} />
+        </Route>
+        <Route path="/product/*" element={<Products />}>
+          <Route path="" element={<Product/>}/>
+          <Route path=":id" element={<ProductDetail />} />
+        </Route>
 
         {/* Auth */}
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   )

@@ -71,8 +71,16 @@ const Header = () => {
                     >
                         Nhận nuôi
                     </li>
-                    <li>Sản phẩm</li>
-                    <li>Tin tức</li>
+                    <li
+                        onClick={() => {
+                            navigate("/product")
+                            window.scrollTo(0, 0);
+                        }}
+                        className={location.pathname == "/product" ? "active" : ""}
+                    >
+                        Sản phẩm
+                    </li>
+                    {/* <li>Tin tức</li> */}
                     <li>Đăng nhập</li>
                 </div>
             </div>
