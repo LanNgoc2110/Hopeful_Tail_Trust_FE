@@ -20,7 +20,17 @@ const Product = () => {
             description: 'Bát nước bằng nhựa nhẹ, tiện lợi cho thú cưng uống nước cả ngày.', 
             comments: [
                 { userId: 1, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
-                { userId: 2, username: 'user2', img: avatar_img, rating: 0.5, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' }
+                { userId: 2, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
+                { userId: 3, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
+                { userId: 4, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
+                { userId: 5, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
+                { userId: 6, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
+                { userId: 7, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
+                { userId: 8, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
+                { userId: 9, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
+                { userId: 10, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
+                { userId: 11, username: 'user1', img: avatar_img, rating: 0, comment: 'Chất lượng không như mong đợi.' },
+                { userId: 12, username: 'user2', img: avatar_img, rating: 1, comment: 'Giá rẻ nhưng chất lượng chưa ổn.' },
             ]
         },
         { 
@@ -31,8 +41,8 @@ const Product = () => {
             rating: 1.5, 
             description: 'Bóng cao su bền, dẻo, phù hợp cho chó mèo gặm nhấm và chơi đùa.', 
             comments: [
-                { userId: 3, username: 'user3', img: avatar_img, rating: 1.5, comment: 'Chó của tôi rất thích chơi nhưng hơi nhanh hỏng.' },
-                { userId: 4, username: 'user4', img: avatar_img, rating: 2.0, comment: 'Chất lượng khá ổn, phù hợp cho các loài chó lớn.' }
+                { userId: 3, username: 'user3', img: avatar_img, rating: 1, comment: 'Chó của tôi rất thích chơi nhưng hơi nhanh hỏng.' },
+                { userId: 4, username: 'user4', img: avatar_img, rating: 2, comment: 'Chất lượng khá ổn, phù hợp cho các loài chó lớn.' }
             ]
         },
         { 
@@ -43,7 +53,7 @@ const Product = () => {
             rating: 2.5, 
             description: 'Vòng cổ chống rận với hương liệu tự nhiên, an toàn cho thú cưng.', 
             comments: [
-                { userId: 5, username: 'user5', img: avatar_img, rating: 2.5, comment: 'Hiệu quả chống rận nhưng mùi hơi nồng.' }
+                { userId: 5, username: 'user5', img: avatar_img, rating: 2, comment: 'Hiệu quả chống rận nhưng mùi hơi nồng.' }
             ]
         },
         { 
@@ -54,7 +64,7 @@ const Product = () => {
             rating: 4.5, 
             description: 'Lồng di động gọn nhẹ, thuận tiện khi mang thú cưng ra ngoài.', 
             comments: [
-                { userId: 6, username: 'user6', img: avatar_img, rating: 4.5, comment: 'Rất tiện lợi khi đưa chó ra ngoài dạo.' }
+                { userId: 6, username: 'user6', img: avatar_img, rating: 4, comment: 'Rất tiện lợi khi đưa chó ra ngoài dạo.' }
             ]
         },
         { 
@@ -65,7 +75,7 @@ const Product = () => {
             rating: 4.0, 
             description: 'Cát vệ sinh có khả năng thấm hút tốt, giữ nhà sạch sẽ.', 
             comments: [
-                { userId: 7, username: 'user7', img: avatar_img, rating: 4.0, comment: 'Thấm hút tốt, mèo của tôi rất thích.' }
+                { userId: 7, username: 'user7', img: avatar_img, rating: 4, comment: 'Thấm hút tốt, mèo của tôi rất thích.' }
             ]
         },
         { 
@@ -76,7 +86,7 @@ const Product = () => {
             rating: 2.0, 
             description: 'Thức ăn hạt dinh dưỡng, hỗ trợ tăng trưởng cho chó.', 
             comments: [
-                { userId: 8, username: 'user8', img: avatar_img, rating: 2.0, comment: 'Chó nhà tôi không ăn loại này.' }
+                { userId: 8, username: 'user8', img: avatar_img, rating: 2, comment: 'Chó nhà tôi không ăn loại này.' }
             ]
         },
         { 
@@ -87,7 +97,7 @@ const Product = () => {
             rating: 3.0, 
             description: 'Dầu tắm dịu nhẹ, không gây kích ứng cho da thú cưng.', 
             comments: [
-                { userId: 9, username: 'user9', img: avatar_img, rating: 3.0, comment: 'Tắm xong lông mềm mại nhưng hương thơm không giữ lâu.' }
+                { userId: 9, username: 'user9', img: avatar_img, rating: 3, comment: 'Tắm xong lông mềm mại nhưng hương thơm không giữ lâu.' }
             ]
         },
         { 
@@ -98,7 +108,7 @@ const Product = () => {
             rating: 3.5, 
             description: 'Bộ cắt móng tiện dụng giúp cắt móng thú cưng dễ dàng và an toàn.', 
             comments: [
-                { userId: 10, username: 'user10', img: avatar_img, rating: 3.5, comment: 'Cắt móng dễ dàng nhưng cần cẩn thận khi dùng.' }
+                { userId: 10, username: 'user10', img: avatar_img, rating: 3, comment: 'Cắt móng dễ dàng nhưng cần cẩn thận khi dùng.' }
             ]
         },
         { 
@@ -109,7 +119,7 @@ const Product = () => {
             rating: 2.0, 
             description: 'Áo khoác ấm áp cho thú cưng khi đi dạo trong thời tiết lạnh.', 
             comments: [
-                { userId: 11, username: 'user11', img: avatar_img, rating: 2.0, comment: 'Chất liệu ổn nhưng hơi rộng với chó nhỏ.' }
+                { userId: 11, username: 'user11', img: avatar_img, rating: 2, comment: 'Chất liệu ổn nhưng hơi rộng với chó nhỏ.' }
             ]
         },
         { 
@@ -120,7 +130,7 @@ const Product = () => {
             rating: 2.5, 
             description: 'Dây dắt an toàn, phù hợp cho cả chó và mèo.', 
             comments: [
-                { userId: 12, username: 'user12', img: avatar_img, rating: 2.5, comment: 'Mèo của tôi không quen đeo dây dắt này.' }
+                { userId: 12, username: 'user12', img: avatar_img, rating: 2, comment: 'Mèo của tôi không quen đeo dây dắt này.' }
             ]
         },
         { 
@@ -131,7 +141,7 @@ const Product = () => {
             rating: 1.0, 
             description: 'Nhà gỗ ấm áp, giúp giữ ấm cho thú cưng trong mùa đông.', 
             comments: [
-                { userId: 13, username: 'user13', img: avatar_img, rating: 1.0, comment: 'Khá nhỏ so với kỳ vọng, chưa vừa với chó lớn.' }
+                { userId: 13, username: 'user13', img: avatar_img, rating: 1, comment: 'Khá nhỏ so với kỳ vọng, chưa vừa với chó lớn.' }
             ]
         },
         { 
@@ -142,7 +152,7 @@ const Product = () => {
             rating: 4.0, 
             description: 'Bình nước nhỏ gọn, tiện lợi cho thú cưng khi đi dạo.', 
             comments: [
-                { userId: 14, username: 'user14', img: avatar_img, rating: 4.0, comment: 'Rất tiện dụng cho thú cưng khi ra ngoài.' }
+                { userId: 14, username: 'user14', img: avatar_img, rating: 4, comment: 'Rất tiện dụng cho thú cưng khi ra ngoài.' }
             ]
         },
         { 
@@ -153,7 +163,7 @@ const Product = () => {
             rating: 5.0, 
             description: 'Giường nệm mềm mại, mang lại cảm giác thoải mái cho thú cưng.', 
             comments: [
-                { userId: 15, username: 'user15', img: avatar_img, rating: 5.0, comment: 'Giường rất mềm, thú cưng của tôi ngủ rất ngon.' }
+                { userId: 15, username: 'user15', img: avatar_img, rating: 5, comment: 'Giường rất mềm, thú cưng của tôi ngủ rất ngon.' }
             ]
         },
         { 
@@ -164,7 +174,7 @@ const Product = () => {
             rating: 1.5, 
             description: 'Đồ gặm giúp làm sạch răng và ngăn ngừa hôi miệng cho thú cưng.', 
             comments: [
-                { userId: 16, username: 'user16', img: avatar_img, rating: 1.5, comment: 'Sản phẩm nhanh bị hỏng, chó của tôi không thích.' }
+                { userId: 16, username: 'user16', img: avatar_img, rating: 1, comment: 'Sản phẩm nhanh bị hỏng, chó của tôi không thích.' }
             ]
         },
         { 
@@ -175,7 +185,7 @@ const Product = () => {
             rating: 4.5, 
             description: 'Dụng cụ cào móng cho mèo, bảo vệ đồ đạc trong nhà.', 
             comments: [
-                { userId: 17, username: 'user17', img: avatar_img, rating: 4.5, comment: 'Mèo của tôi rất thích, không còn cào ghế nữa.' }
+                { userId: 17, username: 'user17', img: avatar_img, rating: 4, comment: 'Mèo của tôi rất thích, không còn cào ghế nữa.' }
             ]
         },
         { 
@@ -186,7 +196,7 @@ const Product = () => {
             rating: 3.5, 
             description: 'Khay vệ sinh dễ làm sạch, giúp giữ vệ sinh cho chó.', 
             comments: [
-                { userId: 18, username: 'user18', img: avatar_img, rating: 3.5, comment: 'Chất lượng ổn, dễ làm sạch.' }
+                { userId: 18, username: 'user18', img: avatar_img, rating: 3, comment: 'Chất lượng ổn, dễ làm sạch.' }
             ]
         },
         { 
@@ -197,7 +207,7 @@ const Product = () => {
             rating: 3.0, 
             description: 'Bàn chải lông giúp loại bỏ lông rụng, giữ thú cưng sạch sẽ.', 
             comments: [
-                { userId: 19, username: 'user19', img: avatar_img, rating: 3.0, comment: 'Chải khá tốt nhưng không loại bỏ hết lông rụng.' }
+                { userId: 19, username: 'user19', img: avatar_img, rating: 3, comment: 'Chải khá tốt nhưng không loại bỏ hết lông rụng.' }
             ]
         },
         { 
@@ -208,7 +218,7 @@ const Product = () => {
             rating: 4.0, 
             description: 'Thảm ngủ mềm mại, giữ ấm cho chó vào ban đêm.', 
             comments: [
-                { userId: 20, username: 'user20', img: avatar_img, rating: 4.0, comment: 'Chất liệu mềm mại và dễ giặt.' }
+                { userId: 20, username: 'user20', img: avatar_img, rating: 4, comment: 'Chất liệu mềm mại và dễ giặt.' }
             ]
         },
         { 
@@ -219,7 +229,7 @@ const Product = () => {
             rating: 2.5, 
             description: 'Khăn tắm thấm hút tốt, giữ thú cưng khô ráo sau khi tắm.', 
             comments: [
-                { userId: 21, username: 'user21', img: avatar_img, rating: 2.5, comment: 'Khá nhỏ và thấm hút chưa tốt.' }
+                { userId: 21, username: 'user21', img: avatar_img, rating: 2, comment: 'Khá nhỏ và thấm hút chưa tốt.' }
             ]
         },
         { 
@@ -230,7 +240,7 @@ const Product = () => {
             rating: 3.5, 
             description: 'Dầu gội nhẹ nhàng, không gây kích ứng cho da nhạy cảm của mèo.', 
             comments: [
-                { userId: 22, username: 'user22', img: avatar_img, rating: 3.5, comment: 'Làm sạch tốt nhưng mùi thơm không giữ lâu.' }
+                { userId: 22, username: 'user22', img: avatar_img, rating: 3, comment: 'Làm sạch tốt nhưng mùi thơm không giữ lâu.' }
             ]
         },
         { 
@@ -241,8 +251,8 @@ const Product = () => {
             rating: 0.5, 
             description: 'Khay ăn tự động, đảm bảo thú cưng luôn được ăn đúng giờ.', 
             comments: [
-                { userId: 23, username: 'user23', img: avatar_img, rating: 0.5, comment: 'Hoạt động không ổn định, thường bị lỗi.' },
-                { userId: 24, username: 'user24', img: avatar_img, rating: 1.0, comment: 'Thiết kế đẹp nhưng tính năng không tốt.' }
+                { userId: 23, username: 'user23', img: avatar_img, rating: 0, comment: 'Hoạt động không ổn định, thường bị lỗi.' },
+                { userId: 24, username: 'user24', img: avatar_img, rating: 1, comment: 'Thiết kế đẹp nhưng tính năng không tốt.' }
             ]
         },
         { 
@@ -253,7 +263,7 @@ const Product = () => {
             rating: 4.5, 
             description: 'Túi vận chuyển thoải mái, giúp thú cưng dễ di chuyển khi đi xa.', 
             comments: [
-                { userId: 25, username: 'user25', img: avatar_img, rating: 4.5, comment: 'Túi rất chắc chắn và thoáng khí.' }
+                { userId: 25, username: 'user25', img: avatar_img, rating: 4, comment: 'Túi rất chắc chắn và thoáng khí.' }
             ]
         },
         { 
@@ -264,7 +274,7 @@ const Product = () => {
             rating: 3.5, 
             description: 'Đồ chơi giúp thú cưng giải trí và rèn luyện sức khỏe.', 
             comments: [
-                { userId: 26, username: 'user26', img: avatar_img, rating: 3.5, comment: 'Chó của tôi rất thích chơi nhưng hơi nhanh hỏng.' }
+                { userId: 26, username: 'user26', img: avatar_img, rating: 3, comment: 'Chó của tôi rất thích chơi nhưng hơi nhanh hỏng.' }
             ]
         },
         { 
@@ -275,7 +285,7 @@ const Product = () => {
             rating: 4.0, 
             description: 'Bàn chải đánh răng giúp làm sạch răng và ngăn ngừa hôi miệng.', 
             comments: [
-                { userId: 27, username: 'user27', img: avatar_img, rating: 4.0, comment: 'Rất tiện lợi và dễ sử dụng.' }
+                { userId: 27, username: 'user27', img: avatar_img, rating: 4, comment: 'Rất tiện lợi và dễ sử dụng.' }
             ]
         },
         { 
@@ -286,7 +296,7 @@ const Product = () => {
             rating: 5.0, 
             description: 'Đệm ngủ mềm mại, giúp mèo ngủ ngon giấc.', 
             comments: [
-                { userId: 28, username: 'user28', img: avatar_img, rating: 5.0, comment: 'Mèo nhà tôi rất thích nằm trên đệm này.' }
+                { userId: 28, username: 'user28', img: avatar_img, rating: 5, comment: 'Mèo nhà tôi rất thích nằm trên đệm này.' }
             ]
         },
         { 
@@ -306,7 +316,7 @@ const Product = () => {
             rating: 3.5, 
             description: 'Đồ gặm bền, giúp chó rèn luyện răng miệng.', 
             comments: [
-                { userId: 1, username: 'user1', img: avatar_img, rating: 3.5, comment: 'Chó của tôi rất thích nhưng hơi nhanh hỏng.' }
+                { userId: 1, username: 'user1', img: avatar_img, rating: 3, comment: 'Chó của tôi rất thích nhưng hơi nhanh hỏng.' }
             ]
         },
         { 
@@ -317,7 +327,7 @@ const Product = () => {
             rating: 4.0, 
             description: 'Lược chải lông nhẹ nhàng, giúp loại bỏ lông rụng dễ dàng.', 
             comments: [
-                { userId: 2, username: 'user2', img: avatar_img, rating: 4.0, comment: 'Mèo của tôi rất thích khi được chải lông.' }
+                { userId: 2, username: 'user2', img: avatar_img, rating: 4, comment: 'Mèo của tôi rất thích khi được chải lông.' }
             ]
         }
     ];
