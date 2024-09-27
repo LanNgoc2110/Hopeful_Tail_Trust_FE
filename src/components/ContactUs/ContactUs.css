@@ -48,6 +48,12 @@
     outline: none;
 }
 
+.message-error{
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    margin: 10px 0 0;
+}
+
 .contact_us-form-input .contact_us-form-btn{
     width: 100%;
     margin-top: 30px;

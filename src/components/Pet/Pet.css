@@ -7,9 +7,15 @@
     background-color: #F3F8FF;
 }
 
+.pet-container .pet-unadopted{
+    width: 100%;
+}
+
+
 .pet-slide {
     width: 100%;
     position: relative;
+    background-color: #F3F8FF;
 }
 .pet-slide img{
     width: 100%;
@@ -35,11 +41,6 @@
     right: 10%;
     color: #141660;
     font-style: italic;
-}
-
-
-.pet-container .pet-unadopted{
-    width: 100%;
 }
 
 .pet-unadopted .pet-filter{
@@ -113,6 +114,7 @@
     font-size: 18px;
     color: gray;
     text-align: center;
+    font-family: "Inter", sans-serif;
 }
 
 .pet-unadopted-list .pet-unadopted-item{
@@ -160,7 +162,7 @@
     opacity: 1;
 }
 
-.overlay .view-more-button {
+.pet-unadopted-item .overlay .view-more-button {
     background-color: #C1B081;
     padding: 10px 20px;
     border-radius: 25px;
@@ -175,7 +177,7 @@
     border: none;
 }
 
-.overlay .view-more-button:hover {
+.pet-unadopted-item .overlay .view-more-button:hover {
     background-color: #d4a218;
 }
 

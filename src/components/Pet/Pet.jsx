@@ -1,47 +1,48 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Pet.css'
 
-import image_3 from '/assets/dogs.png'
 import pet_image from '/assets/pitbull.png'
 import { Input, Pagination, Select } from 'antd';
 import not_found from "/assets/not-found.png"
+import { useLocation, useNavigate } from 'react-router-dom';
+import image_3 from '/assets/dogs.png'
 
 const { Search } = Input;
 
 const Pet = () => {
     const listUnadoptedPets = [
-        { id: 1, image: pet_image, name: 'an', gender: 'cái', species: 'chó' },
-        { id: 2, image: pet_image, name: 'will', gender: 'đực', species: 'chó' },
-        { id: 3, image: pet_image, name: 'gạo', gender: 'đực', species: 'mèo' },
-        { id: 4, image: pet_image, name: 'gạo', gender: 'đực', species: 'mèo' },
-        { id: 5, image: pet_image, name: 'mimi', gender: 'cái', species: 'mèo' },
-        { id: 6, image: pet_image, name: 'bông', gender: 'đực', species: 'mèo' },
-        { id: 7, image: pet_image, name: 'nana', gender: 'đực', species: 'chó' },
-        { id: 8, image: pet_image, name: 'bông', gender: 'cái', species: 'chó' },
-        { id: 9, image: pet_image, name: 'nana', gender: 'cái', species: 'chó' },
-        { id: 10, image: pet_image, name: 'bé', gender: 'cái', species: 'chó' },
-        { id: 11, image: pet_image, name: 'cún', gender: 'đực', species: 'chó' },
-        { id: 12, image: pet_image, name: 'bông', gender: 'cái', species: 'mèo' },
-        { id: 13, image: pet_image, name: 'mập', gender: 'đực', species: 'mèo' },
-        { id: 14, image: pet_image, name: 'bơ', gender: 'đực', species: 'mèo' },
-        { id: 15, image: pet_image, name: 'bé', gender: 'cái', species: 'mèo' },
-        { id: 16, image: pet_image, name: 'cam', gender: 'cái', species: 'mèo' },
-        { id: 17, image: pet_image, name: 'bé', gender: 'cái', species: 'chó' },
-        { id: 18, image: pet_image, name: 'bông', gender: 'đực', species: 'mèo' },
-        { id: 19, image: pet_image, name: 'cam', gender: 'cái', species: 'mèo' },
-        { id: 20, image: pet_image, name: 'bơ', gender: 'cái', species: 'chó' },
-        { id: 21, image: pet_image, name: 'heo', gender: 'đực', species: 'mèo' },
-        { id: 22, image: pet_image, name: 'bé', gender: 'đực', species: 'chó' },
-        { id: 23, image: pet_image, name: 'chồn', gender: 'cái', species: 'chó' },
-        { id: 24, image: pet_image, name: 'mun', gender: 'cái', species: 'mèo' },
-        { id: 25, image: pet_image, name: 'heo', gender: 'đực', species: 'chó' },
-        { id: 26, image: pet_image, name: 'mập', gender: 'đực', species: 'mèo' },
-        { id: 27, image: pet_image, name: 'cún', gender: 'cái', species: 'chó' }
-    ]
+        { id: 1, image: pet_image, name: 'an', gender: 'cái', species: 'chó', age: '5 tháng', vaccination: 1, health_status: 'Bình thường' },
+        { id: 2, image: pet_image, name: 'will', gender: 'đực', species: 'chó', age: '3 tuổi', vaccination: 2, health_status: 'Thiếu dinh dưỡng' },
+        { id: 3, image: pet_image, name: 'gạo', gender: 'đực', species: 'mèo', age: '2 tuổi', vaccination: 3, health_status: 'Viêm đường hô hấp' },
+        { id: 4, image: pet_image, name: 'gạo', gender: 'đực', species: 'mèo', age: '1 tuổi', vaccination: 1, health_status: 'Bình thường' },
+        { id: 5, image: pet_image, name: 'mimi', gender: 'cái', species: 'mèo', age: '4 tháng', vaccination: 0, health_status: 'Suy dinh dưỡng' },
+        { id: 6, image: pet_image, name: 'bông', gender: 'đực', species: 'mèo', age: '6 tuổi', vaccination: 3, health_status: 'Bệnh ngoài da' },
+        { id: 7, image: pet_image, name: 'nana', gender: 'đực', species: 'chó', age: '7 tháng', vaccination: 2, health_status: 'Bình thường' },
+        { id: 8, image: pet_image, name: 'bông', gender: 'cái', species: 'chó', age: '8 tuổi', vaccination: 3, health_status: 'Viêm khớp' },
+        { id: 9, image: pet_image, name: 'nana', gender: 'cái', species: 'chó', age: '1 tuổi', vaccination: 2, health_status: 'Bình thường' },
+        { id: 10, image: pet_image, name: 'bé', gender: 'cái', species: 'chó', age: '2 tuổi', vaccination: 1, health_status: 'Thiếu dinh dưỡng' },
+        { id: 11, image: pet_image, name: 'cún', gender: 'đực', species: 'chó', age: '5 tháng', vaccination: 0, health_status: 'Viêm phổi' },
+        { id: 12, image: pet_image, name: 'bông', gender: 'cái', species: 'mèo', age: '6 tháng', vaccination: 1, health_status: 'Bệnh ngoài da' },
+        { id: 13, image: pet_image, name: 'mập', gender: 'đực', species: 'mèo', age: '3 tuổi', vaccination: 2, health_status: 'Bình thường' },
+        { id: 14, image: pet_image, name: 'bơ', gender: 'đực', species: 'mèo', age: '4 tháng', vaccination: 0, health_status: 'Suy dinh dưỡng' },
+        { id: 15, image: pet_image, name: 'bé', gender: 'cái', species: 'mèo', age: '2 tuổi', vaccination: 1, health_status: 'Thiếu dinh dưỡng' },
+        { id: 16, image: pet_image, name: 'cam', gender: 'cái', species: 'mèo', age: '5 tuổi', vaccination: 3, health_status: 'Bình thường' },
+        { id: 17, image: pet_image, name: 'bé', gender: 'cái', species: 'chó', age: '7 tuổi', vaccination: 2, health_status: 'Viêm khớp' },
+        { id: 18, image: pet_image, name: 'bông', gender: 'đực', species: 'mèo', age: '2 tuổi', vaccination: 1, health_status: 'Viêm đường hô hấp' },
+        { id: 19, image: pet_image, name: 'cam', gender: 'cái', species: 'mèo', age: '3 tháng', vaccination: 0, health_status: 'Thiếu dinh dưỡng' },
+        { id: 20, image: pet_image, name: 'bơ', gender: 'cái', species: 'chó', age: '6 tuổi', vaccination: 3, health_status: 'Bình thường' },
+        { id: 21, image: pet_image, name: 'heo', gender: 'đực', species: 'mèo', age: '8 tuổi', vaccination: 2, health_status: 'Suy giảm miễn dịch' },
+        { id: 22, image: pet_image, name: 'bé', gender: 'đực', species: 'chó', age: '4 tuổi', vaccination: 1, health_status: 'Bình thường' },
+        { id: 23, image: pet_image, name: 'chồn', gender: 'cái', species: 'chó', age: '3 tháng', vaccination: 0, health_status: 'Suy dinh dưỡng' },
+        { id: 24, image: pet_image, name: 'mun', gender: 'cái', species: 'mèo', age: '4 tuổi', vaccination: 2, health_status: 'Bệnh ngoài da' },
+        { id: 25, image: pet_image, name: 'heo', gender: 'đực', species: 'chó', age: '5 tháng', vaccination: 0, health_status: 'Viêm phổi' },
+        { id: 26, image: pet_image, name: 'mập', gender: 'đực', species: 'mèo', age: '8 tuổi', vaccination: 3, health_status: 'Bình thường' },
+        { id: 27, image: pet_image, name: 'cún', gender: 'cái', species: 'chó', age: '2 tuổi', vaccination: 1, health_status: 'Thiếu dinh dưỡng' }
+    ];
 
-    const [genderValue, setGenderValue] = useState(null);
-    const [speciesValue, setSpeciesValue] = useState(null)
     const [searchTerm, setSearchTerm] = useState('');
+    const [speciesValue, setSpeciesValue] = useState(null)
+    const [genderValue, setGenderValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
     // const [pets, setPets] = useState([])
 
@@ -59,12 +60,14 @@ const Pet = () => {
         return (
             (!genderValue || pet.gender.toLowerCase() === genderValue) &&
             (!speciesValue || pet.species === speciesValue) &&
-            (
-                !searchTerm ||
-                pet.name.toLowerCase().includes(searchTermLower) ||
-                pet.gender.toLowerCase().includes(searchTermLower) ||
-                pet.species.toLowerCase().includes(searchTermLower)
-            )
+            (!searchTerm || pet.name.toLowerCase().includes(searchTermLower))
+            // dành cho nút search có thể search tất cả
+            // (
+            //     !searchTerm ||
+            //     pet.name.toLowerCase().includes(searchTermLower) ||
+            //     pet.gender.toLowerCase().includes(searchTermLower) ||
+            //     pet.species.toLowerCase().includes(searchTermLower)
+            // )
         );
     });
 
@@ -74,20 +77,37 @@ const Pet = () => {
         setCurrentPage(page);
         window.scrollTo(0, 750);
     }
+
+    const navigate = useNavigate()
+    const location = useLocation();
+
+    useEffect(() => {
+        // Giữ từ tìm kiếm khi trở về từ trang chi tiết
+        if (location.state && location.state.searchTerm) {
+            setSearchTerm(location.state.searchTerm);
+        }
+        if (location.state && location.state.scrollY) {
+            window.scrollTo(0, location.state.scrollY); // Cuộn đến vị trí lưu trước đó
+        }
+        if (location.state && location.state.currentPage) {
+            setCurrentPage(location.state.currentPage); // Set the correct page
+        }
+    }, [location]);
+
     return (
         <div className='pet-container'>
-            <div className="pet-slide">
-                <img src={image_3} />
-                <div className="background-3"></div>
-                <p className='content-3'>"Tình yêu thú cưng không đơn thuần là sự đồng hành, mà là <br />
-                    hứa hẹn với trái tim và trách nhiệm với linh hồn."
-                </p>
-            </div>
             <div className="pet-unadopted">
-
+                <div className="pet-slide">
+                    <img src={image_3} />
+                    <div className="background-3"></div>
+                    <p className='content-3'>"Tình yêu thú cưng không đơn thuần là sự đồng hành, mà là <br />
+                        hứa hẹn với trái tim và trách nhiệm với linh hồn."
+                    </p>
+                </div>
                 <div className="pet-filter">
                     <Search
-                        placeholder="Search Pet"
+                        placeholder="Tìm tên thú cưng"
+                        value={searchTerm} // Giữ từ tìm kiếm
                         allowClear
                         // enterButton="Search"
                         enterButton
@@ -96,11 +116,12 @@ const Pet = () => {
                             width: '40%',
                         }}
                         onSearch={onSearch}
+                        onChange={(e) => setSearchTerm(e.target.value)}
                     />
 
                     <Select
                         showSearch
-                        placeholder="All Species"
+                        placeholder="Tất cả loài"
                         value={speciesValue}
                         onChange={(value) => {
                             setSpeciesValue(value);
@@ -112,9 +133,9 @@ const Pet = () => {
                         size="large"
                         allowClear
                         style={{
-                            width: '15%',
+                            width: '14%',
                             // margin: '20px 20px 0'
-                            marginLeft: '9%',
+                            marginLeft: '3%',
                         }}
                         options={[
                             { value: 'chó', label: 'Chó' },
@@ -124,7 +145,7 @@ const Pet = () => {
 
                     <Select
                         showSearch
-                        placeholder="All Genders"
+                        placeholder="Tất cả giới tính"
                         value={genderValue}
                         onChange={(value) => {
                             setGenderValue(value);
@@ -136,7 +157,7 @@ const Pet = () => {
                         size="large"
                         allowClear
                         style={{
-                            width: '15%',
+                            width: '14%',
                             // margin: '20px 20px 0'
                             marginLeft: '20px',
                         }}
@@ -147,7 +168,7 @@ const Pet = () => {
                     />
                 </div>
 
-                <div 
+                <div
                     className="pet-unadopted-list"
                     data-items={paginatedPets.length < 3 ? paginatedPets.length : 3}
                 >
@@ -162,7 +183,12 @@ const Pet = () => {
                             <div className="pet-unadopted-item" key={item.id}>
                                 <img src={item.image} />
                                 <div className="overlay">
-                                    <button className="view-more-button">Xem thêm</button>
+                                    <button
+                                        className="view-more-button"
+                                        onClick={() => navigate(`/adoption/${item.id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage  } }, window.scrollTo(0, 0))}
+                                    >
+                                        Xem thêm
+                                    </button>
                                 </div>
                                 <div className="pet-unadopted-item-info">
                                     <p>Tên: {item.name}</p>

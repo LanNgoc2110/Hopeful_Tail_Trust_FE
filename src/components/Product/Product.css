@@ -1,0 +1,209 @@
+.product-container{
+    max-width: var(--max-screen-width);
+    width: 100%;
+    background-color: #F3F8FF;
+}
+.product-slide {
+    width: 100%;
+    position: relative;
+    background-color: #F3F8FF;
+}
+.product-slide img{
+    width: 100%;
+    height: 700px;
+}
+.product-slide .background-4{
+    position: absolute;
+    width: 50%;
+    height: 75%;
+    top: 15%;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+    filter: blur(1px);
+}
+.product-slide .content-4{
+    font-size: 25px;
+    font-weight: unset;
+    color: white;
+    font-family: "Inter", sans-serif;
+    position: absolute;
+    top: 25%;
+    left: 3%;
+    color: #141660;
+    font-style: italic;
+    text-align: center;
+    line-height: 40px;
+}
+.product-slide .detail-btn{
+    position: absolute;
+    top: 65%;
+    left: 8%;
+    padding: 15px 20px;
+    background-color: #FFC247;
+    border: none;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 17px;
+    cursor: pointer;
+    transition:  0.3s ease;
+}
+.product-slide .detail-btn:hover{
+    background-color: #ffb521;
+    padding: 15px 22px;
+    transition:  0.3s ease;
+}
+
+
+.product-container .product-filter{
+    width: 100%;
+    padding-top: 70px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* chỉnh màu thanh Search */
+.product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:hover {
+    border-color: #f8d064;
+    background-color: #ffffff;
+}
+.product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within{
+    border-color: #f8d064;
+    box-shadow: 0 0 0 2px rgba(248, 208, 100, 0.1)
+}
+
+/* chỉnh màu nút Search */
+.product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary{
+    background: #f8d064
+}
+.product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
+    background: #f2c23d
+}
+
+/* chỉnh màu thanh Select */
+.product-filter .ant-select-selector:hover {
+    border-color: #f8d064 !important;
+}
+
+.product-filter .ant-select-focused:where(.css-dev-only-do-not-override-11lehqq).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
+    border-color: #f8d064 !important;
+    box-shadow: 0 0 0 1px #f8d064;
+}
+
+.product-container .product-list{
+    width: 80%;
+    padding: 0 9% 0 11%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-list .title{
+    width: 100%;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    font-weight: bold;
+    color: #02033B;
+    font-size: 40px;
+    margin: 50px 0 10px;
+}
+.product-list .sub-title{
+    width: 100%;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+    color: #02033B;
+    font-size: 16px;
+    margin: 0 0 20px;
+}
+
+.product-list .not-found {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.product-list .not-found img {
+    width: 723px;
+    height: 550px;
+}
+
+.product-list .not-found .no-product {
+    width: 100%;
+    font-size: 18px;
+    color: gray;
+    text-align: center;
+    font-family: "Inter", sans-serif;
+}
+
+.product-list .product-item{
+    width: 26%;
+    margin: 30px 40px;
+    padding-bottom: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+.product-item img{
+    width: 100%;
+    background-image: linear-gradient(#ededed, #E7EFFA);
+    height: 300px;
+}
+
+.product-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300px;
+    background-color: rgba(157, 135, 92, 0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.product-item:hover .overlay {
+    opacity: 1;
+}
+
+.product-item .overlay .view-more-button {
+    background-color: #C1B081;
+    padding: 10px 20px;
+    border-radius: 25px;
+    color: black;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    opacity: 0.9;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.product-item .overlay .view-more-button:hover {
+    background-color: #d4a218;
+}
+
+
+.product-item .product-name{
+    width: 50%;
+    font-family: "Inter", sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    height: 10%;
+}
+.product-item .product-price{
+    width: 50%;
+    font-family: "Inter", sans-serif;
+    text-align: end;
+    font-size: 17px;
+    color: rgb(140, 148, 187);
+    height: 10%;
+}
+
