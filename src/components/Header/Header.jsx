@@ -44,10 +44,10 @@ const Header = () => {
         <div className={`header-whole-container ${showHeader ? 'show' : ''}`} >
             <div className={`header-container ${showHeader ? 'show-down' : ''}`}>
                 <div className="header-left">
-                    <img src={logo} className='header-logo' onClick={handleClick}/>
+                    <img src={logo} className='header-logo' onClick={handleClick} />
                 </div>
                 <div className="header-right">
-                    <li 
+                    <li
                         onClick={handleClick}
                         className={location.pathname == "/" ? "active" : ""}
                     >
@@ -81,7 +81,14 @@ const Header = () => {
                         Sản phẩm
                     </li>
                     {/* <li>Tin tức</li> */}
-                    <li>Đăng nhập</li>
+                    <li
+                        onClick={() => {
+                            navigate("/login")
+                            window.scrollTo(0, 0);
+                        }}
+                    >
+                        Đăng nhập
+                    </li>
                 </div>
             </div>
         </div>
