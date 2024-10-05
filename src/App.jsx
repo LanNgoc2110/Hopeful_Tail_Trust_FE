@@ -10,6 +10,7 @@ import Pet from './components/Pet/Pet'
 import Products from './pages/Products/Products'
 import Product from './components/Product/Product'
 import ProductDetail from './components/Product/ProductDetail'
+import Admin from './pages/Admin/Admin'
 
 function App() {
   return (
@@ -29,6 +30,14 @@ function App() {
         {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* Admin */}
+        <Route
+          path="/admin/*"
+          element={<Admin />}
+        >
+          {/* <Route path="mange" element={<Revenue />} /> */}
+        </Route>
       </Routes>
     </>
   )
