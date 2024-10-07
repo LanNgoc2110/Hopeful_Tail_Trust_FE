@@ -15,7 +15,7 @@
 .back-to-adoption .breadcrumb{
     padding-left: 3%;
     /* font-size: 15px; */
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
 }
 .back-to-adoption .breadcrumb .b-title-1{
     color: rgb(44, 44, 44);
@@ -43,7 +43,7 @@
 
 .pet_detail-container .title{
     width: 100%;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-weight: bold;
     font-size: 35px;
     color: #02033B;
@@ -73,7 +73,7 @@
     background-image: linear-gradient(#ededed, #E7EFFA);
     /* background-color: yellow; */
     border-radius: 50px;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     text-transform: capitalize;
     position: relative;
 }

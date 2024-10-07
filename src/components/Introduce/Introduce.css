@@ -10,13 +10,13 @@
 }
 .introduce-left .title{
     color: #02033B;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-weight: bold;
     font-size: 30px;
 }
 .introduce-left .content{
     color: #02033B;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-weight: unset;
     line-height: 30px;
 }

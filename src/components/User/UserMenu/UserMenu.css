@@ -1,0 +1,128 @@
+.user_menu-container{
+    width: 20%;
+    height: 100%;
+    background-color: #ffefb1;   
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin-left: -0.2%;
+    /* overflow-y: scroll;
+    height: calc(120vh - 107px); */
+}
+
+.user_menu-container .image{
+    width: 100%;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    /* border-bottom: 2px solid white; */
+}
+.user_menu-container .image img{
+    width: 155px;
+    height: 130px;
+}
+
+
+.user_menu-container .list-btn{
+    /* margin-top: 5px; */
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* vì ko xài nút con nên ko cần thanh scroll */
+    /* overflow-y: scroll;
+    height: calc(100vh - 107px); */
+}
+
+.list-btn .btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    /* transition: 0.5s; */
+}
+
+.btn .btn-item{
+    padding: 0 5%;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    /* margin-top: 10px; */
+    margin-bottom: 5px;
+    /* border-radius: 10px; */
+    transition: 0.3s;
+}
+
+.choose{
+    background-color: #ffe180;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); */
+    /* border-radius: 10px; */
+    transition: 0.3s;
+}
+
+.btn-item .image-icon {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+}
+.btn-item .image-icon img {
+    width: 25px;
+    height: 25px;
+}
+.btn-item p{
+    width:  78%;
+    text-align: right;
+    padding-right: 2%;
+    font-weight: bold;
+    color: #574e32;
+    font-family: var(--font-btn-auth);
+    font-size: 16px;
+}
+.btn-item:hover{
+    background-color: #ffe180;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); */
+    /* border-radius: 10px; */
+    transition: 0.3s;
+}
+
+
+.list-btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    transition: height 0.5s ease-in-out;
+    height: 0;
+    overflow: hidden;
+}
+.list-btn{
+    height: auto; 
+    transition: 0.5s;
+}
+
+.sub-btn{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    transition: 0.5s;
+    margin-right: 5%;
+}
+
+
+@media (min-width: 1530px) {
+    .user_menu-container{
+        position: absolute;
+        /* left: 10%; */
+    }
+}

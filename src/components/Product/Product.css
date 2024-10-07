@@ -27,7 +27,7 @@
     font-size: 25px;
     font-weight: unset;
     color: white;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     position: absolute;
     top: 25%;
     left: 3%;
@@ -67,20 +67,20 @@
 
 /* chỉnh màu thanh Search */
 .product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:hover {
-    border-color: #f8d064;
-    background-color: #ffffff;
+    border-color: #f8d064 !important;
+    background-color: #ffffff !important;
 }
 .product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within{
-    border-color: #f8d064;
-    box-shadow: 0 0 0 2px rgba(248, 208, 100, 0.1)
+    border-color: #f8d064 !important;
+    box-shadow: 0 0 0 2px rgba(248, 208, 100, 0.1) !important
 }
 
 /* chỉnh màu nút Search */
 .product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary{
-    background: #f8d064
+    background: #f8d064 !important
 }
 .product-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
-    background: #f2c23d
+    background: #f2c23d !important
 }
 
 /* chỉnh màu thanh Select */
@@ -90,7 +90,7 @@
 
 .product-filter .ant-select-focused:where(.css-dev-only-do-not-override-11lehqq).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
     border-color: #f8d064 !important;
-    box-shadow: 0 0 0 1px #f8d064;
+    box-shadow: 0 0 0 1px #f8d064 !important;
 }
 
 .product-container .product-list{
@@ -103,7 +103,7 @@
 .product-list .title{
     width: 100%;
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-weight: bold;
     color: #02033B;
     font-size: 40px;
@@ -112,7 +112,7 @@
 .product-list .sub-title{
     width: 100%;
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     color: #02033B;
     font-size: 16px;
     margin: 0 0 20px;
@@ -135,7 +135,7 @@
     font-size: 18px;
     color: gray;
     text-align: center;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
 }
 
 .product-list .product-item{
@@ -177,7 +177,7 @@
     border-radius: 25px;
     color: black;
     cursor: pointer;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
@@ -193,14 +193,14 @@
 
 .product-item .product-name{
     width: 50%;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-size: 17px;
     font-weight: bold;
     height: 10%;
 }
 .product-item .product-price{
     width: 50%;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     text-align: end;
     font-size: 17px;
     color: rgb(140, 148, 187);

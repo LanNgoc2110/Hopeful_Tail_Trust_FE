@@ -11,6 +11,7 @@ import Products from './pages/Products/Products'
 import Product from './components/Product/Product'
 import ProductDetail from './components/Product/ProductDetail'
 import Admin from './pages/Admin/Admin'
+import User from './pages/User/User'
 
 function App() {
   return (
@@ -30,6 +31,11 @@ function App() {
         {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+
+        {/* User */}
+        <Route path='/user/*' element={<User/>}>
+          
+        </Route>
 
         {/* Admin */}
         <Route
