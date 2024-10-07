@@ -6,6 +6,7 @@ import { Input, Pagination, Select } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import image_3 from '/assets/dogs.png'
+import { getAllPets } from '../../apis/pet.request';
 
 const { Search } = Input;
 
@@ -44,7 +45,8 @@ const Pet = () => {
     const [speciesValue, setSpeciesValue] = useState(null)
     const [genderValue, setGenderValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
-    // const [pets, setPets] = useState([])
+
+    const [pets, setPets] = useState([])
 
     const onSearch = (value) => {
         setSearchTerm(value.trim().toLowerCase());
@@ -55,7 +57,7 @@ const Pet = () => {
 
     const pageSize = 21;
 
-    const filteredPets = listUnadoptedPets.filter(pet => {
+    const filteredPets = /*listUnadoptedPets*/pets.filter(pet => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
             (!genderValue || pet.gender.toLowerCase() === genderValue) &&
@@ -93,6 +95,14 @@ const Pet = () => {
             setCurrentPage(location.state.currentPage); // Set the correct page
         }
     }, [location]);
+
+    useEffect(() => {
+        const fetchDataPets = async () => {
+            const response = await getAllPets()
+            setPets(response.data || [])
+        }
+        fetchDataPets()
+    }, [])
 
     return (
         <div className='pet-container'>

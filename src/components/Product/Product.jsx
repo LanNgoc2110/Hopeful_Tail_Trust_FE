@@ -6,6 +6,7 @@ import { Rate, Input, Pagination, Select } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom'; 
 import avatar_img from '/assets/cat-introduce.png'
+import { getAllProducts } from '../../apis/product.request';
 
 const { Search } = Input;
 
@@ -338,6 +339,8 @@ const Product = () => {
     const [ratingValue, setRatingValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
 
+    const [products, setProducts] = useState([])
+
     const onSearch = (value) => {
         setSearchTerm(value.trim().toLowerCase());
         setPriceValue(null);  // Reset price select
@@ -347,7 +350,7 @@ const Product = () => {
 
     const pageSize = 21;
 
-    const filteredProducts = listProduct.filter(product => {
+    const filteredProducts = /*listProduct*/products.filter(product => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
             (!priceValue || (product.price >= priceValue[0] && product.price <= priceValue[1])) &&
@@ -387,6 +390,15 @@ const Product = () => {
             setCurrentPage(location.state.currentPage); // Set the correct page
         }
     }, [location]);
+
+    useEffect(() => {
+        const fetchDataProducts = async () => {
+            const response = await getAllProducts()
+            console.log(response);
+            setProducts(response.data || [])
+        }
+        fetchDataProducts()
+    }, [])
 
     return (
         <div className='product-container'>
