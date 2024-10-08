@@ -3,6 +3,10 @@
     --color-bg-auth: #FEF6E7;
     --color-btn-auth: #D9AB62;
     --font-btn-auth: "Inter", sans-serif;
+
+    --color-font-admin-active: #E88E00;
+    --color-font-admin: #868686;
+    --color-bg-admin: #f8f8f8;
 }
 
 body {

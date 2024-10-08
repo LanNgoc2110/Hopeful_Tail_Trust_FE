@@ -1,9 +1,23 @@
 .header-admin {
     width: 100%;
+    background-color: var(--color-bg-admin);
     display: flex;
     justify-content: center;
 }
 
 .header-admin img {
-    width: 150px;
+    width: 80px;
 }
+
+/* .ant-menu-item:focus, .ant-menu-item-selected {
+    outline: none !important;  Tắt hoàn toàn viền focus 
+} */
+
+.ant-menu-item {
+    user-select: none; /* Tắt chọn text khi click vào */
+    /*-webkit-tap-highlight-color: transparent;  Tắt hiệu ứng khi click trên mobile */
+}
+
+/* .ant-menu-item a {
+    pointer-events: none;  Chặn sự kiện focus trên các thẻ link bên trong 
+} */

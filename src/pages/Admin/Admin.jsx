@@ -9,7 +9,7 @@ import {
     LogoutOutlined
 } from '@ant-design/icons'
 import { Avatar, Button, ConfigProvider, Dropdown, Layout, Menu, Space, message, theme } from 'antd';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Admin.css'
 import logo from '/assets/Logo.png'
 
@@ -43,13 +43,23 @@ const items = [
 ]
 
 const customTheme = {
-    token: {
-        colorBgContainer: '#f0f2f5',
-        colorPrimary: '#1DA57A',
-        colorBgMenuItemSelected: '#E88E00', // Màu khi click (được chọn)
-        colorBgMenuItemHover: '#E88E00', // Màu khi hover
+    components: {
+        Menu: {
+            itemColor: "var(--color-font-admin)",
+            itemBg: "var(--color-bg-admin)",
+            itemSelectedColor: "var(--color-font-admin-active)",
+            itemSelectedBg: "var(--color-bg-admin)",
+            itemHoverBg: "var(--color-bg-admin)"
+        }
     },
 };
+
+const siderStyle = {
+    position: 'fixed',
+    top: 0,
+    bottom: 0,
+};
+
 
 export default function Admin() {
     const [collapsed, setCollapsed] = useState(false);
@@ -61,6 +71,9 @@ export default function Admin() {
     } = theme.useToken();
 
     const navigate = useNavigate()
+    const location = useLocation();
+
+    const isAdminHome = location.pathname === '/admin/admin-home';
 
     const handleMenuClick = (e) => {
         let selectedItem;
@@ -97,22 +110,25 @@ export default function Admin() {
     ];
 
     return (
-        <Layout>
+        <Layout hasSider>
             <ConfigProvider theme={customTheme}>
-                <Sider trigger={null} collapsible collapsed={collapsed}>
+                <Sider style={siderStyle} trigger={null} collapsible collapsed={collapsed}>
                     <div className="header-admin">
                         {!collapsed ? <img src={logo} className='logo' /> : <></>}
                     </div>
                     <Menu
                         mode="inline"
                         defaultSelectedKeys={['1']}
-                        style={{ height: '100vh' }}
+                        style={{ height: '100%', outline: "none" }}
                         onClick={handleMenuClick}
                         items={items}
+
                     />
                 </Sider>
             </ConfigProvider>
-            <Layout>
+            <Layout style={{
+                marginInlineStart: collapsed ? "80px" : '200px',
+            }}>
                 <Header
                     style={{
                         padding: 0,
@@ -147,11 +163,11 @@ export default function Admin() {
                 </Header>
                 <Content
                     style={{
-                        margin: '24px 16px',
+                        margin: isAdminHome ? '0' : '24px 16px',
                         padding: 24,
                         minHeight: 280,
-                        background: colorBgContainer,
-                        borderRadius: borderRadiusLG,
+                        background: isAdminHome ? 'none' : colorBgContainer,
+                        borderRadius: isAdminHome ? '0' : borderRadiusLG,
                     }}
                 >
                     <Outlet />
