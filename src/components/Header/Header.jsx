@@ -44,25 +44,51 @@ const Header = () => {
         <div className={`header-whole-container ${showHeader ? 'show' : ''}`} >
             <div className={`header-container ${showHeader ? 'show-down' : ''}`}>
                 <div className="header-left">
-                    <img src={logo} className='header-logo' onClick={handleClick}/>
+                    <img src={logo} className='header-logo' onClick={handleClick} />
                 </div>
                 <div className="header-right">
-                    <li 
+                    <li
                         onClick={handleClick}
                         className={location.pathname == "/" ? "active" : ""}
                     >
                         Trang chủ
                     </li>
                     <li
-                        onClick={() => navigate("/introduction")}
+                        onClick={() => {
+                            navigate("/introduction")
+                            window.scrollTo(0, 0);
+                        }}
                         className={location.pathname == "/introduction" ? "active" : ""}
                     >
                         Giới thiệu
                     </li>
-                    <li>Nhận nuôi</li>
-                    <li>Sản phẩm</li>
-                    <li>Tin tức</li>
-                    <li>Đăng nhập</li>
+                    <li
+                        onClick={() => {
+                            navigate("/adoption")
+                            window.scrollTo(0, 0);
+                        }}
+                        className={location.pathname == "/adoption" ? "active" : ""}
+                    >
+                        Nhận nuôi
+                    </li>
+                    <li
+                        onClick={() => {
+                            navigate("/product")
+                            window.scrollTo(0, 0);
+                        }}
+                        className={location.pathname == "/product" ? "active" : ""}
+                    >
+                        Sản phẩm
+                    </li>
+                    {/* <li>Tin tức</li> */}
+                    <li
+                        onClick={() => {
+                            navigate("/login")
+                            window.scrollTo(0, 0);
+                        }}
+                    >
+                        Đăng nhập
+                    </li>
                 </div>
             </div>
         </div>

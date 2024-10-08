@@ -4,48 +4,237 @@
     flex-wrap: nowrap;
     align-items: center;
     flex-direction: column;
-    background: var(--color-bg-auth);
+    background-color: var(--color-bg-auth);
 }
 
 .auth-container {
     max-width: var(--max-screen-width);
     width: 100%;
-    height: 100vh;
+    min-height: 100vh;
+    height: fit-content;
     display: flex;
-}
-
-.form_auth{
-    width: 40%;
-    display: flex;
-    flex-direction: column;
     justify-content: center;
-    /* border: solid 10px aqua; */
+    align-items: flex-start;
 }
 
-.form_auth form {
-    /* padding: 20px 50px; */
-    
-    width: 70%;
-}
-
-.image_login{
+.auth-container .auth-left{
+    width: 50%;
     position: relative;
-    width: 60%;
-    /* border: solid 10px black; */
 }
 
-.image_login img{
+.auth-left button{
+    color: #E88E00;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin: 3% 0 0 3%;
+    padding: 1% 1.5%;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+.auth-left button:hover{
+    background-color: lightgray;
+    transition: 0.3s ease;
+}
+
+.auth-left p{
+    font-family: var(--font-btn-auth);
+    color: #E88E00;
+    font-weight: bold;
+    font-size: 30px;
+    width: 50%;
+    margin: 6% 0 0 10%;
+}
+.auth-left .logo_login-img{
     position: absolute;
+    top: 181%;
     left: 0;
-    bottom: 0;
-    /* border: solid 10px black; */
+    width: 350px;
+    height: 350px;
+}
+.auth-left .register_login-img{
+    margin: 3% 0 0 3%;
+    width: 450px;
+    height: 450px;
+}
+
+.auth-container .auth-right{
+    width: 50%;
+}
+
+.auth-right .register-or-login{
+    width: 100%; 
+    margin-top: 5%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.auth-right .register-or-login button{
+    font-family: var(--font-btn-auth);
+    color: #E88E00;
+    font-weight: bold;
+    font-size: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1% 1.5%;
+    border-radius: 5px;
+    transition: 0.3s ease;
+}
+.auth-right .register-or-login button:nth-of-type(1){
+    margin-right: 5%;
+}
+.auth-right .register-or-login button:nth-of-type(2){
+    margin-right: 10%;
+}
+.auth-right .register-or-login button:hover{
+    background-color: white;
+    box-shadow: 0px 18px 30px rgba(68, 97, 242, 11%);
+    color: black;
+    transition: 0.3s ease;
+}
+
+.auth-right .title{
+    font-family: var(--font-btn-auth);
+    color: #E88E00;
+    font-weight: bold;
+    font-size: 18px;
+    width: 80%;
+    /* text-align: center;  */
+}
+.auth-right .title.login{
+    margin: 10% 0 4%;
+}
+.auth-right .title.register{
+    margin: 2% 0 4%;
+}
+
+
+.auth-right .login-form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* chỉnh màu thanh input */
+:where(.css-dev-only-do-not-override-11lehqq).ant-input-affix-wrapper >input.ant-input {
+    padding-left: 2%;
+}
+:where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:hover {
+    border-color: #f8d064 !important;
+}
+:where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus, :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within{
+    border-color: #f8d064 !important;
+}
+
+.login-form .input{
+    width: 80%;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 30px rgba(68, 97, 242, 11%);
+}
+
+.login-form .forgot-pw{
+    width: 80%;
+    display: flex;
+    justify-content: flex-end;
+}
+.login-form .forgot-pw .forgot-pw-text{
+    color: #6C737F;
+    text-decoration: none;
+    font-family: var(--font-btn-auth);
+    font-size: 15px;
+}
+.login-form .forgot-pw .forgot-pw-text:hover{
+    text-decoration: underline;
+}
+
+
+
+
+.auth-right .register-form{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.register-form .input{
+    width: 80%;
+    margin-bottom: 20px;
+    box-shadow: 0px 5px 30px rgba(68, 97, 242, 11%);
+}
+
+
+
+.login_or_register-btn{
+    width: 100%;
+}
+.login_or_register-btn button{
+    width: 80%;
+    margin: 3% 0;
+    padding: 2%;
+    border-radius: 5px;
+    border: none;
+    font-family: var(--font-btn-auth);
+    font-weight: bold;
+    color: white;
+    font-size: 15px;
+    background-color: #D9AB62;
+    box-shadow: 0px 5px 30px rgba(68, 97, 242, 11%);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+.login_or_register-btn button:hover{
+    background-color: #f5b857;
+    transition: 0.3s ease;
+}
+
+
+.auth-right .divider{
+    width: 80% !important; 
+}
+/* chỉnh text của divider */
+:where(.css-dev-only-do-not-override-11lehqq).ant-divider .ant-divider-inner-text {
+    color: #6C737F !important;
+    /* font-family: var(--font-btn-auth); */
+    font-size: 14px;
 }
 
 .message-error{
+    width: 100%;
     color: red;
     font-family: var(--font-btn-auth);
+    margin: 0 0 3%!important;
+    padding-left: 2%;
 }
 
-.btn-auth{
-    font-family: var(--font-btn-auth);
+
+.auth-right .login_google-btn {
+    width: 80%;
+    display: flex;
+    justify-content: center;
 }
+.auth-right .login_google-btn button{
+    background-color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 2% 10%;
+    display: flex;
+    flex-wrap: wrap;
+    cursor: pointer;
+    transition: 0.3s ease;
+    margin-bottom: 10%;
+}
+.auth-right .login_google-btn button:hover{
+    background-color: rgb(249, 223, 190);
+    transition: 0.3s ease;
+    padding: 2% 11%;
+}
+
+.auth-right .login_google-btn button img{
+    width: 25px;
+    height: 25px
+}
+.auth-right .login_google-btn button p{
+    font-family: var(--font-btn-auth);
+    margin: 1% 0 0;
+    font-size: 15px;
+}   

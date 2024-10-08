@@ -10,7 +10,7 @@
 .footer-container{
     max-width: var(--max-screen-width);
     width: 100%;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     font-weight: bold;
     padding: 70px;
     display: flex;

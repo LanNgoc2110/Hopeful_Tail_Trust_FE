@@ -3,7 +3,7 @@
     width: 100%;
     background-image: linear-gradient(#FEAE51, #FD8900);
     padding: 70px 0 100px;
-    font-family: "Inter", sans-serif;
+    font-family: var(--font-btn-auth);
     display: flex;
     justify-content: center;
     align-content: center;
@@ -43,6 +43,15 @@
     padding: 8px 10px;
     border-radius: 5px;
     border: none;
+}
+.contact_us-form-input input:focus {
+    outline: none;
+}
+
+.contact_us-form-input .message-error{
+    font-family: var(--font-btn-auth);
+    font-size: 15px;
+    margin: 10px 0 0 !important;
 }
 
 .contact_us-form-input .contact_us-form-btn{
