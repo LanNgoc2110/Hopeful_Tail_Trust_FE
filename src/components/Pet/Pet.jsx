@@ -99,7 +99,8 @@ const Pet = () => {
     useEffect(() => {
         const fetchDataPets = async () => {
             const response = await getAllPets()
-            setPets(response.data || [])
+            setPets(response.data.data || [])
+            // console.log(response);
         }
         fetchDataPets()
     }, [])
