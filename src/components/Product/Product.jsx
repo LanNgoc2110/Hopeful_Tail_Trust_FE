@@ -350,7 +350,7 @@ const Product = () => {
 
     const pageSize = 21;
 
-    const filteredProducts = /*listProduct*/products.filter(product => {
+    const filteredProducts = listProduct/*products*/.filter(product => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
             (!priceValue || (product.price >= priceValue[0] && product.price <= priceValue[1])) &&
@@ -395,7 +395,7 @@ const Product = () => {
         const fetchDataProducts = async () => {
             const response = await getAllProducts()
             console.log(response);
-            setProducts(response.data || [])
+            setProducts(response.data.data || [])
         }
         fetchDataProducts()
     }, [])
