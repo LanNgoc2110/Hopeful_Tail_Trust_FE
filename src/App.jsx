@@ -10,8 +10,13 @@ import Pet from './components/Pet/Pet'
 import Products from './pages/Products/Products'
 import Product from './components/Product/Product'
 import ProductDetail from './components/Product/ProductDetail'
-import Admin from './pages/Admin/Admin'
 import User from './pages/User/User'
+
+import Admin from './pages/Admin/Admin'
+import ManageProduct from './components/Admin/Products/Product'
+import ManagePet from './components/Admin/Pets/Pet'
+import ManageNews from './components/Admin/News/News'
+import Dashboard from './components/Admin/Revenue/Revenue'
 
 function App() {
   return (
@@ -20,11 +25,11 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/introduction" element={<Introduction />} />
         <Route path="/adoption/*" element={<Adoption />}>
-          <Route path="" element={<Pet/>}/>
+          <Route path="" element={<Pet />} />
           <Route path=":id" element={<PetDetail />} />
         </Route>
         <Route path="/product/*" element={<Products />}>
-          <Route path="" element={<Product/>}/>
+          <Route path="" element={<Product />} />
           <Route path=":id" element={<ProductDetail />} />
         </Route>
 
@@ -33,8 +38,8 @@ function App() {
         <Route path="/register" element={<Register />} />
 
         {/* User */}
-        <Route path='/user/*' element={<User/>}>
-          
+        <Route path='/user/*' element={<User />}>
+
         </Route>
 
         {/* Admin */}
@@ -42,7 +47,10 @@ function App() {
           path="/admin/*"
           element={<Admin />}
         >
-          {/* <Route path="mange" element={<Revenue />} /> */}
+          <Route path="admin-home" element={<Dashboard />} />
+          <Route path="manage-product" element={<ManageProduct />} />
+          <Route path="manage-pet" element={<ManagePet />} />
+          <Route path="manage-news" element={<ManageNews />} />
         </Route>
       </Routes>
     </>
