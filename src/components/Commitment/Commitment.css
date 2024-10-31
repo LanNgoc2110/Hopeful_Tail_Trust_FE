@@ -10,7 +10,7 @@
 
 .commitment-container .title{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     font-size: 30px;
     text-align: center;
@@ -19,7 +19,7 @@
 
 .commitment-container .content{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: unset;
     text-align: center;
     line-height: 25px;
@@ -50,14 +50,14 @@
     width: 100%;
     text-align: center;
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
 }
 .board-content .sub-content{
     width: 100%;
     color: #02033B;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 15px;
     height: 70px;
     margin: 0 0 30px;

@@ -28,7 +28,7 @@
     font-size: 30px;
     font-weight: bold;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 20%;
     left: 5%
@@ -37,7 +37,7 @@
     font-size: 20px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 35%;
     left: 5%
@@ -85,13 +85,13 @@
 }
 .vision-right .title{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     font-size: 30px;
 }
 .vision-right .content{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 15px;
     line-height: 25px;
 }

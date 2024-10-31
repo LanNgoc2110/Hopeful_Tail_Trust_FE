@@ -15,7 +15,7 @@
 .back-to-products .breadcrumb{
     padding-left: 3%;
     /* font-size: 15px; */
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
 }
 .back-to-products .breadcrumb .b-title-1{
     color: rgb(44, 44, 44);
@@ -43,7 +43,7 @@
 
 .product_detail-container .title{
     width: 100%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     font-size: 35px;
     color: #02033B;
@@ -53,7 +53,7 @@
 .product_detail-container .sub-title{
     width: 100%;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #02033B;
     font-size: 16px;
     margin: 0 0 50px;
@@ -82,7 +82,7 @@
     background-image: linear-gradient(#ededed, #E7EFFA);
     /* background-color: yellow; */
     border-radius: 50px;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     text-transform: capitalize;
     position: relative;
     display: flex;
@@ -152,7 +152,7 @@
     font-size: 18px;
     line-height: 25px;
     margin-bottom: 1.5%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
 }
 
 .comment textarea{
@@ -160,7 +160,7 @@
     padding: 2% 3% 3% 3%;
     resize: none; /*không cho chỉnh chiều rộng*/
     overflow: hidden; /* không cho chỉnh chiều dài */
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 17px;
     border-radius: 60px;
 }
@@ -201,7 +201,7 @@
 }
 /* chỉnh nút */
 :where(.css-dev-only-do-not-override-11lehqq).ant-btn-default {
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     background-color: white;
     color: black;
     border: 1px solid #d9d9d9;
@@ -237,7 +237,7 @@
 }
 
 .comment-item .comment-text{
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
 }
 
 .comment-text .comment-username{
@@ -251,7 +251,7 @@
 
 .list-comment .no-comment{
     margin-top: 2%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     text-align: center;
     color: lightslategray
 }

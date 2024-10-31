@@ -27,7 +27,7 @@
     font-size: 25px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 25%;
     left: 3%;
@@ -103,7 +103,7 @@
 .product-list .title{
     width: 100%;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     color: #02033B;
     font-size: 40px;
@@ -112,7 +112,7 @@
 .product-list .sub-title{
     width: 100%;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #02033B;
     font-size: 16px;
     margin: 0 0 20px;
@@ -135,7 +135,7 @@
     font-size: 18px;
     color: gray;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
 }
 
 .product-list .product-item{
@@ -177,7 +177,7 @@
     border-radius: 25px;
     color: black;
     cursor: pointer;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
@@ -193,14 +193,14 @@
 
 .product-item .product-name{
     width: 50%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 17px;
     font-weight: bold;
     height: 10%;
 }
 .product-item .product-price{
     width: 50%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     text-align: end;
     font-size: 17px;
     color: rgb(140, 148, 187);

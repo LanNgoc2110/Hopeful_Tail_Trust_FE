@@ -10,13 +10,13 @@
 }
 .mission-left .title{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     font-size: 30px;
 }
 .mission-left .content{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: unset;
     line-height: 30px;
 }

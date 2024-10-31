@@ -35,7 +35,7 @@
     font-size: 30px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     bottom: 0;
     right: 10%;
@@ -90,7 +90,7 @@
 .pet-unadopted-list .title{
     width: 100%;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     color: #02033B;
     font-size: 40px;
@@ -114,7 +114,7 @@
     font-size: 18px;
     color: gray;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
 }
 
 .pet-unadopted-list .pet-unadopted-item{
@@ -168,7 +168,7 @@
     border-radius: 25px;
     color: black;
     cursor: pointer;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
@@ -185,7 +185,7 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 14px;
 }
 
@@ -235,7 +235,7 @@
 .pet-adopted-list .title{
     width: 100%;
     text-align: center;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     color: #02033B;
     font-size: 40px;
