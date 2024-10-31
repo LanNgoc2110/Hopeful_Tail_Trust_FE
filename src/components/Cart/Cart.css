@@ -1,0 +1,216 @@
+.cart-container {
+    max-width: var(--max-screen-width);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    height: fit-content;
+    background-color: #fafafa;
+    padding-bottom: 80px;
+}
+
+
+.cart-left {
+    width: 61%;
+    padding: 2% 0% 2% 5%;
+}
+
+.cart-left .title {
+    color: #02033B;
+    font-family: var(--font-inter);
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.cart-left .cart-list {
+    width: 95%;
+    padding: 3% 2.5%;
+    font-family: var(--font-inter);
+    margin-top: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: -1px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-left .cart-list tr:nth-of-type(1) th{
+    font-weight: normal;
+    text-align: left;
+    padding-bottom: 20px;
+}
+.cart-left .cart-list tr:nth-of-type(1) th input{
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+}
+
+.cart-left .cart-list tr:nth-of-type(1) th:nth-of-type(2){
+    text-align: right;
+}
+
+.cart-left .cart-list tr:nth-of-type(2) th {
+    text-align: left;
+    padding-bottom: 20px;
+    width: 50%;
+    font-size: 17px;
+}
+
+.cart-left .cart-list tr:nth-of-type(2) th:nth-of-type(2) {
+    text-align: center;
+    width: 20%
+}
+
+.cart-left .cart-list tr:nth-of-type(2) th:nth-of-type(3) {
+    text-align: right;
+    /* width: 30%; */
+    padding-right: 6.5%;
+}
+
+.cart-left .cart-list tr td {
+    padding: 20px 0;
+    border-bottom: 1px solid #cdd4df;
+    font-size: 15px;
+}
+
+.cart-left .cart-list tr td:nth-of-type(1) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.cart-left .cart-list tr td input{
+    width: 18px;
+    height: 18px;
+    margin-right: 20px;
+}
+.cart-left .cart-list tr td .cart-product-img {
+    width: 100px;
+    height: 100px;
+    background-image: linear-gradient(#ededed, #E7EFFA);
+    border-radius: 20px;
+}
+
+.cart-left .cart-list tr .cart-product-name {
+    width: 40%;
+    margin-left: 20px;
+}
+
+.cart-left .cart-list tr .cart-product-quantity {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cart-left .cart-list tr .cart-product-quantity button {
+    width: 30px;
+    margin: 0 15px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 16px;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid rgba(82, 82, 82, 0.8);
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.cart-left .cart-list tr .cart-product-quantity button:hover {
+    background-color: rgb(237, 237, 237);
+    transition: 0.3s ease;
+}
+
+.cart-left .cart-list tr .cart-product-price{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.cart-left .cart-list tr .cart-product-price p{
+    text-align: right;
+}
+.cart-left .cart-list tr .cart-product-price button{
+    margin-left: 15px;
+    height: 40px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border-radius: 5px;
+}
+.cart-left .cart-list tr .cart-product-price button:hover { 
+    background-color: rgb(237, 237, 237);
+    transition: 0.3s ease;  
+}
+.cart-left .cart-list tr .cart-product-price button img{
+    width: 22px;
+    height: 22px;
+}
+
+
+.cart-right {
+    width: 30%;
+    position: sticky;
+    top: 20%;
+    align-self: flex-start;
+    margin-bottom: 5%; 
+}
+
+.cart-right .cart-total-price {
+    width: 85%;
+    padding: 1% 5%;
+    margin: 0 5%;
+    background-color: #fff8f0;
+    font-family: var(--font-inter);
+    border-radius: 10px;
+    box-shadow: -1px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.cart-total-price .title {
+    color: #02033B;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 6% 0 3%
+}
+
+.cart-total-price .order{
+    width: 90%;
+    padding: 0 5%;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 15px;
+    /* border-top: 1px solid #cdd4df; */
+}
+.cart-total-price .order-left{
+    width: 50%;
+}
+.cart-total-price .order-right{
+    width: 50%;
+    text-align: right;
+}
+.cart-total-price .order-left p:last-child, 
+.cart-total-price .order-right p:last-child {
+    border-top: 1px solid #cdd4df;
+    padding: 15% 0;
+    margin-top: 15%;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.cart-total-price button {
+    width: 100%;
+    margin-bottom: 5%;
+    padding: 5% 0;
+    border: none;
+    border-radius: 10px;
+    background-color: #02033B;
+    color: white;
+    font-family: var(--font-inter);
+    font-weight: bold;
+    font-size: 16px;        
+    cursor: pointer;
+    transition: 0.3s ease;
+}               
+
+.cart-total-price button:hover { 
+    background-color: #070967;                      
+    transition: 0.3s ease;
+}

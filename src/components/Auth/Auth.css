@@ -39,7 +39,7 @@
 }
 
 .auth-left p{
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #E88E00;
     font-weight: bold;
     font-size: 30px;
@@ -71,7 +71,7 @@
 }
 
 .auth-right .register-or-login button{
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #E88E00;
     font-weight: bold;
     font-size: 16px;
@@ -96,7 +96,7 @@
 }
 
 .auth-right .title{
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #E88E00;
     font-weight: bold;
     font-size: 18px;
@@ -141,7 +141,7 @@
 .login-form .forgot-pw .forgot-pw-text{
     color: #6C737F;
     text-decoration: none;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 15px;
 }
 .login-form .forgot-pw .forgot-pw-text:hover{
@@ -173,7 +173,7 @@
     padding: 2%;
     border-radius: 5px;
     border: none;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     color: white;
     font-size: 15px;
@@ -194,14 +194,14 @@
 /* chỉnh text của divider */
 :where(.css-dev-only-do-not-override-11lehqq).ant-divider .ant-divider-inner-text {
     color: #6C737F !important;
-    /* font-family: var(--font-btn-auth); */
+    /* font-family: var(--font-inter); */
     font-size: 14px;
 }
 
 .message-error{
     width: 100%;
     color: red;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     margin: 0 0 3%!important;
     padding-left: 2%;
 }
@@ -234,7 +234,7 @@
     height: 25px
 }
 .auth-right .login_google-btn button p{
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     margin: 1% 0 0;
     font-size: 15px;
 }   

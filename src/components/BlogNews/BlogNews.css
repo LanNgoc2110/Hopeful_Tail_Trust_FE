@@ -12,7 +12,7 @@
     width: 100%;
     text-align: center;
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 40px;
     font-weight: bold;
     margin: 0;
@@ -40,7 +40,7 @@
 
 .blog_news-content-background .sub-title{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 20px;
     font-weight: bold;
     margin: 15px 0;
@@ -48,7 +48,7 @@
 
 .blog_news-content-background .sub-content{
     color: #02033B;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 14px;
     line-height: 22px;
 }

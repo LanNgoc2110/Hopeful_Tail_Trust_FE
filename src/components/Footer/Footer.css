@@ -5,12 +5,14 @@
     display: flex;
     justify-content: center;
     color: white;
+    height: fit-content;
 }
 
 .footer-container{
     max-width: var(--max-screen-width);
+    background-color: #02033B;
     width: 100%;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-weight: bold;
     padding: 70px;
     display: flex;

@@ -49,7 +49,7 @@
 }
 .user-right-container .welcome-user {
     text-align: right;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     color: #828282;
     font-size: 22px;
     font-weight: bold;

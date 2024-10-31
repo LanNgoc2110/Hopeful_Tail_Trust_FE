@@ -48,7 +48,7 @@
     font-size: 30px;
     font-weight: bold;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 30%;
     right: 15%
@@ -57,7 +57,7 @@
     font-size: 20px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 40%;
     right: 12%
@@ -78,7 +78,7 @@
     font-size: 30px;
     font-weight: bold;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 20%;
     left: 5%
@@ -87,7 +87,7 @@
     font-size: 20px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 35%;
     left: 5%
@@ -125,7 +125,7 @@
     font-size: 30px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     bottom: 0;
     right: 10%;
@@ -148,7 +148,7 @@
     font-size: 25px;
     font-weight: unset;
     color: white;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     position: absolute;
     top: 25%;
     left: 3%;

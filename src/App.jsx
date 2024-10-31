@@ -17,6 +17,7 @@ import ManageProduct from './components/Admin/Products/Product'
 import ManagePet from './components/Admin/Pets/Pet'
 import ManageNews from './components/Admin/News/News'
 import Dashboard from './components/Admin/Revenue/Revenue'
+import CartPage from './pages/CartPage/CartPage'
 
 function App() {
   return (
@@ -52,6 +53,8 @@ function App() {
           <Route path="manage-pet" element={<ManagePet />} />
           <Route path="manage-news" element={<ManageNews />} />
         </Route>
+
+        <Route path="/cart" element={<CartPage/>} />
       </Routes>
     </>
   )

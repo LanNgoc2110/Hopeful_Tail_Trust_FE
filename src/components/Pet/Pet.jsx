@@ -100,7 +100,7 @@ const Pet = () => {
         const fetchDataPets = async () => {
             const response = await getAllPets()
             setPets(response.data.data || [])
-            // console.log(response);
+            console.log(response);
         }
         fetchDataPets()
     }, [])

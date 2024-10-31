@@ -81,7 +81,7 @@
     padding-right: 2%;
     font-weight: bold;
     color: #574e32;
-    font-family: var(--font-btn-auth);
+    font-family: var(--font-inter);
     font-size: 16px;
 }
 .btn-item:hover{
