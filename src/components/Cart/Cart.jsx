@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import './Cart.css'
 import product_img from '/assets/clear-dogfood.png'
 import trash_img from '/assets/trash.png'
+import { Link } from 'react-router-dom'
 
 const Cart = () => {
   const initialProducts = [
@@ -129,8 +130,9 @@ const Cart = () => {
               <p>{finalTotal} VND</p>
             </div>
           </div>
-
-          <button className='order-btn'>Thanh toán</button>
+          <Link to="/payment">
+            <button className='order-btn'>Thanh toán</button>
+          </Link>
         </div>
       </div>
     </div>
