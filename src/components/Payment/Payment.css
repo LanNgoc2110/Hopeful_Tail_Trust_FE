@@ -1,0 +1,27 @@
+.payment-container {
+    max-width: var(--max-screen-width);
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3% 5%;
+    font-family: var(--font-inter);
+}
+
+.payment-left{
+    width: 55%
+}
+
+.payment-left .title{
+    color: #02033B;         
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.payment-right{
+    width: 45%
+}
+.payment-right .title{
+    color: #02033B;         
+    font-weight: bold;
+    font-size: 25px;
+}

@@ -21,8 +21,10 @@ const Footer = () => {
                         <p>Chính sách</p>
                         <p>Điều khoản dịch vụ</p>
                     </div>
-                    <p className='content'>Copyright © 2024 Hopeful Tail Trust Software Limited </p>
-                    <p className='content'>Designed & developed by <u>Hopeful Tail Trust</u></p>
+                     <p className='content'>
+                        Copyright © 2024 Hopeful Tail Trust Software Limited <br/> <br/>
+                        Designed & developed by <u>Hopeful Tail Trust</u>
+                     </p>
                 </div>
                 <div className="footer-middle">
                     <p className='title'>Hopeful Tails Trust</p>
@@ -32,8 +34,10 @@ const Footer = () => {
                 <div className="footer-right">
                     <div className="footer-register">
                         <p>Đăng ký để nhận thông tin mới nhất </p>
-                        <button> 🫰 Đăng ký</button>
-                        <img src={logo}/>
+                        <div className="footer-register-btn">
+                            <button> 🫰 Đăng ký</button>
+                        </div>
+                        <img src={logo} />
                     </div>
                 </div>
             </div>

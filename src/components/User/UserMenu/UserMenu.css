@@ -1,7 +1,8 @@
 .user_menu-container{
-    width: 20%;
+    width: 18%;
     height: 100%;
-    background-color: #ffefb1;   
+    /* background-color: #ffefb1; */
+    background-color: #F8F8F8;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -19,22 +20,25 @@
     height: 130px;
     display: flex;
     justify-content: center;
+    margin: 5% 0 0;
     /* border-bottom: 2px solid white; */
 }
 .user_menu-container .image img{
-    width: 155px;
+    width: 145px;
     height: 130px;
 }
 
 
 .user_menu-container .list-btn{
-    /* margin-top: 5px; */
     width: 100%;
+    height: auto; 
+    transition: 0.5s;
     display: flex;
     flex-direction: column;
-    /* vì ko xài nút con nên ko cần thanh scroll */
-    /* overflow-y: scroll;
-    height: calc(100vh - 107px); */
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    overflow: hidden;
+    margin-top: 2%;
 }
 
 .list-btn .btn {
@@ -42,7 +46,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    /* transition: 0.5s; */
 }
 
 .btn .btn-item{
@@ -60,7 +63,8 @@
 }
 
 .choose{
-    background-color: #ffe180;
+    /* background-color: #ffe180; */
+    color: #E88E00;
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); */
     /* border-radius: 10px; */
     transition: 0.3s;
@@ -68,6 +72,7 @@
 
 .btn-item .image-icon {
     width: 20%;
+    margin-right: 3%;
     display: flex;
     justify-content: center;
 }
@@ -76,35 +81,32 @@
     height: 25px;
 }
 .btn-item p{
-    width:  78%;
-    text-align: right;
+    width:  70%;
+    text-align: left;
     padding-right: 2%;
-    font-weight: bold;
+    /* font-weight: bold; */
     color: #574e32;
     font-family: var(--font-inter);
-    font-size: 16px;
+    font-size: 15px;
+    transition: 0.3s;
 }
 .btn-item:hover{
-    background-color: #ffe180;
+    /* background-color: #ffe180; */
     /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25); */
     /* border-radius: 10px; */
     transition: 0.3s;
 }
+.btn-item:hover p{
+    color: #E88E00;
+    transition: 0.3s;
+}
+.btn-item-title.title-choose{
+    color: #E88E00 !important;
+    transition: 0.3s;
+}
 
 
-.list-btn{
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    transition: height 0.5s ease-in-out;
-    height: 0;
-    overflow: hidden;
-}
-.list-btn{
-    height: auto; 
-    transition: 0.5s;
-}
+
 
 .sub-btn{
     width: 80%;

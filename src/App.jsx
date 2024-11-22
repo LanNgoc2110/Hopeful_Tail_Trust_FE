@@ -18,6 +18,7 @@ import ManagePet from './components/Admin/Pets/Pet'
 import ManageNews from './components/Admin/News/News'
 import Dashboard from './components/Admin/Revenue/Revenue'
 import CartPage from './pages/CartPage/CartPage'
+import PaymentPage from './pages/PaymentPage/PaymentPage'
 
 function App() {
   return (
@@ -55,6 +56,8 @@ function App() {
         </Route>
 
         <Route path="/cart" element={<CartPage/>} />
+        <Route path="/payment" element={<PaymentPage />}/>
+        
       </Routes>
     </>
   )

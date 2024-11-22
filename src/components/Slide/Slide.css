@@ -2,7 +2,8 @@
     max-width: var(--max-screen-width);
     width: 100%;
     margin-top: 8px;
-    height: 700px;
+    max-height: 700px;
+    height: fit-content;
 }
 
 :where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-prev,
@@ -24,17 +25,18 @@
 :where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-next::after {
     inset-inline-start: -20px
 }
-    
+
 .slide {
     width: 100%;
     position: relative;
 }
-.slide img{
+
+.slide img {
     width: 100%;
     height: 700px;
 }
 
-.slide .background-1{
+.slide .background-1 {
     position: absolute;
     width: 35%;
     height: 100%;
@@ -44,26 +46,30 @@
     border-bottom-left-radius: 50px;
     filter: blur(5px);
 }
-.slide .title-1{
+
+.slide .group-text-1 {
+    position: absolute;
+    top: 30%;
+    right: 11%;
+}
+
+.group-text-1 .title-1 {
     font-size: 30px;
     font-weight: bold;
     color: white;
     font-family: var(--font-inter);
-    position: absolute;
-    top: 30%;
-    right: 15%
+    margin: 1em 0 0.5em;
 }
-.slide .content-1{
+
+.group-text-1 .content-1 {
     font-size: 20px;
     font-weight: unset;
     color: white;
     font-family: var(--font-inter);
-    position: absolute;
-    top: 40%;
-    right: 12%
+    padding-left: 20px;
 }
 
-.slide .background-2{
+.slide .background-2 {
     position: absolute;
     width: 50%;
     height: 75%;
@@ -74,28 +80,30 @@
     border-bottom-right-radius: 50px;
     filter: blur(5px);
 }
-.slide .title-2{
+
+.slide .group-text-2 {
+    position: absolute;
+    width: 40%;
+    top: 22%;
+    left: 5%
+}
+
+.group-text-2 .title-2 {
     font-size: 30px;
     font-weight: bold;
     color: white;
     font-family: var(--font-inter);
-    position: absolute;
-    top: 20%;
-    left: 5%
 }
-.slide .content-2{
+
+.group-text-2 .content-2 {
     font-size: 20px;
     font-weight: unset;
     color: white;
     font-family: var(--font-inter);
-    position: absolute;
-    top: 35%;
-    left: 5%
 }
-.slide .contact-us-btn{
-    position: absolute;
-    top: 75%;
-    left: 5%;
+
+.group-text-2 .contact-us-btn {
+    margin-top: 20px;
     padding: 15px 20px;
     background-color: #FFC247;
     border: none;
@@ -103,15 +111,16 @@
     font-weight: bold;
     font-size: 17px;
     cursor: pointer;
-    transition:  0.3s ease;
-}
-.slide .contact-us-btn:hover{
-    background-color: #ffb521;
-    padding: 15px 22px;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }
 
-.slide .background-3{
+.group-text-2 .contact-us-btn:hover {
+    background-color: #ffb521;
+    padding: 15px 22px;
+    transition: 0.3s ease;
+}
+
+.slide .background-3 {
     position: absolute;
     width: 65%;
     height: 25%;
@@ -121,7 +130,7 @@
     border-top-left-radius: 100px;
     filter: blur(5px);
 }
-.slide .content-3{
+.slide .content-3 {
     font-size: 30px;
     font-weight: unset;
     color: white;
@@ -133,7 +142,7 @@
     font-style: italic;
 }
 
-.slide .background-4{
+.slide .background-4 {
     position: absolute;
     width: 50%;
     height: 75%;
@@ -144,23 +153,25 @@
     border-bottom-right-radius: 50px;
     filter: blur(1px);
 }
-.slide .content-4{
+.slide .group-text-4{
+    position: absolute;
+    top: 25%;
+    left: 3%;
+}
+.group-text-4 .content-4 {
     font-size: 25px;
     font-weight: unset;
     color: white;
     font-family: var(--font-inter);
-    position: absolute;
-    top: 25%;
-    left: 3%;
     color: #141660;
     font-style: italic;
     text-align: center;
     line-height: 40px;
 }
-.slide .detail-btn{
-    position: absolute;
-    top: 65%;
-    left: 8%;
+
+.group-text-4 .detail-btn {
+    margin-top: 3%;
+    margin-left: 8%;
     padding: 15px 20px;
     background-color: #FFC247;
     border: none;
@@ -168,10 +179,448 @@
     font-weight: bold;
     font-size: 17px;
     cursor: pointer;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }
-.slide .detail-btn:hover{
+
+.group-text-4 .detail-btn:hover {
     background-color: #ffb521;
     padding: 15px 22px;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
+}
+
+
+/* css for slide 1 */
+@media (max-width: 1286px) {
+    .slide img {
+        height: fit-content;
+    }
+
+    .slide .group-text-1 {
+        right: 5%;
+    }
+}
+
+@media (max-width: 1180px) {
+    .group-text-1 .title-1 {
+        font-size: 27px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 1080px) {
+    .group-text-1 .title-1 {
+        font-size: 26px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 980px) {
+    .slide .group-text-1 {
+        right: 3%;
+    }
+
+    .group-text-1 .title-1 {
+        font-size: 25px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 880px) {
+    .group-text-1 .title-1 {
+        font-size: 23.5px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 13.5px;
+    }
+}
+
+@media (max-width: 780px) {
+    .group-text-1 .title-1 {
+        font-size: 21.5px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 11.5px;
+    }
+}
+
+@media (max-width: 680px) {
+    .slide .background-1 {
+        width: 40%;
+        filter: blur(3px);
+    }
+
+    .group-text-1 .title-1 {
+        font-size: 19.5px;
+    }
+
+    .group-text-1 .content-1 {
+        padding: 0 5px;
+    }
+}
+
+@media (max-width: 580px) {
+    .group-text-1 .title-1 {
+        font-size: 16.5px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 10.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .slide .background-1 {
+        width: 45%;
+    }
+
+    .slide .group-text-1 {
+        right: 1%;
+    }
+
+    .group-text-1 .title-1 {
+        font-size: 13.5px;
+    }
+
+    .group-text-1 .content-1 {
+        font-size: 8.5px;
+    }
+}
+
+@media (max-width: 380px) {
+    .group-text-1 .title-1 {
+        font-size: 12.5px;
+    }
+}
+
+
+/* css for slide 2*/
+@media (max-width: 1286px) {
+    .slide .background-2 {
+        height: 85%;
+        top: 8%
+    }
+
+    .slide .group-text-2 {
+        position: absolute;
+        width: 40%;
+        top: 13%;
+    }
+
+    .group-text-2 .title-2 {
+        font-size: 27px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 1100px) {
+    .group-text-2 .title-2 {
+        font-size: 26px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 16px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .group-text-2 .title-2 {
+        font-size: 25px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 15px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        margin-top: 5px;
+    }
+}
+
+@media (max-width: 940px) {
+    .group-text-2 .title-2 {
+        font-size: 23px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 860px) {
+    .group-text-2 .title-2 {
+        font-size: 21px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 12px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 780px) {
+    .slide .background-2 {
+        width: 55%;
+    }
+
+    .slide .group-text-2 {
+        width: 45%;
+        top: 12%;
+    }
+
+    .group-text-2 .title-2 {
+        font-size: 19px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        margin-top: 0px;
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 700px) {
+    .slide .group-text-2 {
+        top: 8%;
+    }
+}
+
+@media (max-width: 670px) {
+    .group-text-2 .title-2 {
+        font-size: 17px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 11px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .group-text-2 .title-2 {
+        font-size: 17px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 550px) {
+    .group-text-2 .title-2 {
+        font-size: 13px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        font-size: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .group-text-2 .title-2 {
+        font-size: 12px;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 7.5px;
+    }
+
+    .group-text-2 .contact-us-btn {
+        font-size: 7px;
+        padding: 7px 10px;
+    }
+}
+
+@media (max-width: 420px) {
+    .slide .background-2 {
+        width: 60%;
+    }
+
+    .slide .group-text-2 {
+        width: 50%;
+    }
+
+    .group-text-2 .content-2 {
+        font-size: 7px;
+    }
+}
+
+@media (max-width: 380px) {
+    .slide .group-text-2 {
+        top: 0%;
+    }
+}
+
+
+
+/* css for slide 3 */
+@media (max-width: 1286px) {
+    .slide .content-3 {
+        font-size: 25px;
+        right: 5%;
+    }
+}
+@media (max-width: 1180px) {
+    .slide .content-3 {
+        font-size: 22px;
+    }
+}
+@media (max-width: 1080px) {
+    .slide .content-3 {
+        font-size: 20px;
+    }
+}
+@media (max-width: 990px) {
+    .slide .content-3 {
+        font-size: 18px;
+    }
+}
+@media (max-width: 890px) {
+    .slide .content-3 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 830px) {
+    .slide .content-3 {
+        font-size: 14px;
+        bottom: 2%
+    }
+}
+@media (max-width: 730px) {
+    .slide .background-3 {
+        width: 75%;
+    }
+}
+@media (max-width: 640px) {
+    .slide .background-3 {
+        width: 85%;
+    }
+    .slide .content-3 {
+        bottom: 0
+    }
+}
+@media (max-width: 560px) {
+    .slide .background-3 {
+        width: 85%;
+    }
+    .slide .content-3 {
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px) {
+    .slide .content-3 {
+        font-size: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .slide .content-3 {
+        font-size: 9px;
+    }
+}
+
+
+
+/* css for slide 4 */
+@media (max-width: 1286px) {
+    .group-text-4 .content-4 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+}
+@media (max-width: 1170px) {
+    .group-text-4 .content-4 {
+        font-size: 18px;
+        line-height: 25px;
+    }
+}
+@media (max-width: 1080px) {
+    .group-text-4 .content-4 {
+        font-size: 16px;
+        line-height: 22px;
+    }  
+    .group-text-4 .detail-btn {
+        padding: 12px 18px;
+        font-size: 15px;
+    }
+}
+@media (max-width: 980px) {
+    .group-text-4 .content-4 {
+        font-size: 14px;
+        line-height: 22px;
+    }
+    .group-text-4 .detail-btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+}
+@media (max-width: 860px) {
+    .group-text-4 .content-4 {
+        font-size: 12px;
+        line-height: 20px;
+    }
+    .group-text-4 .detail-btn {
+        padding: 8px 12px;
+        font-size: 11px;
+    }
+}
+@media (max-width: 740px) {
+    .group-text-4 .content-4 {
+        font-size: 10px;
+        line-height: 18px;
+    }
+    .group-text-4 .detail-btn {
+        font-size: 10px;
+    }
+}
+@media (max-width: 620px) {
+    .group-text-4 .content-4 {
+        font-size: 8px;
+        line-height: 15px;
+    }
+    .group-text-4 .detail-btn {
+        font-size: 8px;
+    }
+}
+@media (max-width: 500px) {
+    .group-text-4 .content-4 {
+        font-size: 6px;
+        line-height: 13px;
+    }
+    .group-text-4 .detail-btn {
+        font-size: 8px;
+        padding: 6px 11px;
+    }
+}
+@media (max-width: 380px) {
+    .group-text-4 .content-4 {
+        font-size: 5px;
+        line-height: 10px;
+    }
+    .group-text-4 .detail-btn {
+        font-size: 6px;
+        padding: 5px 10px;
+    }
 }
