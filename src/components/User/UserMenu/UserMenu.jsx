@@ -39,7 +39,7 @@ const UserMenu = () => {
 
   const handleButtonClick = (buttonIndex) => {
     if (buttonIndex === 2) {
-      navigate('/user/kid-profile');
+      navigate('/user/adoption-form');
     } else {
       
     }
