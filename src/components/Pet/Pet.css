@@ -26,7 +26,7 @@
     position: absolute;
     width: 65%;
     height: 25%;
-    bottom: 0;
+    bottom: -10%;
     right: 0;
     background-color: rgba(255, 255, 255, 0.5);
     border-top-left-radius: 100px;
@@ -38,7 +38,7 @@
     color: white;
     font-family: var(--font-inter);
     position: absolute;
-    bottom: 0;
+    bottom: -6%;
     right: 10%;
     color: #141660;
     font-style: italic;
@@ -260,6 +260,9 @@
 
 /* css for slide */
 @media (max-width: 1286px) {
+    .pet-slide .background-3 {
+        height: 30%;
+    }
     .pet-slide .content-3 {
         font-size: 25px;
         right: 5%;
@@ -281,7 +284,7 @@
         font-size: 18px;
     }
 }
-@media (max-width: 890px) {
+@media (max-width: 900px) {
     .pet-slide .content-3 {
         font-size: 16px;
     }
