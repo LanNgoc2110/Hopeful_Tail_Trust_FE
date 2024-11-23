@@ -6,7 +6,7 @@ import { Input, Pagination, Select } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import image_3 from '/assets/dogs.png'
-import { getAllPets } from '../../apis/pet.request';
+import { petApi} from '../../apis/pet.request';
 
 const { Search } = Input;
 
@@ -98,7 +98,7 @@ const Pet = () => {
 
     useEffect(() => {
         const fetchDataPets = async () => {
-            const response = await getAllPets()
+            const response = await petApi.getAllPets()
             setPets(response.data.data || [])
             console.log(response);
         }
@@ -173,8 +173,8 @@ const Pet = () => {
                             marginLeft: '20px',
                         }}
                         options={[
-                            { value: 'cái', label: 'Cái' },
-                            { value: 'đực', label: 'Đực' },
+                            { value: 'Female', label: 'Cái' },
+                            { value: 'Male', label: 'Đực' },
                         ]}
                     />
                 </div>
@@ -191,19 +191,19 @@ const Pet = () => {
                         </div>
                     ) : (
                         paginatedPets.map((item) => (
-                            <div className="pet-unadopted-item" key={item.id}>
-                                <img src={item.image} />
+                            <div className="pet-unadopted-item" key={item._id}>
+                                <img src={item.image.url} />
                                 <div className="overlay">
                                     <button
                                         className="view-more-button"
-                                        onClick={() => navigate(`/adoption/${item.id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage  } }, window.scrollTo(0, 0))}
+                                        onClick={() => navigate(`/adoption/${item._id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage  } }, window.scrollTo(0, 0))}
                                     >
                                         Xem thêm
                                     </button>
                                 </div>
                                 <div className="pet-unadopted-item-info">
                                     <p>Tên: {item.name}</p>
-                                    <p>Giới tính: {item.gender}</p>
+                                    <p>Giới tính: {item.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                                     <p>Loài: {item.species}</p>
                                     {/* <p>Tiêm ngừa: {item.vaccination}</p>
                                     <p>Tình trạng sức khỏe: {item.health_status}</p> */}

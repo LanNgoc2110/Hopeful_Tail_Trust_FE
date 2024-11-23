@@ -1,0 +1,12 @@
+const actionsType = {
+    AUTH_START: "AUTH_START",
+    AUTH_LOGIN_SUCCESS: "AUTH_LOGIN_SUCCESS",
+    AUTH_FAIL: "AUTH_FAIL",
+    AUTH_LOGOUT: "AUTH_LOGOUT",
+
+    PETS_START: "PETS_START",
+    PETS_SUCCESS: "PETS_SUCCESS",
+    PETS_FAIL: "PETS_FAIL",
+};
+
+export default actionsType;

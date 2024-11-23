@@ -46,16 +46,16 @@ const PetDetail = () => {
             </div>
             <p className='title'>Thú cưng</p>
             <div className="pet_detail-left">
-                <img src={pet.image} />
+                <img src={pet.image.url} />
             </div>
             <div className="pet_detail-right">
                 <div className="pet_detail-content">
                     <p>Tên: {pet.name}</p>
-                    <p>Giới tính: {pet.gender}</p>
+                    <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                     <p>Loài: {pet.species}</p>
                     <p>Tuổi: {pet.age}</p>
-                    <p>Tiêm ngừa: {pet.vaccination}/3</p>
-                    <p>Tình trạng sức khỏe: {pet.health_status}</p>
+                    <p>Tiêm ngừa: {pet.vaccinated}</p>
+                    <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
                     <button className='adoption-request-btn'>Gửi yêu cầu nhận nuôi </button>
                 </div>
             </div>
