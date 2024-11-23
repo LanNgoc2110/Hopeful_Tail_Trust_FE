@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Button, Divider } from 'antd';
+import { Button, Divider, message } from 'antd';
 import './Auth.css'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
@@ -7,35 +7,37 @@ import { UserOutlined, HomeFilled, MailOutlined, HomeOutlined, PhoneOutlined } f
 import { Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import google_img from '/assets/google.png'
+import { useDispatch, useSelector } from 'react-redux';
+import { login } from '../../redux/actions/auth.action';
+import { authApi } from '../../apis/auth.request';
+import store from "../../store/ReduxStore";
+import { useEffect } from 'react';
 
 export default function Auth({ comp }) {
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
   const [passwordVisible, setPasswordVisible] = useState(false)
-  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false)
+  // const authState = useSelector(state => state.authReducer);
 
   const formik = useFormik({
     initialValues: {
       username: '',
       email: '',
       password: '',
-      confirmPassword: '',
       address: '',
-      phone: ''
+      phoneNumber: ''
     },
     validationSchema: Yup.object({
-      username: Yup.string().max(30, "Tên người dùng không được vượt quá 30 ký tự").required("* Bắt buộc"),
+      username: comp === "Register"
+        ? Yup.string().max(30, "Tên người dùng không được vượt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
       // email: Yup.string().matches(`^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$`, 'Email không chính xác').required('Required'),
       email: Yup.string().matches(
         /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email không hợp lệ"
       ).required('* Bắt buộc'),
       password: Yup.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự trở lên").required("* Bắt buộc"),
-      confirmPassword:
-        comp === "Register"
-          ? Yup.string()
-            .oneOf([Yup.ref("password"), null], "Xác nhận mật khẩu không trùng với mật khẩu")
-            .required("* Bắt buộc")
-          : Yup.string(),
-      address: Yup.string().required("* Bắt buộc"),
-      phone:
+      address: comp === "Register"
+        ? Yup.string().required("* Bắt buộc") : Yup.string(),
+      phoneNumber:
         comp === "Register"
           ? Yup.string()
             .matches(`[^a-zA-Z]+`, "Chỉ được nhập số")
@@ -45,8 +47,40 @@ export default function Auth({ comp }) {
             .required("* Bắt buộc")
           : Yup.string()
     }),
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    onSubmit: async (values) => {
+      messageApi.open({
+        type: 'loading',
+        content: 'Xin đợi trong giây lát',
+      })
+      try {
+        if (comp === "Login") {
+          const user = { identifier: values.email, password: values.password };
+          // console.log(user);
+
+          await dispatch(login(user));
+          const authState = store.getState().authReducer;
+
+          if (authState.payload) {
+            messageApi.destroy()
+            message.success("Đăng nhập thành công");
+            navigate("/");
+          } else {
+            messageApi.destroy()
+            messageApi.error(authState.error.message);
+          }
+        } else if (comp === "Register") {
+          const response = await authApi.register(values);
+          
+          if (response.data.error_code === 0) {
+            messageApi.destroy()
+            message.success("Đăng ký thành công");
+            navigate("/login");
+          }
+        }
+      } catch (error) {
+        messageApi.destroy()
+        messageApi.error(error.response.data.message);
+      }
     },
   });
 
@@ -54,14 +88,15 @@ export default function Auth({ comp }) {
 
   return (
     <div className='auth-whole-container'>
+      {contextHolder}
       <div className="auth-container">
         <div className="auth-left">
           <button onClick={() => navigate("/")}><HomeFilled /></button>
           <p>Chào mừng đến với Hopeful Tails Trust!</p>
-          {comp === "Login" 
-            ? <img src="/assets/background_login.png" className='logo_login-img'/>
-            : <img src="/assets/inu.png" className='register_login-img'/>}
-          
+          {comp === "Login"
+            ? <img src="/assets/background_login.png" className='logo_login-img' />
+            : <img src="/assets/inu.png" className='register_login-img' />}
+
         </div>
         <div className="auth-right">
 
@@ -133,22 +168,6 @@ export default function Auth({ comp }) {
             {/* Confirm Password (only for registration) */}
             {comp === "Register" && (
               <>
-                <Input.Password
-                  className='input'
-                  size='large'
-                  placeholder="Xác nhận mật khẩu"
-                  visibilityToggle={{ visible: confirmPasswordVisible, onVisibleChange: setConfirmPasswordVisible }}
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  onChange={formik.handleChange}
-                  onBlur={formik.handleBlur}
-                  value={formik.values.confirmPassword}
-                />
-                {formik.errors.confirmPassword && formik.touched.confirmPassword && (
-                  <p className="message-error">{formik.errors.confirmPassword}</p>
-                )}
-
                 <Input
                   className='input'
                   size="large"
@@ -169,22 +188,26 @@ export default function Auth({ comp }) {
                   size="large"
                   placeholder="Số điện thoại"
                   prefix={<PhoneOutlined />}
-                  id="phone"
-                  name="phone"
+                  id="phoneNumber"
+                  name="phoneNumber"
                   type=""
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
-                  value={formik.values.phone}
+                  value={formik.values.phoneNumber}
                 />
-                {formik.errors.email && formik.touched.phone && (
-                  <p className="message-error">{formik.errors.phone}</p>
+                {formik.errors.email && formik.touched.phoneNumber && (
+                  <p className="message-error">{formik.errors.phoneNumber}</p>
                 )}
               </>
             )}
 
 
             <div className="login_or_register-btn">
-              <button type="submit">{comp === "Login" ? 'Đăng nhập' : 'Đăng ký'}</button>
+              <button
+                // disabled={store.getState().authReducer.isLoading}
+                type="submit"
+              >
+                {comp === "Login" ? 'Đăng nhập' : 'Đăng ký'}</button>
             </div>
           </form>
 

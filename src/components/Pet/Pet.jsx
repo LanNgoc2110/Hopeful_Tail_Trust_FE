@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Pet.css'
 
 import pet_image from '/assets/pitbull.png'
-import { Input, Pagination, Select } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
+import { Input, Pagination, Select, Spin } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import image_3 from '/assets/dogs.png'
-import { getAllPets } from '../../apis/pet.request';
+import { petApi } from '../../apis/pet.request';
 
 const { Search } = Input;
 
@@ -45,6 +46,7 @@ const Pet = () => {
     const [speciesValue, setSpeciesValue] = useState(null)
     const [genderValue, setGenderValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [pets, setPets] = useState([])
 
@@ -60,7 +62,7 @@ const Pet = () => {
     const filteredPets = /*listUnadoptedPets*/pets.filter(pet => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
-            (!genderValue || pet.gender.toLowerCase() === genderValue) &&
+            (!genderValue || pet.sex === genderValue) &&
             (!speciesValue || pet.species === speciesValue) &&
             (!searchTerm || pet.name.toLowerCase().includes(searchTermLower))
             // dành cho nút search có thể search tất cả
@@ -97,10 +99,12 @@ const Pet = () => {
     }, [location]);
 
     useEffect(() => {
+        setIsLoading(true);
         const fetchDataPets = async () => {
-            const response = await getAllPets()
+            const response = await petApi.getAllPets()
             setPets(response.data.data || [])
-            console.log(response);
+            setIsLoading(false);
+            // console.log(response);
         }
         fetchDataPets()
     }, [])
@@ -149,8 +153,8 @@ const Pet = () => {
                             marginLeft: '3%',
                         }}
                         options={[
-                            { value: 'chó', label: 'Chó' },
-                            { value: 'mèo', label: 'Mèo' },
+                            { value: 'Dog', label: 'Chó' },
+                            { value: 'Cat', label: 'Mèo' },
                         ]}
                     />
 
@@ -173,8 +177,8 @@ const Pet = () => {
                             marginLeft: '20px',
                         }}
                         options={[
-                            { value: 'cái', label: 'Cái' },
-                            { value: 'đực', label: 'Đực' },
+                            { value: 'Female', label: 'Cái' },
+                            { value: 'Male', label: 'Đực' },
                         ]}
                     />
                 </div>
@@ -184,27 +188,42 @@ const Pet = () => {
                     data-items={paginatedPets.length < 3 ? paginatedPets.length : 3}
                 >
                     <p className='title'>Danh sách thú cưng</p>
-                    {paginatedPets.length === 0 ? (
+                    {isLoading &&
+                        <div className="not-found">
+                            <Spin
+                                indicator={
+                                    <LoadingOutlined
+                                        style={{
+                                            margin: 150,
+                                            fontSize: 100,
+                                            color: 'var(--color-btn-auth)'
+                                        }}
+                                        spin />
+                                }
+                            />
+                        </div>
+                    }
+                    {!isLoading && paginatedPets.length === 0 ? (
                         <div className="not-found">
                             <img src={not_found} />
                             <p className="no-pet">The pet you are looking for is currently not available.</p>
                         </div>
                     ) : (
                         paginatedPets.map((item) => (
-                            <div className="pet-unadopted-item" key={item.id}>
-                                <img src={item.image} />
+                            <div className="pet-unadopted-item" key={item._id}>
+                                <img src={item.image.url} />
                                 <div className="overlay">
                                     <button
                                         className="view-more-button"
-                                        onClick={() => navigate(`/adoption/${item.id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage  } }, window.scrollTo(0, 0))}
+                                        onClick={() => navigate(`/adoption/${item._id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage } }, window.scrollTo(0, 0))}
                                     >
                                         Xem thêm
                                     </button>
                                 </div>
                                 <div className="pet-unadopted-item-info">
                                     <p>Tên: {item.name}</p>
-                                    <p>Giới tính: {item.gender}</p>
-                                    <p>Loài: {item.species}</p>
+                                    <p>Giới tính: {item.sex === 'Female' ? 'Cái' : 'Đực'}</p>
+                                    <p>Loài: {item.species === 'Dog' ? 'Chó' : 'Mèo'}</p>
                                     {/* <p>Tiêm ngừa: {item.vaccination}</p>
                                     <p>Tình trạng sức khỏe: {item.health_status}</p> */}
                                 </div>
