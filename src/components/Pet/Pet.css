@@ -16,16 +16,17 @@
     width: 100%;
     position: relative;
     background-color: #F3F8FF;
+    max-height: 700px;
 }
 .pet-slide img{
     width: 100%;
-    height: 700px;
+    height: fit-content;
 }
 .pet-slide .background-3{
     position: absolute;
     width: 65%;
     height: 25%;
-    bottom: 0;
+    bottom: -10%;
     right: 0;
     background-color: rgba(255, 255, 255, 0.5);
     border-top-left-radius: 100px;
@@ -37,7 +38,7 @@
     color: white;
     font-family: var(--font-inter);
     position: absolute;
-    bottom: 0;
+    bottom: -6%;
     right: 10%;
     color: #141660;
     font-style: italic;
@@ -253,4 +254,75 @@
     height: 220px;
     margin: 20px 40px;
     border-radius: 25px;
+}
+
+
+
+/* css for slide */
+@media (max-width: 1286px) {
+    .pet-slide .background-3 {
+        height: 30%;
+    }
+    .pet-slide .content-3 {
+        font-size: 25px;
+        right: 5%;
+        bottom: 2%;
+    }
+}
+@media (max-width: 1180px) {
+    .pet-slide .content-3 {
+        font-size: 22px;
+    }
+}
+@media (max-width: 1080px) {
+    .pet-slide .content-3 {
+        font-size: 20px;
+    }
+}
+@media (max-width: 990px) {
+    .pet-slide .content-3 {
+        font-size: 18px;
+    }
+}
+@media (max-width: 900px) {
+    .pet-slide .content-3 {
+        font-size: 16px;
+    }
+}
+@media (max-width: 830px) {
+    .pet-slide .content-3 {
+        font-size: 14px;
+        bottom: 2%
+    }
+}
+@media (max-width: 730px) {
+    .pet-slide .background-3 {
+        width: 75%;
+    }
+}
+@media (max-width: 640px) {
+    .pet-slide .background-3 {
+        width: 85%;
+    }
+    .pet-slide .content-3 {
+        bottom: 0
+    }
+}
+@media (max-width: 560px) {
+    .pet-slide .background-3 {
+        width: 85%;
+    }
+    .pet-slide .content-3 {
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px) {
+    .pet-slide .content-3 {
+        font-size: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .pet-slide .content-3 {
+        font-size: 9px;
+    }
 }

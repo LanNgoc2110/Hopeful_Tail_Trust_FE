@@ -110,69 +110,72 @@ export default function Admin() {
     ];
 
     return (
-        <Layout hasSider>
-            <ConfigProvider theme={customTheme}>
-                <Sider style={siderStyle} trigger={null} collapsible collapsed={collapsed}>
-                    <div className="header-admin">
-                        {!collapsed ? <img src={logo} className='logo' /> : <></>}
-                    </div>
-                    <Menu
-                        mode="inline"
-                        defaultSelectedKeys={['1']}
-                        style={{ height: '100%', outline: "none" }}
-                        onClick={handleMenuClick}
-                        items={items}
+        <div className="admin-whole-container">
+            <Layout hasSider className='admin-container'>
+                <ConfigProvider theme={customTheme}>
+                    <Sider style={siderStyle} trigger={null} collapsible collapsed={collapsed}>
+                        <div className="header-admin">
+                            {!collapsed ? <img src={logo} className='logo' /> : <></>}
+                        </div>
+                        <Menu
+                            mode="inline"
+                            defaultSelectedKeys={['1']}
+                            style={{ height: '100%', outline: "none" }}
+                            onClick={handleMenuClick}
+                            items={items}
 
-                    />
-                </Sider>
-            </ConfigProvider>
-            <Layout style={{
-                marginInlineStart: collapsed ? "80px" : '200px',
-            }}>
-                <Header
-                    style={{
-                        padding: 0,
-                        background: colorBgContainer,
-                        display: 'flex',
-                        justifyContent: 'space-between'
-                    }}
-                >
-                    <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(!collapsed)}
+                        />
+                    </Sider>
+                </ConfigProvider>
+                <Layout style={{
+                    marginInlineStart: collapsed ? "80px" : '200px',
+                }}>
+                    <Header
                         style={{
-                            fontSize: '16px',
-                            width: 64,
-                            height: 64,
+                            padding: 0,
+                            background: colorBgContainer,
+                            display: 'flex',
+                            justifyContent: 'space-between'
                         }}
-                    />
+                    >
+                        <Button
+                            type="text"
+                            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                            onClick={() => setCollapsed(!collapsed)}
+                            style={{
+                                fontSize: '16px',
+                                width: 64,
+                                height: 64,
+                            }}
+                        />
 
-                    <Dropdown menu={{ items: listDropdown }} trigger={['click']} className='dropdown' >
-                        <a onClick={(e) => e.preventDefault()}>
-                            <Space>
-                                <Avatar
-                                    src={
-                                        "https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg"
-                                    }
-                                    style={{ cursor: "pointer", width: '40px', height: '40px', marginRight: '20px' }}
-                                />
-                            </Space>
-                        </a>
-                    </Dropdown>
-                </Header>
-                <Content
-                    style={{
-                        margin: isAdminHome ? '0' : '24px 16px',
-                        padding: 24,
-                        minHeight: 280,
-                        background: isAdminHome ? 'none' : colorBgContainer,
-                        borderRadius: isAdminHome ? '0' : borderRadiusLG,
-                    }}
-                >
-                    <Outlet />
-                </Content>
+                        <Dropdown menu={{ items: listDropdown }} trigger={['click']} className='dropdown' >
+                            <a onClick={(e) => e.preventDefault()}>
+                                <Space>
+                                    <Avatar
+                                        src={
+                                            "https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg"
+                                        }
+                                        style={{ cursor: "pointer", width: '40px', height: '40px', marginRight: '20px' }}
+                                    />
+                                </Space>
+                            </a>
+                        </Dropdown>
+                    </Header>
+                    <Content
+                        style={{
+                            margin: isAdminHome ? '0' : '24px 16px',
+                            padding: 24,
+                            minHeight: 280,
+                            background: isAdminHome ? 'none' : colorBgContainer,
+                            borderRadius: isAdminHome ? '0' : borderRadiusLG,
+                        }}
+                    >
+                        <Outlet />
+                    </Content>
+                </Layout>
             </Layout>
-        </Layout>
+        </div>
+
     )
 }

@@ -1,8 +1,21 @@
+.admin-whole-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+}
+.admin-container{
+    max-width: var(--max-screen-width);
+    width: 100%;
+}
+
 .header-admin {
     width: 100%;
     background-color: var(--color-bg-admin);
     display: flex;
     justify-content: center;
+    padding-top: 3%;
 }
 
 .header-admin img {

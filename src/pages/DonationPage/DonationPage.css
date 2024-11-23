@@ -1,0 +1,13 @@
+.donation_page-whole-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+}
+
+.donation_page-container {
+    max-width: var(--max-screen-width);
+    width: 100%;
+    margin-top: 80px;
+}

@@ -6,7 +6,7 @@
 
 .mission-left{
     width: 50%;
-    padding: 60px 0 80px 200px;
+    padding: 60px 0 80px 10%;
 }
 .mission-left .title{
     color: #02033B;
@@ -19,6 +19,7 @@
     font-family: var(--font-inter);
     font-weight: unset;
     line-height: 30px;
+    padding-right: 15%;
 }
 .mission-left .detail-btn{
     margin-top: 20px;
@@ -42,4 +43,50 @@
     padding: 80px;
     display: flex;
     justify-content: flex-start;
+}
+
+
+
+@media (max-width: 1286px) {
+    .mission-left{
+        padding: 60px 0 80px 8%;
+    }
+    .mission-left .content{
+        padding-right: 15%;
+    }
+}
+@media (max-width: 1130px){
+    .mission-container{
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    .mission-left{
+        width: 80%;
+        padding: 5% 5% 5% 15%;
+    }
+    .mission-right{
+        width: 100%;
+        padding: 70px 0 0;
+        justify-content: center;
+    }
+    .mission-right img{
+        width: 55%;
+        height: fit-content;
+    }
+}
+@media (max-width: 700px){
+    .mission-left .title{
+        font-size: 25px;
+    }
+}
+@media (max-width: 500px){
+    .mission-right img{
+        width: 270px;
+        height: 270px;
+    }
+}
+@media (max-width: 500px){
+    .mission-left .title{
+        font-size: 23px;
+    }
 }

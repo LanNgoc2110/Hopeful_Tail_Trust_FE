@@ -121,6 +121,15 @@ const Header = () => {
                     {/* <li>Tin tức</li> */}
                     {/* <li
                         onClick={() => {
+                            navigate("/donation")
+                            window.scrollTo(0, 0);
+                        }}
+                        className={location.pathname == "/donation" ? "active" : ""}
+                    >
+                        Quyên góp
+                    </li>
+                    <li
+                        onClick={() => {
                             navigate("/login")
                             window.scrollTo(0, 0);
                         }}
