@@ -105,7 +105,12 @@ const PetDetail = () => {
                             <p>Tuổi: {pet.age}</p>
                             <p>Tiêm ngừa: {pet.vaccinated}</p>
                             <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
-                            <button className='adoption-request-btn'>Gửi yêu cầu nhận nuôi </button>
+                            <button
+                                className='adoption-request-btn'
+                                onClick={() => navigate(`/adoption/${pet._id}/adoption-form`)}
+                            >
+                                Gửi yêu cầu nhận nuôi
+                            </button>
                         </div>
                     </div>
                 </>
