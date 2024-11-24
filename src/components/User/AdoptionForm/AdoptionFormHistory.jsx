@@ -142,6 +142,8 @@ const AdoptionFormHistory = () => {
                 current={currentPage}
                 pageSize={itemsPerPage}
                 total={sortedData.length}
+                showQuickJumper
+                showTotal={(total) => `Total ${total} adoption forms`}
                 onChange={handlePageChange}
                 style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
             />

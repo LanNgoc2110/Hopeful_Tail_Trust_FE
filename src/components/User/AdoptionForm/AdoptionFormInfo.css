@@ -69,14 +69,26 @@
 }
 
 .adoption_form_info-form .pet-info .pet-info-left img {
-    width: 70%;
-    height: 250px;
+    width: 75%;
+    height: 280px;
     border-radius: 5px;
 }
 
 .adoption_form_info-form .pet-info .pet-info-right {
-    width: 47%;
-    padding-left: 3%;
+    width: 45%;
+    padding-right: 5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.adoption_form_info-form .pet-info .pet-info-right p{
+    width: 100%;
+    margin: 2.5% 0;
+}
+.adoption_form_info-form .pet-info .pet-info-right p:nth-of-type(2), 
+.adoption_form_info-form .pet-info .pet-info-right p:nth-of-type(3),
+.adoption_form_info-form .pet-info .pet-info-right p:nth-of-type(4),
+.adoption_form_info-form .pet-info .pet-info-right p:nth-of-type(5){
+    width: 50%;
 }
 
 
@@ -111,6 +123,9 @@
     cursor: not-allowed; /* Hiển thị biểu tượng cấm */
     background-color: #fdfdfd;
     color: rgb(90, 90, 90)
+}
+.adoption_form_info-form .adopter-info input:nth-of-type(1){
+    text-transform: capitalize;
 }
 
 .adoption_form_info-form .adoption_form-notice{

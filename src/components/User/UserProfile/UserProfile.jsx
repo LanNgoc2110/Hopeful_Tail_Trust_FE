@@ -10,24 +10,24 @@ const UserProfile = () => {
 
   return (
     <div className='user_profile-container'>
-      <div className="user_profile-content">
+      <form className="user_profile-form">
 
         <p>Username: </p>
         <input
-          readOnly={!isEdited}
+          readOnly
           defaultValue="JohnDoe"
-          style={{ color: isEdited ? '#000000' : '#a8a8a8' }}
+          style={{ color: isEdited ? '#a8a8a8' : '#a8a8a8' }}
           onMouseEnter={(e) => !isEdited && (e.target.style.cursor = 'not-allowed')}
-          onMouseLeave={(e) => e.target.style.cursor = 'auto'}
+          onMouseLeave={(e) => e.target.style.cursor = 'not-allowed'}
         />
 
         <p>Email: </p>
         <input
-          readOnly={!isEdited}
+          readOnly
           defaultValue="johndoe@example.com"
-          style={{ color: isEdited ? '#000000' : '#a8a8a8' }}
+          style={{ color: isEdited ? '#a8a8a8' : '#a8a8a8' }}
           onMouseEnter={(e) => !isEdited && (e.target.style.cursor = 'not-allowed')}
-          onMouseLeave={(e) => e.target.style.cursor = 'auto'}
+          onMouseLeave={(e) => e.target.style.cursor = 'not-allowed'}
         />
 
         <p>Họ tên: </p>
@@ -58,11 +58,11 @@ const UserProfile = () => {
         />
 
         <div className="update-save-btn">
-          <button onClick={toggleEdit}>
+          <button onClick={toggleEdit} type="submit">
             {isEdited ? 'Lưu thông tin' : 'Cập nhật thông tin'}
           </button>
         </div>
-      </div>
+      </form>
     </div>
   )
 }

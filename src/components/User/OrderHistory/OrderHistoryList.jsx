@@ -141,6 +141,8 @@ const OrderHistoryList = () => {
                 pageSize={itemsPerPage}
                 total={sortedData.length}
                 onChange={handlePageChange}
+                showQuickJumper
+                showTotal={(total) => `Total ${total} invoices`}
                 style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
             />
         </div>

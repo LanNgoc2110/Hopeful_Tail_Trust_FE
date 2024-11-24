@@ -1,4 +1,4 @@
-.pet_detail-container{
+.pet_detail-container {
     max-width: var(--max-screen-width);
     width: 100%;
     background-color: #F3F8FF;
@@ -9,15 +9,17 @@
     align-items: flex-start;
 }
 
-.pet_detail-container .back-to-adoption{
+.pet_detail-container .back-to-adoption {
     width: 100%;
 }
-.back-to-adoption .breadcrumb{
+
+.back-to-adoption .breadcrumb {
     padding-left: 3%;
     /* font-size: 15px; */
     font-family: var(--font-inter);
 }
-.back-to-adoption .breadcrumb .b-title-1{
+
+.back-to-adoption .breadcrumb .b-title-1 {
     color: rgb(44, 44, 44);
     padding: 6px 10px 3px;
     border-radius: 5px;
@@ -29,7 +31,7 @@
     padding-top: 0.3%;
 }
 
-.back-to-adoption .breadcrumb .b-title-2{
+.back-to-adoption .breadcrumb .b-title-2 {
     color: rgb(61, 61, 61);
     text-transform: capitalize;
     cursor: pointer;
@@ -37,11 +39,12 @@
     padding: 6px 10px 3px;
     border-radius: 5px;
 }
-.back-to-adoption .breadcrumb .b-title-2:hover{
+
+.back-to-adoption .breadcrumb .b-title-2:hover {
     background-color: rgba(0, 0, 0, 0.06);
 }
 
-.pet_detail-container .title{
+.pet_detail-container .title {
     width: 100%;
     font-family: var(--font-inter);
     font-weight: bold;
@@ -51,37 +54,59 @@
     margin: 0 0 50px;
 }
 
-.pet_detail-left{
-    width: 45%;
-    padding-right: 5%;
+.pet_detail-left {
+    width: 40%;
     display: flex;
     justify-content: flex-end;
 }
-.pet_detail-left img{
+
+.pet_detail-left img {
     border-radius: 25px;
     height: 450px;
 }
 
-.pet_detail-right{
-    width: 50%;
-    
+.pet_detail-right {
+    width: 55%;
+    padding-left: 5%;
 }
-.pet_detail-right .pet_detail-content{
+
+.pet_detail-right .pet_detail-content {
     width: 70%;
-    height: 420px;
-    padding: 5% 10% 0% 3%;
+    height: 410px;
+    padding: 5% 5% 0% 7%;
     background-image: linear-gradient(#ededed, #E7EFFA);
     /* background-color: yellow; */
     border-radius: 50px;
     font-family: var(--font-inter);
+    font-size: 18px;
     /* text-transform: capitalize; */
-    position: relative;
+    /* position: relative; */
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-end;
 }
 
-.pet_detail-right .adoption-request-btn{
-    position: absolute;
+.pet_detail-right .pet_detail-content p {
+    width: 98%;
+    margin: 2% 0;
+    padding-left: 2%;
+}
+.pet_detail-right .pet_detail-content p:nth-of-type(1),
+.pet_detail-right .pet_detail-content p:nth-of-type(2),
+.pet_detail-right .pet_detail-content p:nth-of-type(3),
+.pet_detail-right .pet_detail-content p:nth-of-type(4),
+.pet_detail-right .pet_detail-content p:nth-of-type(5),
+.pet_detail-right .pet_detail-content p:nth-of-type(6){
+    width: 48%;
+}
+
+.pet_detail-right .adoption-request-btn {
+    /* position: absolute;
     top: 75%;
-    left: 50%;
+    left: 50%; */
+    margin-top: 5%;
+    margin-right: 5%;
     padding: 15px 20px;
     background-color: #FFC247;
     border: none;
@@ -89,10 +114,11 @@
     font-weight: bold;
     font-size: 17px;
     cursor: pointer;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }
-.pet_detail-right .adoption-request-btn:hover{
+
+.pet_detail-right .adoption-request-btn:hover {
     background-color: #ffb521;
     padding: 15px 22px;
-    transition:  0.3s ease;
+    transition: 0.3s ease;
 }

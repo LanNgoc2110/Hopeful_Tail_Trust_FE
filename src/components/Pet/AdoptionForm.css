@@ -13,6 +13,7 @@
     padding: 2% 2.5% 5%;
     /* background-color: rgb(251, 243, 243); */
     background-color: white;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.15);
 }
 
 .adoption_form h1 {
@@ -35,13 +36,25 @@
 
 .adoption_form .pet-info .pet-info-left img {
     width: 80%;
-    height: 250px;
+    height: 270px;
     border-radius: 5px;
 }
 
 .adoption_form .pet-info .pet-info-right {
-    width: 47%;
-    padding-left: 3%;
+    width: 45%;
+    padding: 0 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.adoption_form .pet-info .pet-info-right p{
+    width: 100%;
+    margin: 2.5% 0;
+}
+.adoption_form .pet-info .pet-info-right p:nth-of-type(2), 
+.adoption_form .pet-info .pet-info-right p:nth-of-type(3),
+.adoption_form .pet-info .pet-info-right p:nth-of-type(4),
+.adoption_form .pet-info .pet-info-right p:nth-of-type(5){
+    width: 50%;
 }
 
 
@@ -75,6 +88,10 @@
 .adoption_form .message-error{
     font-size: 14.5px;
 }
+.adoption_form .adopter-info input:nth-of-type(1){
+    text-transform: capitalize;
+}
+
 
 .adoption_form .adoption_form-notice{
     width: 90%;
