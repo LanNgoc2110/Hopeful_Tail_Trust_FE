@@ -39,6 +39,20 @@
     width: 10%;
     text-align: center;   
 }
+
+/* chỉnh màu nút Xem cho localhost*/
+.adoption_form_history-table tbody tr td:nth-of-type(1) :where(.css-dev-only-do-not-override-11lehqq).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #f2c23d;
+    border-color: #f2c23d;
+    background: #ffffff;
+}
+/* chỉnh màu nút Xem cho sau khi deploy*/
+:global(.adoption_form_history-table tbody tr td:nth-of-type(1) .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover) {
+    color: #f2c23d;
+    border-color: #f2c23d;
+    background: #ffffff;
+}
+
 .adoption_form_history-table tbody tr td:nth-of-type(2){
     width: 57%;
     padding-left: 13%;
@@ -50,10 +64,19 @@
     border-left: 1px solid #f0f0f0;
 }
 
-/* chỉnh màu nút phân trang */
+/* chỉnh màu nút phân trang cho localhost*/
 .adoption_form_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
     color: #f2c23d !important;
 }
 .adoption_form_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}
+
+/* chỉnh màu nút phân trang cho sau khi deploy*/
+:global(.adoption_form_history-container) .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+
+:global(.adoption_form_history-container) .ant-pagination-item-active {
     border-color: #f2c23d !important;
 }
