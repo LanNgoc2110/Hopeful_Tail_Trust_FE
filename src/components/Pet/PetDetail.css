@@ -44,7 +44,21 @@
     background-color: rgba(0, 0, 0, 0.06);
 }
 
-.pet_detail-container .title {
+.not-found {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.not-found {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pet_detail-container .title{
     width: 100%;
     font-family: var(--font-inter);
     font-weight: bold;

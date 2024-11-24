@@ -8,5 +8,9 @@ export const petApi = {
      
     getPetsByQuery: (name, breed, species, age, vaccinated, healthStatus) => {
         return API.get(`/pets/query?name=${name}&breed=${breed}&species=${species}&age=${age}&vaccinated=${vaccinated}&healthStatus=${healthStatus}`)
-    }
+    },
+
+    getPetById: (id) => {
+        return API.get(`/pets/${id}`)
+    },
 }
