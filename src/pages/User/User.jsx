@@ -34,7 +34,7 @@ const User = () => {
           </p>
 
           <div className="info">
-            {/* <Outlet /> */}
+            <Outlet />
           </div>
 
         </div>

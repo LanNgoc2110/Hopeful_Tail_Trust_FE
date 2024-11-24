@@ -1,0 +1,136 @@
+.adoption_form_info-container {
+    margin: 2% 2%;
+    height: 80%;
+    width: 96%;
+    font-family: var(--font-inter);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* chỉnh breadcumb */
+.adoption_form_info-container .back-to-adoption_form_history{
+    width: 100%;
+}
+.back-to-adoption_form_history .breadcrumb{
+    padding-left: 3%;
+    /* font-size: 15px; */
+    font-family: var(--font-inter);
+}
+.back-to-adoption_form_history .breadcrumb .b-title-1{
+    color: rgb(44, 44, 44);
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+/* chỉnh dấu */
+:where(.css-dev-only-do-not-override-11lehqq).ant-breadcrumb .ant-breadcrumb-separator {
+    color: black;
+    padding-top: 0.3%;
+}
+
+.back-to-adoption_form_history .breadcrumb .b-title-2{
+    color: rgb(61, 61, 61);
+    /* text-transform: capitalize; */
+    cursor: pointer;
+    margin: 0;
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+.back-to-adoption_form_history .breadcrumb .b-title-2:hover{
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+
+/* đơn xin nhận nuôi */
+.adoption_form_info-container .adoption_form_info-form {
+    width: 76%;
+    margin: 4% 13% 5%;
+    padding: 3% 2.5% 5%;
+    background-color: #FAFAFA;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.adoption_form_info-form h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #02033B;
+    margin-bottom: 5%;
+}
+
+.adoption_form_info-form .pet-info {
+    width: 100%;
+    display: flex;
+}
+
+.adoption_form_info-form .pet-info .pet-info-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.adoption_form_info-form .pet-info .pet-info-left img {
+    width: 70%;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.adoption_form_info-form .pet-info .pet-info-right {
+    width: 47%;
+    padding-left: 3%;
+}
+
+
+.adoption_form_info-form .adopter-info {
+    width: 95%;
+    padding-left: 5%;
+    margin-top: 5%;
+}
+.adoption_form_info-form .adopter-info p{
+    width: 100%;
+    margin: 0 0 1% 0;
+}
+.adoption_form_info-form .adopter-info span{
+    color: red
+}
+.adoption_form_info-form .adopter-info input{
+    width: 85%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 1.5% 5% 1.5% 3%;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;     
+}
+.adoption_form_info-form .adopter-info input:focus{
+    outline: none;
+}
+.adoption_form_info-form .adopter-info input::placeholder{
+    font-family: var(--font-inter);
+}
+.adoption_form_info-form .adopter-info input[readonly] {
+    cursor: not-allowed; /* Hiển thị biểu tượng cấm */
+    background-color: #fdfdfd;
+    color: rgb(90, 90, 90)
+}
+
+.adoption_form_info-form .adoption_form-notice{
+    width: 90%;
+    padding: 0 5%;
+}
+
+.adoption_form_info-form .adoption_form-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.adoption_form_info-form .adoption_form-btn button{
+    width: 50%;
+    padding: 2% 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #575756;
+    color: white;
+    font-family: var(--font-inter);
+    font-size: 16px;
+}

@@ -35,7 +35,7 @@ const Payment = () => {
   })
   return (
     <div>
-      <form className='payment-container'>
+      <form className='payment-container' onSubmit={formik.handleSubmit}>
         <div className="payment-left">
           <p className='title'>Thanh toán</p>
           <p className='sub-title'>Địa chỉ giao hàng</p>
@@ -143,7 +143,7 @@ const Payment = () => {
           </div>
 
           <div className="payment-btn">
-            <button>Thanh toán</button>
+            <button type='submit'>Thanh toán</button>
           </div>
         </div>
 
