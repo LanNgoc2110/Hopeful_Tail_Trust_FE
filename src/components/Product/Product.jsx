@@ -6,7 +6,7 @@ import { Rate, Input, Pagination, Select } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import avatar_img from '/assets/cat-introduce.png'
-import { getAllProducts } from '../../apis/product.request';
+import { productApi } from '../../apis/product.request';
 
 const { Search } = Input;
 
@@ -338,6 +338,7 @@ const Product = () => {
     const [priceValue, setPriceValue] = useState(null)
     const [ratingValue, setRatingValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
+    const [isLoading, setIsLoading] = useState(false);
 
     const [products, setProducts] = useState([])
 
@@ -350,7 +351,7 @@ const Product = () => {
 
     const pageSize = 21;
 
-    const filteredProducts = listProduct/*products*/.filter(product => {
+    const filteredProducts = /*listProduct*/products.filter(product => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
             (!priceValue || (product.price >= priceValue[0] && product.price <= priceValue[1])) &&
@@ -392,9 +393,11 @@ const Product = () => {
     }, [location]);
 
     useEffect(() => {
+        setIsLoading(true);
         const fetchDataProducts = async () => {
-            const response = await getAllProducts()
-            console.log(response);
+            const response = await productApi.getAllProducts()
+            setIsLoading(false);
+            // console.log(response);
             setProducts(response.data.data || [])
         }
         fetchDataProducts()
@@ -486,15 +489,15 @@ const Product = () => {
                     }}
                     options={[
                         { value: 0, label: '⭐️ 0' },
-                        { value: 0.5, label: '⭐️ 0.5' },
+                        // { value: 0.5, label: '⭐️ 0.5' },
                         { value: 1, label: '⭐️ 1' },
-                        { value: 1.5, label: ' ⭐️1.5' },
+                        // { value: 1.5, label: ' ⭐️1.5' },
                         { value: 2, label: '⭐️ 2' },
-                        { value: 2.5, label: '⭐️ 2.5' },
+                        // { value: 2.5, label: '⭐️ 2.5' },
                         { value: 3, label: '⭐️ 3' },
-                        { value: 3.5, label: '⭐️ 3.5' },
+                        // { value: 3.5, label: '⭐️ 3.5' },
                         { value: 4, label: '⭐️ 4' },
-                        { value: 4.5, label: '⭐️ 4.5' },
+                        // { value: 4.5, label: '⭐️ 4.5' },
                         { value: 5, label: '⭐️ 5' }
                     ]}
                 />

@@ -1,17 +1,17 @@
 import actionsType from "../actions/action.type";
 
-export const petsReducer = (
+export const productsReducer = (
     state = { isLoading: false, error: "", payload: null },
     action) => {
     const { type, payload } = action;
     switch (type) {
-        case actionsType.PETS_START:
+        case actionsType.PRODUCTS_START:
             return { isLoading: true, error: "", payload: null };
-        case actionsType.PETS_SUCCESS:
+        case actionsType.PRODUCTS_SUCCESS:
             return { isLoading: false, error: "", payload: payload };
-        case actionsType.GET_PET_BY_ID:
+        case actionsType.GET_PRODUCT_BY_ID:
             return { isLoading: false, error: "", payload: payload.pet };
-        case actionsType.PETS_FAIL:
+        case actionsType.PRODUCTS_FAIL:
             return { isLoading: false, error: payload, payload: null };
         default:
             return state;
