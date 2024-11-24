@@ -30,7 +30,7 @@ const UserMenu = () => {
       id: 3,
       img: order_icon,
       activeImg: order_icon_active,
-      title: "Đơn hàng",
+      title: "Lịch sử đơn hàng",
     },
   ]
 
@@ -39,7 +39,7 @@ const UserMenu = () => {
 
   const handleButtonClick = (buttonIndex) => {
     if (buttonIndex === 2) {
-      navigate('/user/adoption-form');
+      navigate('/user/adoption-form-history');
     } else {
       
     }
@@ -51,7 +51,7 @@ const UserMenu = () => {
     }
 
     if (buttonIndex === 3){
-      navigate('/user/order')
+      navigate('/user/order-history-list')
     }
   }
 
@@ -62,13 +62,15 @@ const UserMenu = () => {
     if(location.pathname === '/user/user-profile'){
       setActiveButton(1)
     }
-    if(location.pathname === '/user/adoption-form'){
+    if(location.pathname === '/user/adoption-form-history'){
       setActiveButton(2)
     }
-    if(location.pathname === '/user/order'){
+    if(location.pathname === '/user/order-history-list'){
       setActiveButton(3)
     }
   }, [location])
+
+  const [hoveredButton, setHoveredButton] = useState(null);
 
   return (
 
@@ -83,9 +85,14 @@ const UserMenu = () => {
           <div key={item.id} className='btn'>
             <div className={`btn-item ${activeButton === item.id ? 'choose' : ''}`}
               onClick={() => handleButtonClick(item.id)}
+              onMouseEnter={() => setHoveredButton(item.id)} // Cập nhật khi hover
+              onMouseLeave={() => setHoveredButton(null)}  // Xóa hover khi ra ngoài
             >
               <div className="image-icon">
-                <img src={activeButton === item.id ? item.activeImg : item.img}  />
+                {/* <img src={activeButton === item.id ? item.activeImg : item.img}  /> */}
+                <img 
+                  src={hoveredButton === item.id || activeButton === item.id ? item.activeImg : item.img} 
+                />
               </div>
               <p className={`btn-item-title ${activeButton === item.id ? 'title-choose' : ''}`}>{item.title}</p>
             </div>

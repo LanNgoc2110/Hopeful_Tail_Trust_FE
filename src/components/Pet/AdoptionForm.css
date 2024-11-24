@@ -1,0 +1,103 @@
+.adoption_form-container {
+    max-width: var(--max-screen-width);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: var(--font-inter);
+    background-color: #f9f9f9;
+}
+
+.adoption_form-container .adoption_form {
+    width: 50%;
+    margin: 2% 25% 5%;
+    padding: 2% 2.5% 5%;
+    /* background-color: rgb(251, 243, 243); */
+    background-color: white;
+}
+
+.adoption_form h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #02033B;
+    margin-bottom: 6%;
+}
+
+.adoption_form .pet-info {
+    width: 100%;
+    display: flex;
+}
+
+.adoption_form .pet-info .pet-info-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.adoption_form .pet-info .pet-info-left img {
+    width: 80%;
+    height: 250px;
+    border-radius: 5px;
+}
+
+.adoption_form .pet-info .pet-info-right {
+    width: 47%;
+    padding-left: 3%;
+}
+
+
+.adoption_form .adopter-info {
+    width: 95%;
+    padding-left: 5%;
+    margin-top: 5%;
+}
+.adoption_form .adopter-info p{
+    width: 100%;
+    margin: 0 0 1% 0;
+}
+.adoption_form .adopter-info span{
+    color: red
+}
+.adoption_form .adopter-info input{
+    width: 85%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 1.5% 5% 1.5% 3%;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;     
+}
+.adoption_form .adopter-info input:focus{
+    outline: none;
+}
+.adoption_form .adopter-info input::placeholder{
+    font-family: var(--font-inter);
+}
+.adoption_form .message-error{
+    font-size: 14.5px;
+}
+
+.adoption_form .adoption_form-notice{
+    width: 90%;
+    padding: 0 5%;
+}
+
+.adoption_form .adoption_form-btn{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 5%;
+}
+.adoption_form .adoption_form-btn button{
+    width: 50%;
+    padding: 2% 0;
+    border-radius: 5px;
+    border: none;
+    background-color: #E88E00;
+    color: white;
+    font-family: var(--font-inter);
+    cursor: pointer;
+}
+
+.adoption_form .adoption_form-btn button:hover{ 
+    background-color: #ffb521;
+}
