@@ -9,7 +9,7 @@ const Cart = () => {
     { id: 1, name: 'Dry Food for Puppy', price: 500000, quantity: 1, img: product_img, category: 'food', selected: false },
     { id: 2, name: 'Scratching post', price: 120000, quantity: 1, img: product_img, category: 'essential', selected: false },
     { id: 3, name: 'Cat Litter', price: 250000, quantity: 1, img: product_img, category: 'essential', selected: false },
-    { id: 4, name: 'Food and Water Bowls for Dog', price: 100000, quantity: 1, category: 'essential', img: product_img, selected: false },
+    { id: 4, name: 'Food and Water Bowls for Dog', price: 100000, img: product_img, quantity: 1, category: 'essential', selected: false },
     { id: 5, name: 'Dog Poop Bags', price: 130000, quantity: 1, img: product_img, category: 'essential', selected: false },
     { id: 6, name: 'Dry Food for Cat', price: 500000, quantity: 1, img: product_img, category: 'food', selected: false },
     { id: 7, name: 'Senior Dog Food', price: 450000, quantity: 1, img: product_img, category: 'food', selected: false },

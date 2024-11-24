@@ -33,6 +33,25 @@ const PetDetail = () => {
     // const pet = location.state.pet;  // Dữ liệu thú cưng được truyền từ Pet.jsx
 
 
+    // Kiểm tra nếu không có dữ liệu thú cưng, chuyển hướng lại trang chính
+    if (!location.state || !location.state.pet) {
+        navigate('/');
+        return null;
+    }
+
+    // const pet = location.state.pet;  // Dữ liệu thú cưng được truyền từ Pet.jsx
+
+    const translations = {
+        coatColor: {
+            Black: 'Đen',
+            Brown: 'Nâu',
+            White: 'Trắng',
+            Yellow: 'Vàng',
+            Orange: 'Cam',
+            Gray: 'Xám',
+        },
+    };
+
     return (
         <div className='pet_detail-container'>
             {isLoading &&

@@ -1,0 +1,88 @@
+.order_history-container {
+    margin: 2% 5%;
+    height: 80%;
+    width: 90%;
+    font-family: var(--font-inter);
+}
+
+.order_history-container .order_history-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.order_history-table thead tr {
+    background-color: #FAFAFA;
+}
+
+.order_history-table thead tr th {
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.order_history-table thead tr th:nth-of-type(1) {
+    width: 80%;
+}
+
+.order_history-table thead tr th:nth-of-type(2) {
+    width: 20%;
+    border-left: 1px solid #f0f0f0;
+}
+
+.order_history-table tbody tr:hover {
+    background-color: #FAFAFA;
+    transition: all 0.3s ease;
+}
+
+.order_history-table tbody tr td {
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.order_history-table tbody tr td:nth-of-type(1) {
+    width: 10%;
+    text-align: center;
+}
+
+/* chỉnh màu nút Xem cho localhost*/
+/* .order_history-table tbody tr td:nth-of-type(1) :where(.css-dev-only-do-not-override-11lehqq).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+    color: #f2c23d;
+    border-color: #f2c23d;
+    background: #ffffff;
+} */
+/* chỉnh màu nút Xem cho sau khi deploy*/
+:global(.order_history-table tbody tr td:nth-of-type(1) .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover) {
+    color: #f2c23d;
+    border-color: #f2c23d;
+    background: #ffffff;
+}
+
+.order_history-table tbody tr td:nth-of-type(2) {
+    width: 57%;
+    padding-left: 13%;
+}
+
+.order_history-table tbody tr td:nth-of-type(3) {
+    width: 20%;
+    text-align: center;
+    border-left: 1px solid #f0f0f0;
+}
+
+/* chỉnh màu nút phân trang cho localhost*/
+/* .order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+
+.order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+} */
+
+/* chỉnh màu nút phân trang cho sau khi deploy*/
+:global(.order_history-container) .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+
+:global(.order_history-container) .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}

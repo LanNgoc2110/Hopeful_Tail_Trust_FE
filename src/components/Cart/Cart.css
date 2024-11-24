@@ -68,11 +68,12 @@
 .cart-left .cart-list tbody .category-title th {
     text-align: center;
     padding: 1.5% 0 1.5% 0;
-    background-image: linear-gradient(to top, #f5f5f5, #e0e0e0);
+    background-color: #f0f0f0;
+    /* background-image: linear-gradient(to top, #f5f5f5, #e0e0e0); */
 }
 .cart-left .cart-list tr td {
     padding: 20px 0;
-    border-bottom: 1px solid #cdd4df;
+    border-bottom: 1px solid #e6e6e6;
     font-size: 15px;
 }
 

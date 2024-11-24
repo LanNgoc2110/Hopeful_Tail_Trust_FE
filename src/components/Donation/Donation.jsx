@@ -17,7 +17,7 @@ const Donation = () => {
                 <img src={donation_img} />
             </div>
             <div className="donation-right">
-                <form className="donation-form">
+                <form className="donation-form" >
                     <h2>💞 Quyên góp 💞</h2>
                     <p> Mỗi sự giúp đỡ của bạn sẽ giúp chúng tôi cứu thêm nhiều thú cưng cần trợ giúp. Cảm ơn bạn đã đồng hành!</p>
 
@@ -48,7 +48,7 @@ const Donation = () => {
                     </div> */}
 
                     <div className="donate-btn">
-                        <button >Quyên góp</button>
+                        <button type="submit" >Quyên góp</button>
                     </div>
 
                 </form>

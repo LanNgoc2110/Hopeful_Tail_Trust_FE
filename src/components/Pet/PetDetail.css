@@ -81,7 +81,7 @@
     /* background-color: yellow; */
     border-radius: 50px;
     font-family: var(--font-inter);
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     position: relative;
 }
 

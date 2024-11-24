@@ -1,0 +1,121 @@
+.order_history_info-container {
+    margin: 2% 5%;
+    height: 80%;
+    width: 90%;
+    font-family: var(--font-inter);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* chỉnh breadcumb */
+.order_history_info-container .back-to-order_history_list {
+    width: 100%;
+}
+
+.back-to-order_history_list .breadcrumb {
+    padding-left: 3%;
+    /* font-size: 15px; */
+    font-family: var(--font-inter);
+}
+
+.back-to-order_history_list .breadcrumb .b-title-1 {
+    color: rgb(44, 44, 44);
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+
+/* chỉnh dấu */
+:where(.css-dev-only-do-not-override-11lehqq).ant-breadcrumb .ant-breadcrumb-separator {
+    color: black;
+    padding-top: 0.3%;
+}
+
+.back-to-order_history_list .breadcrumb .b-title-2 {
+    color: rgb(61, 61, 61);
+    /* text-transform: capitalize; */
+    cursor: pointer;
+    margin: 0;
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+
+.back-to-order_history_list .breadcrumb .b-title-2:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+
+
+/* Lịch sử đơn hàng */
+.order_history_info-container .order_history_info-invoice {
+    width: 75%;
+    margin: 4% 12.5% 5%;
+    padding: 3% 10% 5%;
+    background-color: #FAFAFA;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.order_history_info-invoice h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 28px;
+    color: #02033B;
+    margin-bottom: 3%;
+}
+
+.order_history_info-invoice .invoice-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.order_history_info-invoice .invoice-content p {
+    padding-bottom: 1%;
+    border-bottom: 1px dotted #a0a0a0;
+}
+.order_history_info-invoice .invoice-content p:nth-of-type(1) {
+    width: 30%;
+}
+.order_history_info-invoice .invoice-content p:nth-of-type(2) {
+    width: 70%;
+    text-align: right;
+}
+.order_history_info-invoice .invoice-content .status {
+    color: red
+}
+
+
+
+.order_history_info-invoice .invoice-table{
+    width: 100%;
+    margin-top: 2%;
+}
+
+.order_history_info-invoice .invoice-table thead tr th{
+    padding-bottom: 2%;
+}
+
+.order_history_info-invoice .invoice-table tbody .category-title th{
+    text-align: center;
+    padding: 1.5% 0 1.5% 0;
+    background-color: #f0f0f0;
+}
+.order_history_info-invoice .invoice-table tbody tr td{
+    padding: 20px 0;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 15px;
+    text-align: center;
+}
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1){
+    display: flex;
+}
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) img{
+    width: 100px;
+    height: 100px;
+    background-image: linear-gradient(#ededed, #E7EFFA);
+    border-radius: 20px;
+}
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) p{
+    margin: 10% 0 10% 5%
+}
