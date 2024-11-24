@@ -100,11 +100,15 @@ const PetDetail = () => {
                     <div className="pet_detail-right">
                         <div className="pet_detail-content">
                             <p>Tên: {pet.name}</p>
+                            <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'}</p>
+                            <p>Giống: {pet.breed}</p>
+                            <p>Màu lông: {translations.coatColor[pet.coatColor] || pet.coatColor}</p>
                             <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
-                            <p>Loài: {pet.species}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Tiêm ngừa: {pet.vaccinated}</p>
                             <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                            <p>Mô tả: {pet.description}</p>
+                            <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                             <button
                                 className='adoption-request-btn'
                                 onClick={() => navigate(`/adoption/${pet._id}/adoption-form`)}

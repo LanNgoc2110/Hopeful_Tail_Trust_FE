@@ -19,21 +19,24 @@ const AdoptionForm = () => {
         },
         validationSchema: Yup.object({
             name: Yup.string()
-                .matches(
-                    /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
-                    "Mỗi từ phải viết hoa chữ cái đầu"
-                )
-                .required("Không được để trống"),
-            address: Yup.string().required("Không được để trống"),
+                // .matches(
+                //     /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
+                //     "* Mỗi từ phải viết hoa chữ cái đầu"
+                // )
+                .required("* Không được để trống"),
+            address: Yup.string().required("* Không được để trống"),
             phone: Yup.string()
-                .matches(`[^a-zA-Z]+`, "Chỉ được nhập số")
-                .matches(`^[0][1-9]*`, "Số điện thoại phải bắt đầu bằng số 0")
-                .max(10, "Số điện thoại phải có 10 chữ số")
-                .min(10, "Số điện thoại phải có 10 chữ số")
-                .required("Không được để trống"),
+                // .matches(`[^a-zA-Z]+`, "* Chỉ được nhập số")
+                .matches(/^\S+$/, "* Không được chứa khoảng trắng")
+                .matches(/^\d+$/, "* Chỉ được nhập số")
+                .matches(`^[0][1-9]*`, "* Số điện thoại phải bắt đầu bằng số 0")
+                .max(10, "* Số điện thoại phải có 10 chữ số")
+                .min(10, "* Số điện thoại phải có 10 chữ số")
+                .required("* Không được để trống"),
             cccd: Yup.string()
-                .matches(/^\d+$/, "Chỉ được nhập số")
-                .required("Không được để trống"),
+                .matches(/^\S+$/, "* Không được chứa khoảng trắng")
+                .matches(/^\d+$/, "* Chỉ được nhập số")
+                .required("* Không được để trống"),
         }),
 
         onSubmit: async (values) => {
@@ -51,18 +54,20 @@ const AdoptionForm = () => {
                     </div>
                     <div className="pet-info-right">
                         <p>Tên thú cưng: Pitbull</p>
-                        <p>Loài: Chó</p>
+                        <p>Loài: Chó </p> 
+                        <p>Giống: Laborder</p>
                         <p>Giới tính: Đực</p>
                         <p>Tuổi: 5</p>
                         <p>Màu lông: Đen</p>
                         <p>Tiêm ngừa: Đã tiêm ngừa</p>
                         <p>Tình trạng sức khỏe: Khỏe mạnh</p>
+                        <p>Địa chỉ trạm cứu hộ: 123 Nguyen Van Linh, Phường 3, Quan 5, TP. HCM</p>
                     </div>
                 </div>
                 <div className="adopter-info">
 
                     <p><span>* </span>Họ tên người nhận nuôi: </p>
-                    <input 
+                    <input
                         name="name"
                         value={formik.values.name}
                         onBlur={formik.handleBlur}
@@ -73,7 +78,7 @@ const AdoptionForm = () => {
                     )}
 
                     <p><span>* </span>Địa chỉ: </p>
-                    <input 
+                    <input
                         name="address"
                         value={formik.values.address}
                         onBlur={formik.handleBlur}
@@ -84,7 +89,7 @@ const AdoptionForm = () => {
                     )}
 
                     <p><span>* </span>Số điện thoại: </p>
-                    <input 
+                    <input
                         name="phone"
                         value={formik.values.phone}
                         onBlur={formik.handleBlur}
@@ -95,7 +100,7 @@ const AdoptionForm = () => {
                     )}
 
                     <p><span>* </span>Số CMND/CCCD: </p>
-                    <input 
+                    <input
                         name="cccd"
                         value={formik.values.cccd}
                         onBlur={formik.handleBlur}

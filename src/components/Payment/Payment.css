@@ -49,6 +49,7 @@
     margin: 1.5% 0;
     padding: 2% 1% 2% 1.5%;
     font-size: 14px;
+    text-transform: capitalize;
 }
 .payment-left input:focus{
     outline: none;

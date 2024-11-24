@@ -37,13 +37,15 @@ const AdoptionFormInfo = () => {
                         <img src={pet_image} />
                     </div>
                     <div className="pet-info-right">
-                    <p>Tên thú cưng: Pitbull</p>
-                        <p>Loài: Chó</p>
+                        <p>Tên thú cưng: Pitbull</p>
+                        <p>Loài: Chó </p>
+                        <p>Giống: Laborder</p>
                         <p>Giới tính: Đực</p>
                         <p>Tuổi: 5</p>
                         <p>Màu lông: Đen</p>
                         <p>Tiêm ngừa: Đã tiêm ngừa</p>
                         <p>Tình trạng sức khỏe: Khỏe mạnh</p>
+                        <p>Địa chỉ trạm cứu hộ: 123 Nguyen Van Linh, Phường 3, Quan 5, TP. HCM</p>
                     </div>
                 </div>
                 <div className="adopter-info">

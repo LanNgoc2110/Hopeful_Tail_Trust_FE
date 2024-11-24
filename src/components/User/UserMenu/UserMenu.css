@@ -1,5 +1,6 @@
 .user_menu-container{
     width: 18%;
+    min-height: 100vh;
     height: 100%;
     /* background-color: #ffefb1; */
     background-color: #F8F8F8;

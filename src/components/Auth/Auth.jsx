@@ -29,21 +29,23 @@ export default function Auth({ comp }) {
     },
     validationSchema: Yup.object({
       username: comp === "Register"
-        ? Yup.string().max(30, "Tên người dùng không được vượt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
+        ? Yup.string().max(30, "* Tên người dùng không được vượt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
       // email: Yup.string().matches(`^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$`, 'Email không chính xác').required('Required'),
       email: Yup.string().matches(
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "Email không hợp lệ"
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "* Email không hợp lệ"
       ).required('* Bắt buộc'),
-      password: Yup.string().min(6, "Mật khẩu phải có ít nhất 6 ký tự trở lên").required("* Bắt buộc"),
+      password: Yup.string().min(6, "* Mật khẩu phải có ít nhất 6 ký tự trở lên").required("* Bắt buộc"),
       address: comp === "Register"
         ? Yup.string().required("* Bắt buộc") : Yup.string(),
       phoneNumber:
         comp === "Register"
           ? Yup.string()
-            .matches(`[^a-zA-Z]+`, "Chỉ được nhập số")
-            .matches(`^[0][1-9]*`, "Số điện thoại phải bắt đầu bằng số 0")
-            .max(10, "Số điện thoại phải có 10 chữ số")
-            .min(10, "Số điện thoại phải có 10 chữ số")
+            // .matches(`[^a-zA-Z]+`, "Chỉ được nhập số")
+            .matches(/^\S+$/, "* Số điện thoại không được chứa khoảng trắng")
+            .matches(/^\d+$/, "* Chỉ được nhập số")
+            .matches(`^[0][1-9]*`, "* Số điện thoại phải bắt đầu bằng số 0")
+            .max(10, "* Số điện thoại phải có 10 chữ số")
+            .min(10, "* Số điện thoại phải có 10 chữ số")
             .required("* Bắt buộc")
           : Yup.string()
     }),
@@ -70,7 +72,7 @@ export default function Auth({ comp }) {
           }
         } else if (comp === "Register") {
           const response = await authApi.register(values);
-          
+
           if (response.data.error_code === 0) {
             messageApi.destroy()
             message.success("Đăng ký thành công");

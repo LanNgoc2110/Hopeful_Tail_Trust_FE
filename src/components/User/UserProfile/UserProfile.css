@@ -8,20 +8,20 @@
     /* box-shadow: 5px 5px 10px rgba(113, 139, 229, 0.5); */
 }
 
-.user_profile-container .user_profile-content{
+.user_profile-container .user_profile-form{
     width: 90%;
     padding: 5%;
     display: flex;
     flex-wrap: wrap;
 }
 
-.user_profile-content p{
+.user_profile-form p{
     width: 12%;
     color: #02033B;
     font-size: 16px;
     margin: 1% 0 0;
 }
-.user_profile-content input{
+.user_profile-form input{
     width: 78%;
     padding: 1% 3% 1% 2.5%;
     margin-bottom: 2%;
@@ -31,20 +31,23 @@
     color: #02033B;
     font-size: 15px;
 }
-.user_profile-content input:focus{
+.user_profile-form input:focus{
     outline: none;
 }
-.user_profile-content input::placeholder{
+.user_profile-form input::placeholder{
     font-family: var(--font-inter);
 }
+.user_profile-form input:nth-of-type(3){
+    text-transform: capitalize;
+}
 
-.user_profile-content .update-save-btn{
+.user_profile-form .update-save-btn{
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 2%;
 }
-.user_profile-content .update-save-btn button{
+.user_profile-form .update-save-btn button{
     width: 20%;
     padding: 1% 0;
     border-radius: 15px;
@@ -55,6 +58,6 @@
     cursor: pointer;
 }
 
-.user_profile-content .update-save-btn button:hover{        
+.user_profile-form .update-save-btn button:hover{        
     background-color: #ffb521;
 }
