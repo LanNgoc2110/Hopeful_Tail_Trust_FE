@@ -29,7 +29,7 @@ const User = () => {
         </div>
         <div className='user-right-container'>
           <img src={home} className='logo-home' onClick={() => navigate("/")} />
-          <p className='welcome-user'>Hi, user
+          <p className='welcome-user'>
           {/* {userCurrent?.username} */}
           </p>
 

@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './Product.css'
 import image_4 from '/assets/cat.png'
 import product_img from '/assets/clear-dogfood.png'
-import { Rate, Input, Pagination, Select } from 'antd';
+import { Rate, Input, Pagination, Select, Spin } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import avatar_img from '/assets/cat-introduce.png'
 import { productApi } from '../../apis/product.request';
+import { LoadingOutlined } from '@ant-design/icons';
 
 const { Search } = Input;
 
@@ -505,7 +506,22 @@ const Product = () => {
             <div className="product-list">
                 <p className='title'>Sản phẩm</p>
                 <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
-                {paginatedProducts.length === 0 ? (
+                {isLoading &&
+                    <div className="not-found">
+                        <Spin
+                            indicator={
+                                <LoadingOutlined
+                                    style={{
+                                        margin: 150,
+                                        fontSize: 100,
+                                        color: 'var(--color-btn-auth)'
+                                    }}
+                                    spin />
+                            }
+                        />
+                    </div>
+                }
+                {!isLoading && paginatedProducts.length === 0 ? (
                     <div className="not-found">
                         <img src={not_found} />
                         <p className="no-product">The product you are looking for is currently not available.</p>

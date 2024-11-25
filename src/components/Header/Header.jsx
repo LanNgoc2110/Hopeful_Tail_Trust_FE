@@ -62,13 +62,13 @@ const Header = () => {
             label: "Cart",
             key: '1',
             icon: <ShoppingCartOutlined />,
-            onClick: handleLogout,
+            onClick: () => {navigate('/cart')},
         },
         {
             label: "Account",
             key: '2',
             icon: <UserOutlined />,
-            onClick: handleLogout,
+            onClick: () => {navigate('/user/user-profile')},
         },
         {
             label: "Log out",
@@ -119,7 +119,7 @@ const Header = () => {
                         Sản phẩm
                     </li>
                     {/* <li>Tin tức</li> */}
-                    {/* <li
+                    <li
                         onClick={() => {
                             navigate("/donation")
                             window.scrollTo(0, 0);
@@ -128,6 +128,7 @@ const Header = () => {
                     >
                         Quyên góp
                     </li>
+                    {/*
                     <li
                         onClick={() => {
                             navigate("/login")

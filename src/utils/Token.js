@@ -10,8 +10,7 @@ export const getUserFromToken = () => {
   const token = getToken();
 
   if (!token) {
-    message.error("Token không tồn tại. Vui lòng đăng nhập lại.");
-    return null;
+    return {message: "Vui lòng đăng nhập trước khi truy cập.", user: null}; 
   }
 
   try {
@@ -19,15 +18,13 @@ export const getUserFromToken = () => {
 
     const currentTime = Math.floor(Date.now() / 1000);
     if (decodedToken.exp && decodedToken.exp < currentTime) {
-      message.error("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
       localStorage.removeItem("token");
-      return null;
+      return {message: "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.", user: null}; 
     }
 
-    return decodedToken;
+    return {message: "Decode thành công", user: decodedToken}; 
   } catch (error) {
-    message.error("Token không hợp lệ. Vui lòng đăng nhập lại.");
     localStorage.removeItem("token");
-    return null;
+    return {message: "Token không hợp lệ. Vui lòng đăng nhập lại.", user: null}; 
   }
 };
