@@ -336,6 +336,8 @@ const Product = () => {
 
 
     const [searchTerm, setSearchTerm] = useState('');
+    const [categories, setCategories] = useState([]);
+    const [categoryValue, setCategoryValue] = useState(null);
     const [priceValue, setPriceValue] = useState(null)
     const [ratingValue, setRatingValue] = useState(null)
     const [currentPage, setCurrentPage] = useState(1);
@@ -345,6 +347,7 @@ const Product = () => {
 
     const onSearch = (value) => {
         setSearchTerm(value.trim().toLowerCase());
+        setCategoryValue(null); // Reset category select
         setPriceValue(null);  // Reset price select
         setRatingValue(null); // Reset rating select
         setCurrentPage(1);     // Reset to the first page
@@ -355,6 +358,7 @@ const Product = () => {
     const filteredProducts = /*listProduct*/products.filter(product => {
         const searchTermLower = searchTerm.toLowerCase();
         return (
+            (!categoryValue || product.category === categoryValue) &&
             (!priceValue || (product.price >= priceValue[0] && product.price <= priceValue[1])) &&
             (ratingValue !== null && ratingValue !== undefined ? product.rating === ratingValue : true) &&
             (!searchTerm || product.name.toLowerCase().includes(searchTermLower))
@@ -393,16 +397,29 @@ const Product = () => {
         }
     }, [location]);
 
+
+
     useEffect(() => {
         setIsLoading(true);
         const fetchDataProducts = async () => {
             const response = await productApi.getAllProducts()
             setIsLoading(false);
             // console.log(response);
-            setProducts(response.data.data || [])
+            // setProducts(response.data.data || [])
+
+            const productData = response.data.data || [];
+            setProducts(productData);
+
+            // Trích xuất danh mục duy nhất từ dữ liệu sản phẩm
+            const uniqueCategories = Array.from(
+                new Set(productData.map((product) => product.category))
+            );
+            setCategories(uniqueCategories);
         }
         fetchDataProducts()
     }, [])
+
+
 
     return (
         <div className='product-container'>
@@ -416,6 +433,13 @@ const Product = () => {
                     <button className='detail-btn'>Chi tiết</button>
                 </div>
             </div>
+            <div className="product-list-title">
+                <p className='title'>Sản phẩm</p>
+                <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
+                <p className='sub-content'>Khi mua sắm tại Hopeful Tails Trust, bạn không chỉ nhận được những sản phẩm chất lượng mà còn giúp đỡ những thú cưng cần cứu trợ.</p>
+                <p className='sub-content'>Mỗi giao dịch của bạn sẽ góp phần vào công tác cứu trợ động vật, mang lại hy vọng và sự chăm sóc cho những sinh vật cần yêu thương.</p>
+                <p className='sub-content-2'>Chúng tôi chân thành cảm ơn sự ủng hộ của bạn!</p>
+            </div>
             <div className="product-filter">
                 <Search
                     placeholder="Tìm tên sản phẩm"
@@ -425,11 +449,42 @@ const Product = () => {
                     enterButton
                     size="large"
                     style={{
-                        width: '40%',
+                        width: '35%',
                     }}
                     onSearch={onSearch}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
+
+                <Select
+                    showSearch
+                    placeholder="Tất cả các loại"
+                    value={categoryValue}
+                    // onChange={(value) => {
+                    //     // setPriceValue(value);
+                    //     setPriceValue(JSON.parse(value));
+                    //     setCurrentPage(1);
+                    // }}
+                    onChange={(value) => {
+                        setCategoryValue(value); // Cập nhật trạng thái khi chọn
+                        setCurrentPage(1); // Reset về trang đầu tiên
+                    }}
+                    filterOption={(input, option) =>
+                        (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                    }
+                    size="large"
+                    allowClear
+                    style={{
+                        width: '12%',
+                        // margin: '20px 20px 0'
+                        marginLeft: '1%',
+                    }}
+                    options={categories.map((category) => ({
+                        value: category, // Giá trị khi chọn
+                        label: category, // Hiển thị cho người dùng
+                    }))}
+                >
+                    <Select.Option value="sample">Sample</Select.Option>
+                </Select>
 
                 <Select
                     showSearch
@@ -456,9 +511,9 @@ const Product = () => {
                     size="large"
                     allowClear
                     style={{
-                        width: '14%',
+                        width: '12%',
                         // margin: '20px 20px 0'
-                        marginLeft: '3%',
+                        marginLeft: '1%',
                     }}
                     options={[
                         { value: JSON.stringify([0, 250000]), label: '0 - 250.000 VNĐ' },
@@ -484,9 +539,9 @@ const Product = () => {
                     size="large"
                     allowClear
                     style={{
-                        width: '14%',
+                        width: '12%',
                         // margin: '20px 20px 0'
-                        marginLeft: '20px',
+                        marginLeft: '1%',
                     }}
                     options={[
                         { value: 0, label: '⭐️ 0' },
@@ -504,8 +559,11 @@ const Product = () => {
                 />
             </div>
             <div className="product-list">
-                <p className='title'>Sản phẩm</p>
+                {/* <p className='title'>Sản phẩm</p>
                 <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
+                <p className='sub-content'>Khi mua sắm tại Hopeful Tails Trust, bạn không chỉ nhận được những sản phẩm chất lượng mà còn giúp đỡ những thú cưng cần cứu trợ.</p>
+                <p className='sub-content'>Mỗi giao dịch của bạn sẽ góp phần vào công tác cứu trợ động vật, mang lại hy vọng và sự chăm sóc cho những sinh vật cần yêu thương.</p>
+                <p className='sub-content-2'>Chúng tôi chân thành cảm ơn sự ủng hộ của bạn!</p> */}
                 {isLoading &&
                     <div className="not-found">
                         <Spin
@@ -529,7 +587,7 @@ const Product = () => {
                 ) : (
                     paginatedProducts.map((item) => (
                         <div className="product-item" key={item.id}>
-                            <img src={item.img} />
+                            <img src={item.image.url} />
                             <div className="overlay">
                                 <button
                                     className="view-more-button"

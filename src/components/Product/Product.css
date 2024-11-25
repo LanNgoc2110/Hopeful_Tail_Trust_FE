@@ -59,10 +59,52 @@
     transition: 0.3s ease;
 }
 
+.product-container .product-list-title{
+    width: 80%;
+    padding: 5% 9% 0 11%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.product-list-title .title{
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    font-weight: bold;
+    color: #02033B;
+    font-size: 40px;
+    margin: 50px 0 10px;
+}
+.product-list-title .sub-title{
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    color: #02033B;
+    font-size: 18px;
+    margin: 0.5% 0 2%;
+}
+.product-list-title .sub-content {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    color: #02033B;
+    font-size: 16px;
+    margin: 0.25%;
+    font-style: italic;
+}
+.product-list-title .sub-content-2 {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    color: #02033B;
+    font-size: 16px;
+    margin: 0.75% 0 4%;
+    font-style: italic;
+}
 
 .product-container .product-filter{
     width: 100%;
-    padding-top: 150px;
+    /* padding-top: 150px; */
+    padding-bottom: 2%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -104,7 +146,7 @@
     flex-wrap: wrap;
 }
 
-.product-list .title{
+/* .product-list .title{
     width: 100%;
     text-align: center;
     font-family: var(--font-inter);
@@ -118,9 +160,27 @@
     text-align: center;
     font-family: var(--font-inter);
     color: #02033B;
-    font-size: 16px;
-    margin: 0 0 20px;
+    font-size: 18px;
+    margin: 0.5% 0 2%;
 }
+.product-list .sub-content {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    color: #02033B;
+    font-size: 16px;
+    margin: 0.25%;
+    font-style: italic;
+}
+.product-list .sub-content-2 {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-inter);
+    color: #02033B;
+    font-size: 16px;
+    margin: 0.75% 0 2%;
+    font-style: italic;
+} */
 
 .product-list .not-found {
     width: 100%;

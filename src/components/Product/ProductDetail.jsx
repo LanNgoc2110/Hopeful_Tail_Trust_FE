@@ -3,7 +3,7 @@ import './ProductDetail.css'
 
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-// import pet_image from '/assets/pitbull.png';
+import pet_image from '/assets/pitbull.png';
 import not_found from "/assets/not-found.png"
 import { Breadcrumb, Button, message, Pagination, Rate, Spin } from 'antd';
 import {
@@ -20,8 +20,8 @@ const ProductDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const id = useParams().id;
-    const {message: errorMessage, user} = getUserFromToken()
-    
+    const { message: errorMessage, user } = getUserFromToken()
+
 
     useEffect(() => {
         dispatch(getProductById(id));
@@ -82,21 +82,21 @@ const ProductDetail = () => {
     };
 
     const handleAddToCart = async () => {
-        setIsLoadingAddToCart(true);      
+        setIsLoadingAddToCart(true);
         try {
-            if(user){
+            if (user) {
                 const cart = {
                     userId: user.id,
                     productId: product._id,
                     quantity: quantity,
                 }
                 console.log(cart);
-                
+
                 await cartApi.addToCart(cart);
                 setIsLoadingAddToCart(false);
                 setQuantity(1);
                 message.success('Thêm vào giỏ hàng thành công');
-            }else{
+            } else {
                 message.warning(errorMessage);
                 setIsLoadingAddToCart(false);
             }
@@ -104,7 +104,7 @@ const ProductDetail = () => {
             message.error(error.response.data.message);
             setIsLoadingAddToCart(false);
             // console.log(error);
-            
+
         }
     };
 
@@ -151,23 +151,32 @@ const ProductDetail = () => {
                     </div>
                     <p className='title'>Sản phẩm</p>
                     <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
-                    <div className="product_detail-left">
-                        <img src={product.image} />
-                    </div>
-                    <div className="product_detail-right">
-                        <div className="product_detail-content">
-                            <p className='product_detail-name'>{product.name}</p>
-                            <p className='product-detail-description'>{product.description}</p>
-                            <div className='product_detail-rating'>Đánh giá: <br /> <Rate allowHalf disabled value={product.rating} /></div>
-                            <p className='product_detail-price'>Giá: {product.price.toLocaleString('vi-VN')} VNĐ</p>
-                            <div className='product-detail-quantity'>
-                                <p>Số lượng: </p>
-                                <button onClick={() => handleDecrease()}>-</button>
-                                <p>{quantity}</p>
-                                <button onClick={() => handleIncrease(product.quantity)}>+</button>
+                    <div className="product_detail-height">
+                        <div className="product_detail-left">
+                            {/* <img src={product.image} /> */}
+                            <img src={pet_image} />
+                        </div>
+                        <div className="product_detail-right">
+                            <div className="product_detail-content">
+                                <p className='product_detail-name'>{product.name}</p>
+                                <p className='product-detail-description'>Mô tả: {product.description} </p>
+                                <p className='product_detail-code'>Mã sản phẩm: {product.code}</p>
+                                <p className='product_detail-category'>Phân loại: {product.category}</p>
+                                <p className='product_detail-price'>Giá gốc: {product.price} VNĐ</p>
+                                <p className='product_detail-support'>Hỗ trợ: {product.supportPercentage}%</p>
+                                <div className='product_detail-rating'>Đánh giá: &#160; <Rate allowHalf disabled value={product.rating} /></div>
+                                <p className='product_detail-old_price'>Giá: {product.oldPrice} VNĐ</p>
+                                <div className='product-detail-quantity_wanted'>
+                                    <p>Số lượng: </p>
+                                    <button onClick={() => handleDecrease()}>-</button>
+                                    <p>{quantity}</p>
+                                    <button onClick={() => handleIncrease(product.quantity)}>+</button>
+                                </div>
+                                <p className='product_detail-quantity'>Kho hàng còn: {product.quantity}</p>
+                                <div className="add_to_cart-btn">
+                                    <button disabled={isLoadingAddToCart} onClick={() => handleAddToCart()}> {isLoadingAddToCart ? <LoadingOutlined style={{ marginRight: 10 }} /> : <></>}Thêm vào giỏ hàng </button>
+                                </div>
                             </div>
-                            <p>Kho: {product.quantity}</p>
-                            <button disabled={isLoadingAddToCart} className='add_to_cart-btn' onClick={() => handleAddToCart()}> {isLoadingAddToCart ? <LoadingOutlined style={{ marginRight: 10}}/> : <></>}Thêm vào giỏ hàng </button>
                         </div>
                     </div>
                 </>

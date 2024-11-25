@@ -1,0 +1,84 @@
+.donation_successful-whole-container {
+    width: 100%;
+    display: flex;
+    min-height: 100vh;
+    height: fit-content;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+    background-color: rgb(251, 243, 243);
+}
+
+.donation_successful-container {
+    max-width: var(--max-screen-width);
+    width: 100%;
+    margin-top: 50px;
+    font-family: var(--font-inter) ;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.donation_successful-container .title{
+    width: 100%;
+    text-align: center;
+}
+
+.donation_successful-container .donation_successful-content{
+    width: 45%;
+    padding: 4% 0;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    box-shadow: 1px 1px 17px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    background-color: rgb(255, 252, 252);
+}
+.donation_successful-content .donation_successful-img{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.donation_successful-content .donation_successful-img img{
+    width: 90px;
+    height: 90px;
+}
+.donation_successful-content .title{
+    font-weight: bold;
+    color: #02033B;
+    font-size: 22px;
+    margin: 4% 0;
+}
+.donation_successful-content .content{
+    width: 75%;
+    padding: 0 12.5%;
+    color: #02033B;
+    font-size: 16px;
+    margin: 2% 0;
+    text-align: left;
+}
+
+.donation_successful-content .go-home-btn{
+    width: 100%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+}
+.donation_successful-content .go-home-btn button{
+    width: 60%;
+    padding: 2% 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    background-color: #F92F60;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}       
+
+.donation_successful-content .go-home-btn button:hover { 
+    background-color: #de063c;
+    transition: 0.3s ease;
+}

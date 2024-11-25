@@ -21,12 +21,14 @@ import CartPage from './pages/CartPage/CartPage'
 import PaymentPage from './pages/PaymentPage/PaymentPage'
 import DonationPage from './pages/DonationPage/DonationPage'
 import PaymentSuccessful from './pages/PaymentSuccessful/PaymentSuccessful'
+import DonationSuccessful from './pages/DonationSuccessful/DonationSuccessful'
 import AdoptionForm from './components/Pet/AdoptionForm'
 import UserProfile from './components/User/UserProfile/UserProfile'
 import AdoptionFormHistory from './components/User/AdoptionForm/AdoptionFormHistory'
 import AdoptionFormInfo from './components/User/AdoptionForm/AdoptionFormInfo'
 import OrderHistoryList from './components/User/OrderHistory/OrderHistoryList'
 import OrderHistoryInfo from './components/User/OrderHistory/OrderHistoryInfo'
+import VerifyEmail from './pages/VerifyEmail/VerifyEmail'
 
 function App() {
   return (
@@ -47,6 +49,7 @@ function App() {
         {/* Auth */}
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="verify-email" element={<VerifyEmail />} />
 
         {/* User */}
         <Route path='/user/*' element={<User />}>
@@ -73,6 +76,7 @@ function App() {
         <Route path="/donation" element={<DonationPage />} />
 
         <Route path="/payment-successful" element={<PaymentSuccessful />} />
+        <Route path="/donation-successful" element={<DonationSuccessful />} />
       </Routes>
     </>
   )

@@ -19,14 +19,14 @@ const PetDetail = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const id = useParams().id;
-    const {message: errorMessage, user} = getUserFromToken()
+    const { message: errorMessage, user } = getUserFromToken()
 
     useEffect(() => {
         dispatch(getPetById(id));
     }, []);
 
     const checkUser = () => {
-        if(user){
+        if (user) {
             return navigate(`/adoption/${pet._id}/adoption-form`)
         }
         message.warning(errorMessage)
@@ -103,27 +103,30 @@ const PetDetail = () => {
                         />
                     </div>
                     <p className='title'>Thú cưng</p>
-                    <div className="pet_detail-left">
-                        {/* <img src={pet.image.url} /> */}
-                    </div>
-                    <div className="pet_detail-right">
-                        <div className="pet_detail-content">
-                            <p>Tên: {pet.name}</p>
-                            <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'}</p>
-                            <p>Giống: {pet.breed}</p>
-                            <p>Màu lông: {translations.coatColor[pet.coatColor] || pet.coatColor}</p>
-                            <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
-                            <p>Tuổi: {pet.age}</p>
-                            <p>Tiêm ngừa: {pet.vaccinated}</p>
-                            <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
-                            <p>Mô tả: {pet.description}</p>
-                            <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
-                            <button
-                                className='adoption-request-btn'
-                                onClick={() => checkUser()}
-                            >
-                                Gửi yêu cầu nhận nuôi
-                            </button>
+                    <div className="pet_detail-height">
+                        <div className="pet_detail-left">
+                            {/* <img src={pet.image.url} /> */}
+                            <img src={pet_image} />
+                        </div>
+                        <div className="pet_detail-right">
+                            <div className="pet_detail-content">
+                                <p>{pet.name}</p>
+                                <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'}</p>
+                                <p>Giống: {pet.breed}</p>
+                                <p>Màu lông: {translations.coatColor[pet.coatColor] || pet.coatColor}</p>
+                                <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
+                                <p>Tuổi: {pet.age}</p>
+                                <p>Tiêm ngừa: {pet.vaccinated} /3</p>
+                                <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                                <p>Mô tả: {pet.description} {pet.description} </p>
+                                <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
+                                <button
+                                    className='adoption-request-btn'
+                                    onClick={() => checkUser()}
+                                >
+                                    Gửi yêu cầu nhận nuôi
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </>

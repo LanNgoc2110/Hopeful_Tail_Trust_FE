@@ -6,68 +6,23 @@
     flex-wrap: nowrap;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(251, 243, 243);
+    background-color: rgb(250, 246, 246);
 }
 
 .payment_successful-container {
     max-width: var(--max-screen-width);
     width: 100%;
-    margin-top: 50px;
+    margin-top: 40px;
     font-family: var(--font-inter) ;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
 }
 
-.payment_successful-container .title{
-    width: 100%;
-    text-align: center;
-}
-
-.payment_successful-container .payment_successful-content{
-    width: 45%;
-    padding: 4% 0;
-    border: 1px solid lightgray;
-    border-radius: 10px;
-    box-shadow: 1px 1px 17px 4px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    background-color: rgb(255, 252, 252);
-}
-.payment_successful-content .payment_successful-img{
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.payment_successful-content .payment_successful-img img{
-    width: 90px;
-    height: 90px;
-}
-.payment_successful-content .title{
-    font-weight: bold;
-    color: #02033B;
-    font-size: 22px;
-    margin: 4% 0;
-}
-.payment_successful-content .content{
-    width: 75%;
-    padding: 0 12.5%;
-    color: #02033B;
-    font-size: 16px;
-    margin: 2% 0;
-    text-align: left;
-}
-
-.payment_successful-content .go-home-btn{
-    width: 100%;
-    margin-top: 5%;
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-}
-.payment_successful-content .go-home-btn button{
-    width: 60%;
-    padding: 2% 0;
+.payment_successful-container button{
+    width: 10%;
+    padding: 0.75% 0;
     font-size: 16px;
     font-weight: bold;
     color: white;
@@ -76,9 +31,87 @@
     border-radius: 10px;
     cursor: pointer;
     transition: 0.3s ease;
-}       
-
-.payment_successful-content .go-home-btn button:hover { 
+    position: absolute;
+    top: -15px;
+    left: 30px;
+}
+.payment_successful-container button:hover { 
     background-color: #de063c;
     transition: 0.3s ease;
+}
+
+.payment_successful-container .title{
+    width: 100%;
+    text-align: center;
+}
+
+/* Lịch sử đơn hàng */
+.payment_successful-container .payment_successful-invoice {
+    width: 40%;
+    margin: 1% 12.5% 5%;
+    padding: 2.5% 7% 5%;
+    background-color: #FAFAFA;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.payment_successful-invoice h1 {
+    width: 100%;
+    text-align: center;
+    font-size: 30px;
+    color: #02033B;
+    margin-bottom: 3%;
+}
+
+.payment_successful-invoice .invoice-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.payment_successful-invoice .invoice-content p {
+    padding-bottom: 1%;
+    border-bottom: 1px dotted #a0a0a0;
+}
+.payment_successful-invoice .invoice-content p:nth-of-type(1) {
+    width: 30%;
+}
+.payment_successful-invoice .invoice-content p:nth-of-type(2) {
+    width: 70%;
+    text-align: right;
+}
+
+
+
+.payment_successful-invoice .invoice-table{
+    width: 100%;
+    margin-top: 2%;
+}
+
+.payment_successful-invoice .invoice-table thead tr th{
+    padding-bottom: 2%;
+}
+
+.payment_successful-invoice .invoice-table tbody .category-title th{
+    text-align: center;
+    padding: 1.5% 0 1.5% 0;
+    background-color: #f0f0f0;
+}
+.payment_successful-invoice .invoice-table tbody tr td{
+    padding: 20px 0;
+    border-bottom: 1px solid #e6e6e6;
+    font-size: 15px;
+    text-align: center;
+}
+.payment_successful-invoice .invoice-table tbody tr td:nth-of-type(1){
+    display: flex;
+}
+.payment_successful-invoice .invoice-table tbody tr td:nth-of-type(1) img{
+    width: 100px;
+    height: 100px;
+    background-image: linear-gradient(#ededed, #E7EFFA);
+    border-radius: 20px;
+}
+.payment_successful-invoice .invoice-table tbody tr td:nth-of-type(1) p{
+    margin: 10% 0 10% 5%
 }
