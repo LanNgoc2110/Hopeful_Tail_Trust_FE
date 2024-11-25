@@ -44,6 +44,7 @@
     margin-bottom: 5% !important;
 }
 
+
 .payment-left input{
     width: 100%;
     margin: 1.5% 0;
@@ -63,7 +64,23 @@
     margin-top: 1% !important; 
     margin-bottom: 2% !important;
 }
-
+.payment-left select{
+    width: 103%;
+    margin: 1.5% 0;
+    padding: 2% 1% 2% 1.5%;
+    font-size: 14px;
+    text-transform: capitalize;
+    color: gray;
+}
+.payment-left select:focus{
+    outline: none;
+}
+.payment-left select.selected {
+    color: black; /* Màu khi đã chọn */
+  }
+  .payment-left select option {
+    color: black;
+  }
 
 
 .payment-right{
