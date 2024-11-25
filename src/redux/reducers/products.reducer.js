@@ -10,7 +10,7 @@ export const productsReducer = (
         case actionsType.PRODUCTS_SUCCESS:
             return { isLoading: false, error: "", payload: payload };
         case actionsType.GET_PRODUCT_BY_ID:
-            return { isLoading: false, error: "", payload: payload.pet };
+            return { isLoading: false, error: "", payload: payload.product };
         case actionsType.PRODUCTS_FAIL:
             return { isLoading: false, error: payload, payload: null };
         default:

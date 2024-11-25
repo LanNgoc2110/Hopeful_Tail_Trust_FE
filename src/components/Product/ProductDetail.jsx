@@ -1,43 +1,63 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ProductDetail.css'
 
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import pet_image from '/assets/pitbull.png';
-import { Breadcrumb, Button, Pagination, Rate } from 'antd';
-import { ShoppingCartOutlined } from '@ant-design/icons';
+// import pet_image from '/assets/pitbull.png';
+import not_found from "/assets/not-found.png"
+import { Breadcrumb, Button, message, Pagination, Rate, Spin } from 'antd';
+import {
+    ShoppingCartOutlined,
+    LoadingOutlined
+} from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProductById } from '../../redux/actions/products.action';
+import { getUserFromToken } from '../../utils/Token';
+import { cartApi } from '../../apis/cart.request';
 
 const ProductDetail = () => {
     const location = useLocation();  // Lấy dữ liệu thú cưng từ state
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const id = useParams().id;
+    const {message: errorMessage, user} = getUserFromToken()
+    
+
+    useEffect(() => {
+        dispatch(getProductById(id));
+    }, []);
+
+    const { payload: product, isLoading, error } = useSelector((state) => state.productsReducer);
 
     // Kiểm tra nếu không có dữ liệu thú cưng, chuyển hướng lại trang chính
-    if (!location.state || !location.state.product) {
-        navigate('/');
-        return null;
-    }
+    // if (!location.state || !location.state.product) {
+    //     navigate('/');
+    //     return null;
+    // }
 
-    const product = location.state.product;  // Dữ liệu thú cưng được truyền từ Product.jsx
+    // const product = location.state.product;  // Dữ liệu thú cưng được truyền từ Product.jsx
 
 
     const [currentCommentPage, setCurrentCommentPage] = useState(1);
     const [selectedRating, setSelectedRating] = useState(null);
+    const [isLoadingAddToCart, setIsLoadingAddToCart] = useState(false);
+    const [quantity, setQuantity] = useState(1);
 
     const pageSize = 5;
 
     // const filteredComments = selectedRating == null
     //     ? product.comments // Nếu selectedRating là null thì hiện tất cả comment
     //     : product.comments.filter(comment => comment.rating == selectedRating);
-    const filteredComments = product.comments.filter(comment => {
-        return (
-            (selectedRating !== null && selectedRating !== undefined ? comment.rating === selectedRating : true)
-        );
-    })
+    // const filteredComments = product.comments.filter(comment => {
+    //     return (
+    //         (selectedRating !== null && selectedRating !== undefined ? comment.rating === selectedRating : true)
+    //     );
+    // })
 
-    const paginatedComments = /*product.comments*/filteredComments.slice(
-        (currentCommentPage - 1) * pageSize,
-        currentCommentPage * pageSize
-    );
+    // const paginatedComments = /*product.comments*/filteredComments.slice(
+    //     (currentCommentPage - 1) * pageSize,
+    //     currentCommentPage * pageSize
+    // );
 
     const handleChangePage = (page) => {
         setCurrentCommentPage(page);
@@ -49,44 +69,113 @@ const ProductDetail = () => {
         setCurrentCommentPage(1); // Reset lại trang về 1 khi lọc thay đổi
     };
 
+    const handleDecrease = () => {
+        if (quantity > 1) {
+            setQuantity(quantity - 1);
+        }
+    };
+
+    const handleIncrease = (productQuantity) => {
+        if (quantity < productQuantity) {
+            setQuantity(quantity + 1);
+        }
+    };
+
+    const handleAddToCart = async () => {
+        setIsLoadingAddToCart(true);      
+        try {
+            if(user){
+                const cart = {
+                    userId: user.id,
+                    productId: product._id,
+                    quantity: quantity,
+                }
+                console.log(cart);
+                
+                await cartApi.addToCart(cart);
+                setIsLoadingAddToCart(false);
+                setQuantity(1);
+                message.success('Thêm vào giỏ hàng thành công');
+            }else{
+                message.warning(errorMessage);
+                setIsLoadingAddToCart(false);
+            }
+        } catch (error) {
+            message.error(error.response.data.message);
+            setIsLoadingAddToCart(false);
+            // console.log(error);
+            
+        }
+    };
+
     return (
         <div className='product_detail-container'>
-            <div className="back-to-products">
-                <Breadcrumb className='breadcrumb'
-                    items={[
-                        {
-                            title: <Link
-                                to="/product"
-                                className='b-title-1'
-                                state={{
-                                    searchTerm: location.state?.searchTerm,
-                                    scrollY: location.state?.scrollY,
-                                    currentPage: location.state?.currentPage
+            {isLoading &&
+                <div className="not-found">
+                    <Spin
+                        indicator={
+                            <LoadingOutlined
+                                style={{
+                                    margin: 150,
+                                    fontSize: 100,
+                                    color: 'var(--color-btn-auth)'
                                 }}
-                            >
-                                <ShoppingCartOutlined /> Sản phẩm
-                            </Link>,
-                        },
-                        {
-                            title: <p to="" className='b-title-2'>{product.name}</p>,
-                        },
-                    ]}
-                />
-            </div>
-            <p className='title'>Sản phẩm</p>
-            <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
-            <div className="product_detail-left">
-                <img src={product.img} />
-            </div>
-            <div className="product_detail-right">
-                <div className="product_detail-content">
-                    <p className='product_detail-name'>{product.name}</p>
-                    <p className='product-detail-description'>{product.description}</p>
-                    <div className='product_detail-rating'>Đánh giá: <br /> <Rate allowHalf disabled value={product.rating} /></div>
-                    <p className='product_detail-price'>Giá: {product.price.toLocaleString('vi-VN')} VNĐ</p>
-                    <button className='add_to_cart-btn'>Thêm vào giỏ hàng </button>
+                                spin />
+                        }
+                    />
                 </div>
-            </div>
+            }
+            {product ? (
+                <>
+                    <div className="back-to-products">
+                        <Breadcrumb className='breadcrumb'
+                            items={[
+                                {
+                                    title: <Link
+                                        to="/product"
+                                        className='b-title-1'
+                                        state={{
+                                            searchTerm: location.state?.searchTerm,
+                                            scrollY: location.state?.scrollY,
+                                            currentPage: location.state?.currentPage
+                                        }}
+                                    >
+                                        <ShoppingCartOutlined /> Sản phẩm
+                                    </Link>,
+                                },
+                                {
+                                    title: <p to="" className='b-title-2'>{product.name}</p>,
+                                },
+                            ]}
+                        />
+                    </div>
+                    <p className='title'>Sản phẩm</p>
+                    <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
+                    <div className="product_detail-left">
+                        <img src={product.image} />
+                    </div>
+                    <div className="product_detail-right">
+                        <div className="product_detail-content">
+                            <p className='product_detail-name'>{product.name}</p>
+                            <p className='product-detail-description'>{product.description}</p>
+                            <div className='product_detail-rating'>Đánh giá: <br /> <Rate allowHalf disabled value={product.rating} /></div>
+                            <p className='product_detail-price'>Giá: {product.price.toLocaleString('vi-VN')} VNĐ</p>
+                            <div className='product-detail-quantity'>
+                                <p>Số lượng: </p>
+                                <button onClick={() => handleDecrease()}>-</button>
+                                <p>{quantity}</p>
+                                <button onClick={() => handleIncrease(product.quantity)}>+</button>
+                            </div>
+                            <p>Kho: {product.quantity}</p>
+                            <button disabled={isLoadingAddToCart} className='add_to_cart-btn' onClick={() => handleAddToCart()}> {isLoadingAddToCart ? <LoadingOutlined style={{ marginRight: 10}}/> : <></>}Thêm vào giỏ hàng </button>
+                        </div>
+                    </div>
+                </>
+            ) : !isLoading && (<>
+                <div className="not-found">
+                    <img src={not_found} />
+                </div>
+            </>)}
 
             <form className='comment'>
                 <div className='comment-rating'>Đánh giá: &ensp; <Rate value={0} /></div>
@@ -147,8 +236,8 @@ const ProductDetail = () => {
             </div>
 
             <div className="list-comment">
-                {/*product.comments*/filteredComments.length > 0 ? (
-                    /*product.comments*/paginatedComments.map((comment) => (
+                {/* {product.comments filteredComments.length > 0 ? (
+                    product.comments paginatedComments.map((comment) => (
                     <div key={comment.userId} className="comment-item">
                         <img src={comment.img} alt={comment.username} className="comment-user-img" />
                         <div className="comment-text">
@@ -162,8 +251,8 @@ const ProductDetail = () => {
                 ))
                 ) : (
                     <p className='no-comment'>Chưa có nhận xét nào</p>
-                )}
-                <Pagination
+                )} */}
+                {/* <Pagination
                     current={currentCommentPage}
                     // total={product.comments.length}
                     total={filteredComments.length}
@@ -181,7 +270,7 @@ const ProductDetail = () => {
                         fontFamily: "Inter, san-serif",
                         fontSize: "17px"
                     }}
-                />
+                /> */}
             </div>
         </div>
     )

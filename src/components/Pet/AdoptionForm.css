@@ -46,14 +46,16 @@
     display: flex;
     flex-wrap: wrap;
 }
-.adoption_form .pet-info .pet-info-right p{
+
+.adoption_form .pet-info .pet-info-right p {
     width: 100%;
     margin: 2.5% 0;
 }
-.adoption_form .pet-info .pet-info-right p:nth-of-type(2), 
+
+.adoption_form .pet-info .pet-info-right p:nth-of-type(2),
 .adoption_form .pet-info .pet-info-right p:nth-of-type(3),
 .adoption_form .pet-info .pet-info-right p:nth-of-type(4),
-.adoption_form .pet-info .pet-info-right p:nth-of-type(5){
+.adoption_form .pet-info .pet-info-right p:nth-of-type(5) {
     width: 50%;
 }
 
@@ -63,48 +65,56 @@
     padding-left: 5%;
     margin-top: 5%;
 }
-.adoption_form .adopter-info p{
+
+.adoption_form .adopter-info p {
     width: 100%;
     margin: 0 0 1% 0;
 }
-.adoption_form .adopter-info span{
+
+.adoption_form .adopter-info span {
     color: red
 }
-.adoption_form .adopter-info input{
+
+.adoption_form .adopter-info input {
     width: 85%;
     margin-top: 1%;
     margin-bottom: 2%;
     padding: 1.5% 5% 1.5% 3%;
     border-radius: 5px;
     font-size: 16px;
-    border: 1px solid #ccc;     
+    border: 1px solid #ccc;
 }
-.adoption_form .adopter-info input:focus{
+
+.adoption_form .adopter-info input:focus {
     outline: none;
 }
-.adoption_form .adopter-info input::placeholder{
+
+.adoption_form .adopter-info input::placeholder {
     font-family: var(--font-inter);
 }
-.adoption_form .message-error{
+
+.adoption_form .message-error {
     font-size: 14.5px;
 }
-.adoption_form .adopter-info input:nth-of-type(1){
+
+.adoption_form .adopter-info input:nth-of-type(1) {
     text-transform: capitalize;
 }
 
 
-.adoption_form .adoption_form-notice{
+.adoption_form .adoption_form-notice {
     width: 90%;
     padding: 0 5%;
 }
 
-.adoption_form .adoption_form-btn{
+.adoption_form .adoption_form-btn {
     width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 5%;
 }
-.adoption_form .adoption_form-btn button{
+
+.adoption_form .adoption_form-btn button {
     width: 50%;
     padding: 2% 0;
     border-radius: 5px;
@@ -115,6 +125,14 @@
     cursor: pointer;
 }
 
-.adoption_form .adoption_form-btn button:hover{ 
+.adoption_form .adoption_form-btn button:hover {
     background-color: #ffb521;
+}
+
+.adoption_form .adoption_form-btn button:disabled {
+    background-color: #d3d3d3;
+    color: #555555;
+    cursor: not-allowed;
+    opacity: 0.8;
+    border: 1px solid #ccc;
 }

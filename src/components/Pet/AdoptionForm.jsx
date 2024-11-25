@@ -1,14 +1,30 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import './AdoptionForm.css'
 import pet_image from '/assets/pitbull.png';
 import { useFormik } from 'formik'
 import * as Yup from "yup";
+import { LoadingOutlined } from '@ant-design/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate, useParams } from 'react-router-dom';
+import { getPetById } from '../../redux/actions/pets.action';
+import { message, Skeleton } from 'antd';
+import { getUserFromToken } from '../../utils/Token';
+import { adoptionApi } from '../../apis/adoption.request';
 
 const AdoptionForm = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const id = useParams().id;
+    const [isLoadingForm, setIsLoadingForm] = useState(false);
+    const {user} = getUserFromToken()
+    
 
     useEffect(() => {
+        dispatch(getPetById(id))
         window.scrollTo(0, 0);
     }, []);
+
+    const { payload: pet, isLoading, error } = useSelector(state => state.petsReducer);
 
     const formik = useFormik({
         initialValues: {
@@ -36,11 +52,37 @@ const AdoptionForm = () => {
             cccd: Yup.string()
                 .matches(/^\S+$/, "* Không được chứa khoảng trắng")
                 .matches(/^\d+$/, "* Chỉ được nhập số")
+                .max(12, "* CCCD/CMND phải có 12 chữ số")
+                .min(12, "* CCCD/CMND phải có 12 chữ số")
                 .required("* Không được để trống"),
         }),
 
         onSubmit: async (values) => {
-            alert("Gửi câu hỏi thành công")
+            setIsLoadingForm(true);
+            try {
+                if(user){
+                    const data = {
+                        petId: id,
+                        name: values.name,
+                        address: values.address,
+                        phoneNumber: values.phone,
+                        cccd: values.cccd,
+                    }
+                    await adoptionApi.createAdoption(data);
+                    
+                    setIsLoadingForm(false);
+                    message.success("Đơn xin nhận nuôi thú cưng thành công.");
+                    navigate("/user/adoption-form-history");
+                }else{
+                    message.warning("Vui lòng đăng nhập trước khi truy cập.");
+                    setIsLoadingForm(false);
+                }
+            } catch (error) {
+                setIsLoadingForm(false);
+                message.error(error.response.data.message);
+                // console.log(error);
+                
+            }
         }
     })
 
@@ -48,22 +90,37 @@ const AdoptionForm = () => {
         <div className='adoption_form-container'>
             <form className='adoption_form' onSubmit={formik.handleSubmit}>
                 <h1>Đơn xin nhận nuôi thú cưng</h1>
-                <div className="pet-info">
-                    <div className="pet-info-left">
-                        <img src={pet_image} />
+                {isLoading &&
+                    <div className="pet-info">
+                        <div className="pet-info-left">
+                            <Skeleton.Image style={{ width: 300, height: 300 }} active />
+                        </div>
+                        <div className="pet-info-right">
+                            <Skeleton active />
+                            <Skeleton active />
+                        </div>
                     </div>
-                    <div className="pet-info-right">
-                        <p>Tên thú cưng: Pitbull</p>
-                        <p>Loài: Chó </p> 
-                        <p>Giống: Laborder</p>
-                        <p>Giới tính: Đực</p>
-                        <p>Tuổi: 5</p>
-                        <p>Màu lông: Đen</p>
-                        <p>Tiêm ngừa: Đã tiêm ngừa</p>
-                        <p>Tình trạng sức khỏe: Khỏe mạnh</p>
-                        <p>Địa chỉ trạm cứu hộ: 123 Nguyen Van Linh, Phường 3, Quan 5, TP. HCM</p>
+                }
+                {!isLoading && pet ? (
+                    <div className="pet-info">
+                        <div className="pet-info-left">
+                            <img src={pet.image} />
+                        </div>
+                        <div className="pet-info-right">
+                            <p>Tên thú cưng: {pet.name}</p>
+                            <p>Loài: {pet.species} </p>
+                            <p>Giống: {pet.breed}</p>
+                            <p>Giới tính: {pet.sex}</p>
+                            <p>Tuổi: {pet.age}</p>
+                            <p>Màu lông: {pet.coatColor}</p>
+                            <p>Tiêm ngừa: {pet.vaccinated}</p>
+                            <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                            <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
+                        </div>
                     </div>
-                </div>
+                ) : (
+                    <></>
+                )}
                 <div className="adopter-info">
 
                     <p><span>* </span>Họ tên người nhận nuôi: </p>
@@ -115,7 +172,7 @@ const AdoptionForm = () => {
                     ⚠️ Lưu ý: Khi quyết định nhận nuôi thú cưng, bạn cần cam kết mang lại một môi trường sống an toàn, yêu thương và chăm sóc tốt nhất cho chúng. Việc bỏ rơi hoặc thiếu trách nhiệm có thể gây ảnh hưởng nghiêm trọng đến sức khỏe và tinh thần của thú cưng. Xin hãy cân nhắc kỹ trước khi gửi yêu cầu nhận nuôi.
                 </p>
                 <div className="adoption_form-btn">
-                    <button type='submit'>Gửi yêu cầu nhận nuôi</button>
+                    <button disabled={isLoadingForm} type='submit'>{isLoadingForm && <LoadingOutlined style={{ marginRight: 10 }}/>}Gửi yêu cầu nhận nuôi</button>
                 </div>
             </form>
         </div>

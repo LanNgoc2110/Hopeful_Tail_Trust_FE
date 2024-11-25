@@ -4,7 +4,7 @@ import './PetDetail.css'
 import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import pet_image from '/assets/pitbull.png';
-import { Breadcrumb, Spin } from 'antd';
+import { Breadcrumb, message, Spin } from 'antd';
 import {
     BaiduOutlined,
     LoadingOutlined
@@ -12,16 +12,25 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getPetById } from '../../redux/actions/pets.action';
 import not_found from "/assets/not-found.png"
+import { getUserFromToken } from '../../utils/Token';
 
 const PetDetail = () => {
     const location = useLocation();  // Lấy dữ liệu thú cưng từ state
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const id = useParams().id;
+    const {message: errorMessage, user} = getUserFromToken()
 
     useEffect(() => {
         dispatch(getPetById(id));
     }, []);
+
+    const checkUser = () => {
+        if(user){
+            return navigate(`/adoption/${pet._id}/adoption-form`)
+        }
+        message.warning(errorMessage)
+    }
 
     const { payload: pet, isLoading, error } = useSelector((state) => state.petsReducer);
 
@@ -111,7 +120,7 @@ const PetDetail = () => {
                             <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                             <button
                                 className='adoption-request-btn'
-                                onClick={() => navigate(`/adoption/${pet._id}/adoption-form`)}
+                                onClick={() => checkUser()}
                             >
                                 Gửi yêu cầu nhận nuôi
                             </button>
