@@ -159,20 +159,20 @@ const ProductDetail = () => {
                         <div className="product_detail-right">
                             <div className="product_detail-content">
                                 <p className='product_detail-name'>{product.name}</p>
-                                <p className='product-detail-description'>Mô tả: {product.description} </p>
-                                <p className='product_detail-code'>Mã sản phẩm: {product.code}</p>
-                                <p className='product_detail-category'>Phân loại: {product.category}</p>
-                                <p className='product_detail-price'>Giá gốc: {product.price} VNĐ</p>
-                                <p className='product_detail-support'>Hỗ trợ: {product.supportPercentage}%</p>
-                                <div className='product_detail-rating'>Đánh giá: &#160; <Rate allowHalf disabled value={product.rating} /></div>
-                                <p className='product_detail-old_price'>Giá: {product.oldPrice} VNĐ</p>
+                                <p className='product-detail-description'><span>Mô tả: </span> {product.description} </p>
+                                <p className='product_detail-code'> <span>Mã sản phẩm: </span>{product.code}</p>
+                                <p className='product_detail-category'> <span>Phân loại: </span> {product.category}</p>
+                                <p className='product_detail-price'> <span>Giá gốc: </span>  {product.price} VNĐ</p>
+                                <p className='product_detail-support'><span>Hỗ trợ: </span> {product.supportPercentage}%</p>
+                                <div className='product_detail-rating'><span>Đánh giá: </span> &#160; <Rate allowHalf disabled value={product.rating} /></div>
+                                <p className='product_detail-old_price'> <span>Giá: </span>{product.oldPrice} VNĐ</p>
                                 <div className='product-detail-quantity_wanted'>
-                                    <p>Số lượng: </p>
+                                    <span>Số lượng: </span>
                                     <button onClick={() => handleDecrease()}>-</button>
                                     <p>{quantity}</p>
                                     <button onClick={() => handleIncrease(product.quantity)}>+</button>
                                 </div>
-                                <p className='product_detail-quantity'>Kho hàng còn: {product.quantity}</p>
+                                <p className='product_detail-quantity'><span>Kho hàng còn: </span>{product.quantity}</p>
                                 <div className="add_to_cart-btn">
                                     <button disabled={isLoadingAddToCart} onClick={() => handleAddToCart()}> {isLoadingAddToCart ? <LoadingOutlined style={{ marginRight: 10 }} /> : <></>}Thêm vào giỏ hàng </button>
                                 </div>

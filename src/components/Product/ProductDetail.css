@@ -106,7 +106,9 @@
     flex-wrap: wrap;
     align-content: flex-start;
 }
-
+.product_detail-right .product_detail-content span{
+    font-weight: 600;
+}
 .product_detail-content .product_detail-name {
     width: 100%;
     font-size: 25px;
