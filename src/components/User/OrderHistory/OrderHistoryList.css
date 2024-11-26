@@ -45,14 +45,16 @@
     text-align: center;
 }
 
-/* chỉnh màu nút Xem cho localhost*/
+/* việc sử dụng định danh động :where(.css-dev-only-do-not-override-11lehqq) trong CSS 
+có thể gây lỗi sau khi deploy, vì định danh này thay đổi ở mỗi lần build. */
+/* chỉnh màu nút Xem*/
 /* .order_history-table tbody tr td:nth-of-type(1) :where(.css-dev-only-do-not-override-11lehqq).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #f2c23d;
     border-color: #f2c23d;
     background: #ffffff;
 } */
 /* chỉnh màu nút Xem cho sau khi deploy*/
-:global(.order_history-table tbody tr td:nth-of-type(1) .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover) {
+.order_history-table tbody tr td:nth-of-type(1) .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #f2c23d;
     border-color: #f2c23d;
     background: #ffffff;
@@ -70,19 +72,27 @@
 }
 
 /* chỉnh màu nút phân trang cho localhost*/
-.order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
+/* .order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
     color: #f2c23d !important;
 }
-
 .order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active {
     border-color: #f2c23d !important;
-}
+} */
 
-/* chỉnh màu nút phân trang cho sau khi deploy*/
-:global(.order_history-container) .ant-pagination-item-active a {
+/* chỉnh màu nút phân trang*/
+.order_history-container .ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}
+.order_history-container .ant-pagination .ant-pagination-item-active a {
     color: #f2c23d !important;
 }
-
-:global(.order_history-container) .ant-pagination-item-active {
+/* chỉnh màu nút go to page khi hover và focus */
+.order_history-container .ant-pagination .ant-pagination-options-quick-jumper input:hover {
     border-color: #f2c23d !important;
+}
+
+.order_history-container .ant-pagination .ant-pagination-options-quick-jumper input:focus,
+.order_history-container .ant-pagination .ant-pagination-options-quick-jumper input:focus-within {
+    border-color: #f2c23d !important;
+    box-shadow: 0 0 0 3px rgba(242, 194, 61, 0.1) !important;
 }

@@ -123,9 +123,8 @@
 }
 
 
-/* @media (min-width: 1530px) {
+@media (min-width: 1540px) {
     .user_menu-container{
         position: absolute;
-        left: 10%;
     }
-} */
+}
