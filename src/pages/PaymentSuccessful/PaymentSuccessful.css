@@ -12,7 +12,7 @@
 .payment_successful-container {
     max-width: var(--max-screen-width);
     width: 100%;
-    margin-top: 40px;
+    margin-top: 50px;
     font-family: var(--font-inter) ;
     display: flex;
     justify-content: center;
@@ -32,7 +32,7 @@
     cursor: pointer;
     transition: 0.3s ease;
     position: absolute;
-    top: -15px;
+    top: -20px;
     left: 30px;
 }
 .payment_successful-container button:hover { 
@@ -44,11 +44,17 @@
     width: 100%;
     text-align: center;
 }
+.payment_successful-container .content{
+    width: 100%;
+    text-align: center;
+    margin: 0.5% 0;
+    font-style: italic;
+}
 
 /* Lịch sử đơn hàng */
 .payment_successful-container .payment_successful-invoice {
     width: 40%;
-    margin: 1% 12.5% 5%;
+    margin: 2% 12.5% 5%;
     padding: 2.5% 7% 5%;
     background-color: #FAFAFA;
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
