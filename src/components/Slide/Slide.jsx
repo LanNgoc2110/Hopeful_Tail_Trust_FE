@@ -21,7 +21,7 @@ const Slide = () => {
     };
     return (
         <div className='slide-container'>
-            <Carousel /*autoplay*/ arrows infinite={false}>
+            <Carousel className="custom-carousel" autoplay autoplaySpeed={3000} arrows infinite={true}>
                 <div className='slide'>
                     <img src={image_1} />
                     <div className="background-1"></div>

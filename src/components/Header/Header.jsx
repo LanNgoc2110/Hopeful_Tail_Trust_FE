@@ -105,7 +105,7 @@ const Header = () => {
                             navigate("/adoption")
                             window.scrollTo(0, 0);
                         }}
-                        className={location.pathname == "/adoption" ? "active" : ""}
+                        className={location.pathname.startsWith("/adoption") ? "active" : ""}
                     >
                         Nhận nuôi
                     </li>
@@ -114,7 +114,7 @@ const Header = () => {
                             navigate("/product")
                             window.scrollTo(0, 0);
                         }}
-                        className={location.pathname == "/product" ? "active" : ""}
+                        className={location.pathname.startsWith("/product") ? "active" : ""}
                     >
                         Sản phẩm
                     </li>

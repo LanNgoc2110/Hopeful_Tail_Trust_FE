@@ -6,7 +6,7 @@
     height: fit-content;
 }
 
-:where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-prev,
+/* :where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-prev,
 :where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-next {
     color: white
 }
@@ -24,6 +24,25 @@
 
 :where(.css-dev-only-do-not-override-11lehqq).ant-carousel .slick-next::after {
     inset-inline-start: -20px
+} */
+.custom-carousel .slick-prev,
+.custom-carousel .slick-next {
+    color: white;
+}
+
+.custom-carousel .slick-prev::after,
+.custom-carousel .slick-next::after {
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    border-inline-width: 10px 0;
+    border-block-width: 10px 0;
+    border-radius: 5px;
+    inset-inline-start: 8px;
+}
+
+.custom-carousel .slick-next::after {
+    inset-inline-start: -20px;
 }
 
 .slide {
