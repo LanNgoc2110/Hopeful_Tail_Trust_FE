@@ -20,11 +20,6 @@ const DonationSuccessful = () => {
             lại cơ hội sống tốt hơn cho các bạn nhỏ mà còn là nguồn động viên to lớn cho chúng
             tớ trên hành trình này.
           </p>
-          {/* <p className='content'>
-            Đơn hàng của quý khách với mã số XXXXX đã được thanh toán thành công vào lúc 21:39.
-            Chúng tôi sẽ nhanh chóng xử lý và gửi hàng đến quý khách trong thời gian sớm nhất.
-            Cảm ơn sự tin tưởng của quý khách!
-          </p> */}
           <Link to="/" className="go-home-btn">
             <button>Quay về trang chủ</button>
           </Link>
