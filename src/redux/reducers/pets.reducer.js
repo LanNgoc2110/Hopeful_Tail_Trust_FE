@@ -9,8 +9,10 @@ export const petsReducer = (
             return { isLoading: true, error: "", payload: null };
         case actionsType.PETS_SUCCESS:
             return { isLoading: false, error: "", payload: payload };
+        case actionsType.GET_PET_BY_QUERY:
+            return { isLoading: false, error: "", payload: payload };
         case actionsType.GET_PET_BY_ID:
-            return { isLoading: false, error: "", payload: payload.pet };
+            return { isLoading: false, error: "", payload: payload.data };
         case actionsType.PETS_FAIL:
             return { isLoading: false, error: payload, payload: null };
         default:

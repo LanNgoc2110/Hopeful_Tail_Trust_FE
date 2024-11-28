@@ -72,7 +72,6 @@
     display: flex;
     flex-wrap: wrap;
     min-height: 450px;
-    height: fit-content;
 }
 
 .pet_detail-left {
@@ -80,11 +79,17 @@
     padding-right: 5%;
     display: flex;
     justify-content: flex-end;
+    position: relative; /* Để hỗ trợ căn chỉnh hình ảnh */
 }
 
 .pet_detail-left img {
     border-radius: 25px;
-    height: 100%;
+    min-width: 60%;
+    width: auto; /* Đảm bảo ảnh không vượt quá container */
+    /* mấy dòng dưới này mới quan trọng */
+    height: 100%; /* Đảm bảo chiều cao đầy đủ */
+    max-height: 100%; /* Đảm bảo không vượt quá container cha */
+    position: absolute; /* Đảm bảo hình ảnh giữ được tỷ lệ trong container */
 }
 
 .pet_detail-right {

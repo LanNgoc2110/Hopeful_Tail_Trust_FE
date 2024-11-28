@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import pet_image from '/assets/pitbull.png';
 import not_found from "/assets/not-found.png"
-import { Breadcrumb, Button, message, Pagination, Rate, Spin } from 'antd';
+import { Breadcrumb, Button, message, Pagination, Rate, Skeleton, Spin } from 'antd';
 import {
     ShoppingCartOutlined,
     LoadingOutlined
@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProductById } from '../../redux/actions/products.action';
 import { getUserFromToken } from '../../utils/Token';
 import { cartApi } from '../../apis/cart.request';
+import { getAllReview } from '../../redux/actions/comment.action';
 
 const ProductDetail = () => {
     const location = useLocation();  // Lấy dữ liệu thú cưng từ state
@@ -22,12 +23,25 @@ const ProductDetail = () => {
     const id = useParams().id;
     const { message: errorMessage, user } = getUserFromToken()
 
+    const [currentCommentPage, setCurrentCommentPage] = useState(1);
+    const [selectedRating, setSelectedRating] = useState(null);
+    const [isLoadingAddToCart, setIsLoadingAddToCart] = useState(false);
+    const [isLoadingAddComment, setIsLoadingAddComment] = useState(false);
+    const [quantity, setQuantity] = useState(1);
+    const [rating, setRating] = useState(0);
+    const [callback, setCallback] = useState(false);
+
 
     useEffect(() => {
         dispatch(getProductById(id));
     }, []);
 
+    useEffect(() => {
+        dispatch(getAllReview(id));
+    }, [callback]);
+
     const { payload: product, isLoading, error } = useSelector((state) => state.productsReducer);
+    const { payload: reviews, isLoading: isLoadingReview } = useSelector((state) => state.commentReducer);
 
     // Kiểm tra nếu không có dữ liệu thú cưng, chuyển hướng lại trang chính
     // if (!location.state || !location.state.product) {
@@ -38,26 +52,30 @@ const ProductDetail = () => {
     // const product = location.state.product;  // Dữ liệu thú cưng được truyền từ Product.jsx
 
 
-    const [currentCommentPage, setCurrentCommentPage] = useState(1);
-    const [selectedRating, setSelectedRating] = useState(null);
-    const [isLoadingAddToCart, setIsLoadingAddToCart] = useState(false);
-    const [quantity, setQuantity] = useState(1);
+    // if (isLoadingReview) {
+    //     return <div>Đang tải bình luận...</div>; // Hoặc một loading spinner
+    // }
+
+    // // Kiểm tra nếu không có dữ liệu reviews, hiển thị thông báo
+    // if (!reviews) {
+    //     return <div>Không có bình luận nào.</div>;
+    // }
 
     const pageSize = 5;
 
     // const filteredComments = selectedRating == null
     //     ? product.comments // Nếu selectedRating là null thì hiện tất cả comment
     //     : product.comments.filter(comment => comment.rating == selectedRating);
-    // const filteredComments = product.comments.filter(comment => {
-    //     return (
-    //         (selectedRating !== null && selectedRating !== undefined ? comment.rating === selectedRating : true)
-    //     );
-    // })
+    const filteredComments = /*product.comments*/reviews.filter(comment => {
+        return (
+            (selectedRating !== null && selectedRating !== undefined ? comment.rating === selectedRating : true)
+        );
+    })
 
-    // const paginatedComments = /*product.comments*/filteredComments.slice(
-    //     (currentCommentPage - 1) * pageSize,
-    //     currentCommentPage * pageSize
-    // );
+    const paginatedComments = /*product.comments*/filteredComments.slice(
+        (currentCommentPage - 1) * pageSize,
+        currentCommentPage * pageSize
+    );
 
     const handleChangePage = (page) => {
         setCurrentCommentPage(page);
@@ -85,12 +103,27 @@ const ProductDetail = () => {
         setIsLoadingAddToCart(true);
         try {
             if (user) {
+                let cartItems = []; // Mặc định là giỏ hàng rỗng nếu không tìm thấy
+
+                try {
+                    const res = await cartApi.getAllCart("");
+                    cartItems = res?.data?.data?.cartItems || [];
+                } catch (error) {
+                    if (error.response?.status !== 404) {
+                        throw error;
+                    }
+                }
+                const cartQuantity = cartItems.find(item => item.productId === product._id);
+                if (cartQuantity && cartQuantity?.quantity + quantity > product.quantity) {
+                    message.error("Số lượng mua vượt quá số lượng trong kho, hãy kiểm tra giỏ hàng của bạn!");
+                    setIsLoadingAddToCart(false);
+                    return
+                }
                 const cart = {
                     userId: user.id,
                     productId: product._id,
                     quantity: quantity,
                 }
-                console.log(cart);
 
                 await cartApi.addToCart(cart);
                 setIsLoadingAddToCart(false);
@@ -103,10 +136,25 @@ const ProductDetail = () => {
         } catch (error) {
             message.error(error.response.data.message);
             setIsLoadingAddToCart(false);
-            // console.log(error);
-
         }
     };
+
+    const handleRate = (value) => {
+        setRating(value)
+    }
+
+    const handleAddComment = async (e) => {
+        e.preventDefault();
+        console.log(e);
+
+        setIsLoadingAddComment(true);
+        try {
+            setIsLoadingAddComment(false);
+        } catch (error) {
+            message.error(error.response.data.message);
+            setIsLoadingAddComment(false);
+        }
+    }
 
     return (
         <div className='product_detail-container'>
@@ -153,7 +201,7 @@ const ProductDetail = () => {
                     <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
                     <div className="product_detail-height">
                         <div className="product_detail-left">
-                            {/* <img src={product.image} /> */}
+                            {/* <img src={product.image.url} /> */}
                             <img src={pet_image} />
                         </div>
                         <div className="product_detail-right">
@@ -164,7 +212,7 @@ const ProductDetail = () => {
                                 <p className='product_detail-category'> <span>Phân loại: </span> {product.category}</p>
                                 <p className='product_detail-price'> <span>Giá gốc: </span>  {product.price} VNĐ</p>
                                 <p className='product_detail-support'><span>Hỗ trợ: </span> {product.supportPercentage}%</p>
-                                <div className='product_detail-rating'><span>Đánh giá: </span> &#160; <Rate allowHalf disabled value={product.rating} /></div>
+                                <div className='product_detail-rating'><span>Đánh giá: </span> &#160; <Rate allowHalf disabled value={product.averageRating} /></div>
                                 <p className='product_detail-old_price'> <span>Giá: </span>{product.oldPrice} VNĐ</p>
                                 <div className='product-detail-quantity_wanted'>
                                     <span>Số lượng: </span>
@@ -186,18 +234,18 @@ const ProductDetail = () => {
                 </div>
             </>)}
 
-            <form className='comment'>
-                <div className='comment-rating'>Đánh giá: &ensp; <Rate value={0} /></div>
+            {/* <form className='comment' onSubmit={handleAddComment}>
+                <div className='comment-rating'>Đánh giá: &ensp; <Rate value={rating} onChange={handleRate}/></div>
                 <textarea
                     maxLength={100}
                     placeholder='Gửi nhận xét của bạn về sản phẩm của chúng tôi'
                 />
                 <div className="send-comment-btn">
-                    <button type='submit'>
+                    <button type='submit' id='commetn'>
                         Gửi nhận xét
                     </button>
                 </div>
-            </form>
+            </form> */}
 
             <div className="rating-filter">
                 <Button
@@ -245,12 +293,20 @@ const ProductDetail = () => {
             </div>
 
             <div className="list-comment">
-                {/* {product.comments filteredComments.length > 0 ? (
-                    product.comments paginatedComments.map((comment) => (
-                    <div key={comment.userId} className="comment-item">
-                        <img src={comment.img} alt={comment.username} className="comment-user-img" />
+                {isLoadingReview ? (
+                    <Skeleton
+                        avatar
+                        paragraph={{
+                            rows: 2,
+                        }}
+                    />
+                ) :
+                /*product.comments*/filteredComments.length > 0 ? (
+                    /*product.comments*/paginatedComments.map((comment) => (
+                    <div key={comment._id} className="comment-item">
+                        <img src={'https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg'} className="comment-user-img" />
                         <div className="comment-text">
-                            <p className='comment-username'>{comment.username}</p>
+                            <p className='comment-username'>{comment.userName}</p>
                             <div className="comment-user-rating">
                                 <Rate disabled value={comment.rating} />
                             </div>
@@ -258,10 +314,10 @@ const ProductDetail = () => {
                         </div>
                     </div>
                 ))
-                ) : (
-                    <p className='no-comment'>Chưa có nhận xét nào</p>
-                )} */}
-                {/* <Pagination
+                    ) : (
+                        <p className='no-comment'>Chưa có nhận xét nào</p>
+                    )}
+                <Pagination
                     current={currentCommentPage}
                     // total={product.comments.length}
                     total={filteredComments.length}
@@ -279,7 +335,7 @@ const ProductDetail = () => {
                         fontFamily: "Inter, san-serif",
                         fontSize: "17px"
                     }}
-                /> */}
+                />
             </div>
         </div>
     )

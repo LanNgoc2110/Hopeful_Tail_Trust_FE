@@ -100,6 +100,7 @@
     display: flex;
     justify-content: center;
 }
+
 .donate-btn button{ 
     width: 60%;
     margin-top: 5%;
@@ -117,4 +118,11 @@
 
 .donate-btn button:hover {
     background-color: #090b62;
+}
+
+.donate-btn button:disabled {
+    background-color: #d3d3d3;
+    color: #555555;
+    cursor: not-allowed;
+    opacity: 0.8;
 }

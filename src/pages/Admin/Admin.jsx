@@ -12,6 +12,8 @@ import { Avatar, Button, ConfigProvider, Dropdown, Layout, Menu, Space, message,
 import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import './Admin.css'
 import logo from '/assets/Logo.png'
+import { useDispatch } from 'react-redux';
+import { logout } from '../../redux/actions/auth.action';
 
 const { Header, Sider, Content } = Layout;
 
@@ -62,6 +64,7 @@ const siderStyle = {
 
 
 export default function Admin() {
+    const dispatch = useDispatch();
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: {
@@ -75,29 +78,20 @@ export default function Admin() {
 
     const isAdminHome = location.pathname === '/admin/admin-home';
 
-    const handleMenuClick = (e) => {
-        let selectedItem;
-
-        items.forEach((item) => {
-            if (item.key === e.key) {
-                selectedItem = item;
-            }
-            if (item.children) {
-                item.children.forEach((child) => {
-                    if (child.key === e.key) {
-                        selectedItem = child;
-                    }
-                });
-            }
-        });
-
+    const selectedKey = items.find((item) =>
+        location.pathname.includes(item.route)
+      )?.key;
+    
+      const handleMenuClick = (e) => {
+        const selectedItem = items.find((item) => item.key === e.key);
         if (selectedItem?.route) {
-            navigate(selectedItem.route);
+          navigate(selectedItem.route);
         }
-    };
-
+      };
     const handleLogout = () => {
-
+        dispatch(logout());
+        message.success("Đăng xuất thành công");
+        navigate("/")
     }
 
     const listDropdown = [
@@ -119,7 +113,7 @@ export default function Admin() {
                         </div>
                         <Menu
                             mode="inline"
-                            defaultSelectedKeys={['1']}
+                            selectedKeys={[selectedKey]}
                             style={{ height: '100%', outline: "none" }}
                             onClick={handleMenuClick}
                             items={items}

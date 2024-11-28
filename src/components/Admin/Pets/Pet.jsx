@@ -5,135 +5,168 @@ import {
     DeleteOutlined,
     EditOutlined,
     CloseOutlined,
-    FilterOutlined
+    FilterOutlined,
+    EyeOutlined
 } from '@ant-design/icons'
 import { Button, ConfigProvider, Input, Table } from 'antd'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../AdminTheme.css'
 import ModalCreate from './ModalCreate'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPetByQuery } from '../../../redux/actions/pets.action'
 
 const themeCustome = {
 
 }
 
 export default function Pet() {
+    const dispatch = useDispatch();
+    const [search, setSearch] = useState({
+        name: "",
+        breed: "",
+        coatColor: "",
+        sex: "",
+        species: "",
+        vaccinated: "",
+    });
+    const [paginate, setPaginate] = useState({
+        page: 1,
+        limit: 10
+    });
     const [moreEdit, setMoreEdit] = useState(null);
     const [isOpenCreate, setIsOpenCreate] = useState(false)
     const [callback, setCallback] = useState(false);
+    const { isLoading, error, payload: pets } = useSelector(state => state.petsReducer);
+
+    useEffect(() => {
+        dispatch(getPetByQuery(
+            search.name,
+            search.breed,
+            search.coatColor,
+            search.sex,
+            search.species,
+            search.vaccinated,
+            paginate.page,
+            paginate.limit
+        ));
+    }, [search, paginate, callback]);
+    
+    console.log(pets);
+    
 
     const dataPets = [
         {
-          key: '1',
-          name: "Fluffy",
-          sex: "Female",
-          age: 2,
-          species: "Cat",
-          breed: "Labrador",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id"
+            key: '1',
+            name: "Fluffy",
+            sex: "Female",
+            age: 2,
+            species: "Cat",
+            breed: "Labrador",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id"
         },
         {
-          key: '2',
-          name: "Max",
-          sex: "Male",
-          age: 3,
-          species: "Dog",
-          breed: "Beagle",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id2"
+            key: '2',
+            name: "Max",
+            sex: "Male",
+            age: 3,
+            species: "Dog",
+            breed: "Beagle",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id2"
         },
         {
-          key: '3',
-          name: "Bella",
-          sex: "Female",
-          age: 1,
-          species: "Cat",
-          breed: "Siamese",
-          vaccinated: false,
-          healthStatus: "Slightly injured",
-          image_id: "sample_image_id3"
+            key: '3',
+            name: "Bella",
+            sex: "Female",
+            age: 1,
+            species: "Cat",
+            breed: "Siamese",
+            vaccinated: false,
+            healthStatus: "Slightly injured",
+            image_id: "sample_image_id3"
         },
         {
-          key: '4',
-          name: "Charlie",
-          sex: "Male",
-          age: 4,
-          species: "Dog",
-          breed: "Poodle",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id4"
+            key: '4',
+            name: "Charlie",
+            sex: "Male",
+            age: 4,
+            species: "Dog",
+            breed: "Poodle",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id4"
         },
         {
-          key: '5',
-          name: "Daisy",
-          sex: "Female",
-          age: 2,
-          species: "Rabbit",
-          breed: "Dutch",
-          vaccinated: false,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id5"
+            key: '5',
+            name: "Daisy",
+            sex: "Female",
+            age: 2,
+            species: "Rabbit",
+            breed: "Dutch",
+            vaccinated: false,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id5"
         },
         {
-          key: '6',
-          name: "Oscar",
-          sex: "Male",
-          age: 5,
-          species: "Cat",
-          breed: "Persian",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id6"
+            key: '6',
+            name: "Oscar",
+            sex: "Male",
+            age: 5,
+            species: "Cat",
+            breed: "Persian",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id6"
         },
         {
-          key: '7',
-          name: "Milo",
-          sex: "Male",
-          age: 1,
-          species: "Dog",
-          breed: "Golden Retriever",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id7"
+            key: '7',
+            name: "Milo",
+            sex: "Male",
+            age: 1,
+            species: "Dog",
+            breed: "Golden Retriever",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id7"
         },
         {
-          key: '8',
-          name: "Luna",
-          sex: "Female",
-          age: 2,
-          species: "Cat",
-          breed: "Maine Coon",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id8"
+            key: '8',
+            name: "Luna",
+            sex: "Female",
+            age: 2,
+            species: "Cat",
+            breed: "Maine Coon",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id8"
         },
         {
-          key: '9',
-          name: "Buddy",
-          sex: "Male",
-          age: 3,
-          species: "Dog",
-          breed: "Bulldog",
-          vaccinated: false,
-          healthStatus: "Injured",
-          image_id: "sample_image_id9"
+            key: '9',
+            name: "Buddy",
+            sex: "Male",
+            age: 3,
+            species: "Dog",
+            breed: "Bulldog",
+            vaccinated: false,
+            healthStatus: "Injured",
+            image_id: "sample_image_id9"
         },
         {
-          key: '10',
-          name: "Coco",
-          sex: "Female",
-          age: 2,
-          species: "Cat",
-          breed: "Russian Blue",
-          vaccinated: true,
-          healthStatus: "Healthy",
-          image_id: "sample_image_id10"
+            key: '10',
+            name: "Coco",
+            sex: "Female",
+            age: 2,
+            species: "Cat",
+            breed: "Russian Blue",
+            vaccinated: true,
+            healthStatus: "Healthy",
+            image_id: "sample_image_id10"
         }
-      ];
-      
+    ];
+
 
     const columns = [
         {
@@ -187,6 +220,7 @@ export default function Pet() {
                     <div className='edit-btn-option'>
                         <Button icon={<DeleteOutlined />} />
                         <Button icon={<EditOutlined />} />
+                        <Button icon={<EyeOutlined />} />
                         <Button
                             size='small'
                             type='text'
@@ -209,6 +243,7 @@ export default function Pet() {
             <h1>Quản lý thú cưng</h1>
             <div className="search">
                 <Input
+                    onChange={(e) => setSearch(prev => ({ ...prev, name: e.target.value }))}
                     className='input-search'
                     size="large"
                     placeholder="Tìm kiếm theo tên..."

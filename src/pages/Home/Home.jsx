@@ -6,6 +6,8 @@ import Slide from '../../components/Slide/Slide'
 import Introduce from '../../components/Introduce/Introduce'
 import Commitment from '../../components/Commitment/Commitment'
 import BlogNews from '../../components/BlogNews/BlogNews'
+import { message } from 'antd'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 const Home = () => {

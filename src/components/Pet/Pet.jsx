@@ -215,7 +215,7 @@ const Pet = () => {
                                 <div className="overlay">
                                     <button
                                         className="view-more-button"
-                                        onClick={() => navigate(`/adoption/${item._id}`, { state: { pet: item, searchTerm, scrollY: window.scrollY, currentPage: currentPage } }, window.scrollTo(0, 0))}
+                                        onClick={() => navigate(`/adoption/${item._id}`, { state: { searchTerm, scrollY: window.scrollY, currentPage: currentPage } }, window.scrollTo(0, 0))}
                                     >
                                         Xem thêm
                                     </button>
