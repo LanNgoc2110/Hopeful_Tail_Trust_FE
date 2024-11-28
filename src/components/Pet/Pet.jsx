@@ -3,7 +3,7 @@ import './Pet.css'
 
 import pet_image from '/assets/pitbull.png'
 import { LoadingOutlined } from '@ant-design/icons';
-import { Input, Pagination, Select, Spin } from 'antd';
+import { Carousel, Input, Pagination, Select, Spin } from 'antd';
 import not_found from "/assets/not-found.png"
 import { useLocation, useNavigate } from 'react-router-dom';
 import image_3 from '/assets/dogs.png'
@@ -254,6 +254,7 @@ const Pet = () => {
                 <div className="pet-adopted-list">
                     <p className='title'>Hình ảnh thú cưng được nhận nuôi</p>
                     <div className="pet-adopted-list-img">
+                        {/* <img src={pet_image} />
                         <img src={pet_image} />
                         <img src={pet_image} />
                         <img src={pet_image} />
@@ -261,8 +262,39 @@ const Pet = () => {
                         <img src={pet_image} />
                         <img src={pet_image} />
                         <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
+                        <img src={pet_image} /> */}
+                        {/* <Carousel arrows infinite={true}>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                                <p>haha</p>
+                            </div>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                            </div>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                            </div>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                            </div>
+                        </Carousel> */}
+                        <Carousel className="custom-carousel" arrows autoplay infinite={true}>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                            </div>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                            </div>
+                            <div className='slide'>
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                                <img src={pet_image} />
+                            </div>
+                        </Carousel>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,86 @@
+.donation_history-container {
+    margin: 2% 5%;
+    height: 80%;
+    width: 90%;
+    font-family: var(--font-inter);
+}
+
+.donation_history-container .donation_history-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.donation_history-table thead tr {
+    background-color: #FAFAFA;
+}
+
+.donation_history-table thead tr th {
+    width: 25%;
+    font-size: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.donation_history-table thead tr th:nth-of-type(4) {
+    border-left: 1px solid #f0f0f0;
+}
+
+.donation_history-table tbody tr:hover {
+    background-color: #FAFAFA;
+    transition: all 0.3s ease;
+}
+
+.donation_history-table tbody tr td {
+    /* width: 25%;
+    text-align: center; */
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+.donation_history-table tbody tr td:nth-of-type(1) {
+    width: 16%;
+    padding-left: 9%;
+}
+.donation_history-table tbody tr td:nth-of-type(2) {
+    width: 17%;
+    padding-left: 8%;
+}
+.donation_history-table tbody tr td:nth-of-type(3) {
+    width: 18%;
+    padding-left: 7%;
+}
+.donation_history-table tbody tr td:nth-of-type(4) {
+    width: 25%;
+    padding-left: 0;
+    border-left: 1px solid #f0f0f0;
+    text-align: center;
+}
+
+/* vì sử dụng định danh động (:where(.css-dev-only-do-not-override-11lehqq)), 
+có thể thay đổi mỗi lần build, làm cho CSS không hoạt động sau khi deploy.
+ */
+/* chỉnh màu nút phân trang*/
+/* .donation_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+.donation_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+} */
+
+/* chỉnh màu nút phân trang*/
+.donation_history-container .ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}
+.donation_history-container .ant-pagination .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+/* chỉnh màu nút go to page khi hover và focus */
+.donation_history-container .ant-pagination .ant-pagination-options-quick-jumper input:hover {
+    border-color: #f2c23d !important;
+}
+
+.donation_history-container .ant-pagination .ant-pagination-options-quick-jumper input:focus,
+.donation_history-container .ant-pagination .ant-pagination-options-quick-jumper input:focus-within {
+    border-color: #f2c23d !important;
+    box-shadow: 0 0 0 3px rgba(242, 194, 61, 0.1) !important;
+}

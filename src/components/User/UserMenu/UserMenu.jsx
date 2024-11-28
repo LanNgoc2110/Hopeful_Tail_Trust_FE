@@ -8,6 +8,8 @@ import form_icon from "/assets/form.png"
 import form_icon_active from "/assets/form-active.png"
 import order_icon from "/assets/checklist.png"
 import order_icon_active from "/assets/checklist-active.png"
+import donation_icon from "/assets/heart.png"
+import donation_icon_active from "/assets/heart-active.png"
 import { useLocation, useNavigate } from 'react-router-dom'
 
 const UserMenu = () => { 
@@ -32,6 +34,12 @@ const UserMenu = () => {
       activeImg: order_icon_active,
       title: "Lịch sử đơn hàng",
     },
+    {
+      id: 4,
+      img: donation_icon,
+      activeImg: donation_icon_active,
+      title: "Lịch sử quyên góp",
+    },
   ]
 
  
@@ -53,6 +61,9 @@ const UserMenu = () => {
     if (buttonIndex === 3){
       navigate('/user/order-history-list')
     }
+    if (buttonIndex === 4){
+      navigate('/user/donation-history-list')
+    }
   }
 
   // khi người dùng có reload lại trang thì đang ở component nào thì nút đó sẽ phát sáng
@@ -67,6 +78,9 @@ const UserMenu = () => {
     }
     if(location.pathname === '/user/order-history-list'){
       setActiveButton(3)
+    }
+    if(location.pathname === '/user/donation-history-list'){
+      setActiveButton(4)
     }
   }, [location])
 

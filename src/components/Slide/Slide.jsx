@@ -2,14 +2,6 @@ import React from 'react'
 import './Slide.css'
 import { Carousel } from 'antd';
 
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
-
 import image_1 from '/assets/dog.png'
 import image_2 from '/assets/labrador.png'
 import image_3 from '/assets/dogs.png'

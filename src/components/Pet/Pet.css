@@ -277,6 +277,7 @@ có thể thay đổi sau mỗi lần build. Điều này khiến các rule CSS 
 }
 
 
+/* các pet đã được nhận nuôi */
 .pet-container .pet-adopted-list{
     width: 100%;
     margin-bottom: 50px;
@@ -293,16 +294,44 @@ có thể thay đổi sau mỗi lần build. Điều này khiến các rule CSS 
 }
 
 .pet-adopted-list .pet-adopted-list-img{
-    width: 100%;
-    display: flex; 
+    max-width: var(--max-screen-width);
+    width: 70%;
+    padding: 0 15%;
+    margin-top: 8px;
+    max-height: 700px;
+    height: fit-content;
+}
+
+.pet-adopted-list-img .custom-carousel .slick-prev,
+.pet-adopted-list-img .custom-carousel .slick-next {
+    color: rgb(167, 167, 167);
+}
+
+.pet-adopted-list-img .custom-carousel .slick-prev::after,
+.pet-adopted-list-img .custom-carousel .slick-next::after {
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    border-inline-width: 10px 0;
+    border-block-width: 10px 0;
+    border-radius: 5px;
+    inset-inline-start: 45px;
+}
+
+.pet-adopted-list-img .custom-carousel .slick-next::after {
+    inset-inline-start: -70px;
+}
+.pet-adopted-list-img .slide{
+    width: 100% !important;
+    display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
 }
  
-.pet-adopted-list-img img{
-    width: 20%;
+.pet-adopted-list-img .slide img{
+    width: 22%;
     height: 220px;
-    margin: 20px 40px;
+    margin: 20px 30px;
     border-radius: 25px;
 }
 
