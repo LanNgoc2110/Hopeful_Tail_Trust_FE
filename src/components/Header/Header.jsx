@@ -60,7 +60,7 @@ const Header = () => {
         navigate("/")
     }
 
-    const items = [
+    const itemsUser = [
         // {
         //     label: "Cart",
         //     key: '1',
