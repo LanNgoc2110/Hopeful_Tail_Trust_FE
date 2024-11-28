@@ -355,3 +355,21 @@
     text-align: center;
     color: lightslategray
 }
+
+/* chỉnh màu nút phân trang */
+.list-comment .ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}
+.list-comment .ant-pagination .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+/* chỉnh màu nút go to page khi hover và focus */
+.list-comment .ant-pagination .ant-pagination-options-quick-jumper input:hover {
+    border-color: #f2c23d !important;
+}
+
+.list-comment .ant-pagination .ant-pagination-options-quick-jumper input:focus,
+.list-comment .ant-pagination .ant-pagination-options-quick-jumper input:focus-within {
+    border-color: #f2c23d !important;
+    box-shadow: 0 0 0 3px rgba(242, 194, 61, 0.1) !important;
+}
