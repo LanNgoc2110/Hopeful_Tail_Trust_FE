@@ -52,33 +52,64 @@
     flex-wrap: wrap;
 }
 
+/* Các lớp như css-dev-only-do-not-override-11lehqq là lớp định danh động được Ant Design tạo trong runtime, 
+có thể thay đổi sau mỗi lần build. Điều này khiến các rule CSS tùy chỉnh không áp dụng được. */
 /* chỉnh màu thanh Search */
-.pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:hover {
+/* .pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:hover {
     border-color: #f8d064 !important;
     background-color: #ffffff !important;
 }
 .pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-input-outlined:focus-within{
     border-color: #f8d064 !important;
     box-shadow: 0 0 0 2px rgba(248, 208, 100, 0.1) !important
-}
+} */
 
 /* chỉnh màu nút Search */
-.pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary{
+/* .pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary{
     background: #f8d064 !important
 }
 .pet-filter :where(.css-dev-only-do-not-override-11lehqq).ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     background: #f2c23d !important
-}
+} */
 
 /* chỉnh màu thanh Select */
-.pet-filter .ant-select-selector:hover {
+/* .pet-filter .ant-select-selector:hover {
     border-color: #f8d064 !important;
 }
 
 .pet-filter .ant-select-focused:where(.css-dev-only-do-not-override-11lehqq).ant-select-outlined:not(.ant-select-disabled):not(.ant-select-customize-input):not(.ant-pagination-size-changer) .ant-select-selector {
     border-color: #f8d064 !important;
     box-shadow: 0 0 0 1px #f8d064 !important;
+} */
+
+ /* chỉnh màu thanh Search */
+.pet-filter .ant-input:hover {
+    border-color: #f8d064 !important;
+    background-color: #ffffff !important;
 }
+
+.pet-filter .ant-input:focus {
+    border-color: #f8d064 !important;
+    box-shadow: 0 0 0 2px rgba(248, 208, 100, 0.1) !important;
+}
+/* chỉnh màu nút Search */
+.pet-filter .ant-btn-primary {
+    background: #f8d064 !important;
+}
+
+.pet-filter .ant-btn-primary:hover {
+    background: #f2c23d !important;
+}
+/* chỉnh màu thanh Select */
+.pet-filter .ant-select-selector:hover {
+    border-color: #f8d064 !important;
+}
+
+.pet-filter .ant-select-focused .ant-select-selector {
+    border-color: #f8d064 !important;
+    box-shadow: 0 0 0 1px #f8d064 !important;
+}
+
 
 .pet-unadopted .pet-unadopted-list{
     width: 80%;
@@ -227,6 +258,26 @@
 }
 
 
+/* chỉnh màu nút phân trang */
+.pet-unadopted-list .ant-pagination .ant-pagination-item-active {
+    border-color: #f2c23d !important;
+}
+.pet-unadopted-list .ant-pagination .ant-pagination-item-active a {
+    color: #f2c23d !important;
+}
+/* chỉnh màu nút go to page khi hover và focus */
+.pet-unadopted-list .ant-pagination .ant-pagination-options-quick-jumper input:hover {
+    border-color: #f2c23d !important;
+}
+
+.pet-unadopted-list .ant-pagination .ant-pagination-options-quick-jumper input:focus,
+.pet-unadopted-list .ant-pagination .ant-pagination-options-quick-jumper input:focus-within {
+    border-color: #f2c23d !important;
+    box-shadow: 0 0 0 3px rgba(242, 194, 61, 0.1) !important;
+}
+
+
+/* các pet đã được nhận nuôi */
 .pet-container .pet-adopted-list{
     width: 100%;
     margin-bottom: 50px;
@@ -243,16 +294,44 @@
 }
 
 .pet-adopted-list .pet-adopted-list-img{
-    width: 100%;
-    display: flex; 
+    max-width: var(--max-screen-width);
+    width: 70%;
+    padding: 0 15%;
+    margin-top: 8px;
+    max-height: 700px;
+    height: fit-content;
+}
+
+.pet-adopted-list-img .custom-carousel .slick-prev,
+.pet-adopted-list-img .custom-carousel .slick-next {
+    color: rgb(167, 167, 167);
+}
+
+.pet-adopted-list-img .custom-carousel .slick-prev::after,
+.pet-adopted-list-img .custom-carousel .slick-next::after {
+    width: 30px;
+    height: 30px;
+    top: 2px;
+    border-inline-width: 10px 0;
+    border-block-width: 10px 0;
+    border-radius: 5px;
+    inset-inline-start: 45px;
+}
+
+.pet-adopted-list-img .custom-carousel .slick-next::after {
+    inset-inline-start: -70px;
+}
+.pet-adopted-list-img .slide{
+    width: 100% !important;
+    display: flex !important;
     flex-wrap: wrap;
     justify-content: center;
 }
  
-.pet-adopted-list-img img{
-    width: 20%;
+.pet-adopted-list-img .slide img{
+    width: 22%;
     height: 220px;
-    margin: 20px 40px;
+    margin: 20px 30px;
     border-radius: 25px;
 }
 

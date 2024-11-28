@@ -27,6 +27,7 @@ const Header = () => {
 
     const [showHeader, setShowHeader] = useState(true)
     const [lastScrollY, setLastScrollY] = useState(0)
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
 
     const controlHeader = () => {
         if (typeof window !== 'undefined') {
@@ -37,6 +38,7 @@ const Header = () => {
             } else {
                 setShowHeader(false)
             }
+            setIsDropdownVisible(false);
         }
         setLastScrollY(window.scrollY)
     }
@@ -58,18 +60,18 @@ const Header = () => {
         navigate("/")
     }
 
-    const itemsUser = [
-        {
-            label: "Cart",
-            key: '1',
-            icon: <ShoppingCartOutlined />,
-            onClick: () => {navigate('/cart')},
-        },
+    const items = [
+        // {
+        //     label: "Cart",
+        //     key: '1',
+        //     icon: <ShoppingCartOutlined />,
+        //     onClick: () => { navigate('/cart') },
+        // },
         {
             label: "Account",
             key: '2',
             icon: <UserOutlined />,
-            onClick: () => {navigate('/user/user-profile')},
+            onClick: () => { navigate('/user/user-profile') },
         },
         {
             label: "Log out",
@@ -121,7 +123,7 @@ const Header = () => {
                             navigate("/adoption")
                             window.scrollTo(0, 0);
                         }}
-                        className={location.pathname == "/adoption" ? "active" : ""}
+                        className={location.pathname.startsWith("/adoption") ? "active" : ""}
                     >
                         Nhận nuôi
                     </li>
@@ -130,7 +132,7 @@ const Header = () => {
                             navigate("/product")
                             window.scrollTo(0, 0);
                         }}
-                        className={location.pathname == "/product" ? "active" : ""}
+                        className={location.pathname.startsWith("/product") ? "active" : ""}
                     >
                         Sản phẩm
                     </li>
@@ -154,18 +156,34 @@ const Header = () => {
                         Đăng nhập
                     </li> */}
                     {token ? (
-                        <Dropdown menu={{ items: user.role == "user" ? itemsUser : itemsAdmin }} trigger={['click']} className='dropdown' >
-                            <a onClick={(e) => e.preventDefault()}>
-                                <Space>
-                                    <Avatar
-                                        src={
-                                            "https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg"
-                                        }
-                                        style={{ cursor: "pointer", width: '40px', height: '40px', marginRight: '20px' }}
-                                    />
-                                </Space>
-                            </a>
-                        </Dropdown>
+                        <>
+                            <li
+                                onClick={() => {
+                                    navigate("/cart")
+                                    window.scrollTo(0, 0);
+                                }}
+                            >
+                                <ShoppingCartOutlined />
+                                <div className="cart-quantity">
+                                    1
+                                </div>
+                            </li>
+                            <Dropdown menu={{ items: user.role == "user" ? itemsUser : itemsAdmin }} trigger={['click']} className='dropdown' placement='bottom'
+                                open={isDropdownVisible} // Kiểm soát trạng thái dropdown
+                                onOpenChange={(visible) => setIsDropdownVisible(visible)} // Cập nhật trạng thái
+                            >
+                                <a onClick={(e) => e.preventDefault()}>
+                                    <Space>
+                                        <Avatar
+                                            src={
+                                                "https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg"
+                                            }
+                                            style={{ cursor: "pointer", width: '40px', height: '40px', marginRight: '0px' }}
+                                        />
+                                    </Space>
+                                </a>
+                            </Dropdown>
+                        </>
                     ) : (
                         <li onClick={() => {
                             navigate("/login")

@@ -2,14 +2,6 @@ import React from 'react'
 import './Slide.css'
 import { Carousel } from 'antd';
 
-const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
-
 import image_1 from '/assets/dog.png'
 import image_2 from '/assets/labrador.png'
 import image_3 from '/assets/dogs.png'
@@ -21,7 +13,7 @@ const Slide = () => {
     };
     return (
         <div className='slide-container'>
-            <Carousel /*autoplay*/ arrows infinite={false}>
+            <Carousel className="custom-carousel" autoplay autoplaySpeed={3000} arrows infinite={true}>
                 <div className='slide'>
                     <img src={image_1} />
                     <div className="background-1"></div>
