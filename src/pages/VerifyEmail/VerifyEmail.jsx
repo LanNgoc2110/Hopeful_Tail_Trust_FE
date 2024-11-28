@@ -17,10 +17,12 @@ const VerifyEmail = () => {
         setLoading(true);
         const token = searchParams.get('token');
         try {
-            const res = await authApi.verifyEmail(token);
-            setLoading(false);
-            message.success('Xác nhận email thành công');
-            navigate('/');
+            if (token) {
+                const res = await authApi.verifyEmail(token);
+                setLoading(false);
+                message.success('Xác nhận email thành công');
+                navigate('/');
+            }
         } catch (error) {
             setLoading(false);
             message.error(error.response.data.message);
