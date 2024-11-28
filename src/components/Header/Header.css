@@ -60,6 +60,7 @@
     cursor: pointer;
     padding: 10px;
     border-radius: 10px;
+    position: relative;
 }
 .header-right li:hover{
     background-color: antiquewhite;
@@ -67,4 +68,22 @@
 
 .header-right li.active{
     background-color: antiquewhite;
+}
+
+.header-right li .anticon svg{
+    font-size: 25px;
+}
+.header-right li .cart-quantity{
+    position: absolute;
+    background-color: rgb(251, 51, 51);
+    width: 15px;
+    height: 15px;
+    border-radius: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 12px;
+    top: 4px;
+    right: 3px;
 }

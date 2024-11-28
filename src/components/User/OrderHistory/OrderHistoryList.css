@@ -71,7 +71,10 @@ có thể gây lỗi sau khi deploy, vì định danh này thay đổi ở mỗi
     border-left: 1px solid #f0f0f0;
 }
 
-/* chỉnh màu nút phân trang cho localhost*/
+/* vì sử dụng định danh động (:where(.css-dev-only-do-not-override-11lehqq)), 
+có thể thay đổi mỗi lần build, làm cho CSS không hoạt động sau khi deploy.
+ */
+/* chỉnh màu nút phân trang*/
 /* .order_history-container :where(.css-dev-only-do-not-override-11lehqq).ant-pagination .ant-pagination-item-active a {
     color: #f2c23d !important;
 }

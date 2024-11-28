@@ -53,6 +53,12 @@
     border-radius: 8px;
     cursor: pointer;
 }
+
+/* chỉnh nút edit delete */
+.ant-btn-default {
+    margin-right: 8px !important;
+}
+
 /* chỉnh nút Cancel */
 .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #f2c23d !important;

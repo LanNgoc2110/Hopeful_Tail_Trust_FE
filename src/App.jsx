@@ -29,6 +29,7 @@ import AdoptionFormInfo from './components/User/AdoptionForm/AdoptionFormInfo'
 import OrderHistoryList from './components/User/OrderHistory/OrderHistoryList'
 import OrderHistoryInfo from './components/User/OrderHistory/OrderHistoryInfo'
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail'
+import DonationHistoryList from './components/User/DonationHistory/DonationHistoryList'
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           <Route path="adoption-form-history/:id" element={<AdoptionFormInfo/>}/>
           <Route path="order-history-list" element={<OrderHistoryList/>}/>
           <Route path="order-history-list/:id" element={<OrderHistoryInfo/>}/>
+          <Route path="donation-history-list" element={<DonationHistoryList/>}/>
         </Route>
 
         {/* Admin */}
