@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './OrderHistoryList.css';
-import { Button, Pagination } from 'antd';
+import { Button, Empty, Pagination } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -116,23 +116,31 @@ const OrderHistoryList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentData.map((item) => (
-                        <tr key={item.id}>
-                            <td>
-                                <Button onClick={() => navigate(`/user/order-history-list/${item.id}`, { state: { currentPage: currentPage } })}>
-                                    <EyeOutlined />
-                                </Button>
-                            </td>
-                            <td>
-                                <p>{item.productOrderInfo}</p>
-                            </td>
-                            <td>
-                                <p style={{ color: getStatusStyle(item.status).color }}>
-                                    {getStatusStyle(item.status).text}
-                                </p>
+                    {currentData.length === 0 ? (
+                        <tr>
+                            <td colSpan={3} className='no-data'>
+                                <Empty description="Chưa có hóa đơn mua hàng nào" />
                             </td>
                         </tr>
-                    ))}
+                    ) : (
+                        currentData.map((item) => (
+                            <tr key={item.id}>
+                                <td>
+                                    <Button onClick={() => navigate(`/user/order-history-list/${item.id}`, { state: { currentPage: currentPage } })}>
+                                        <EyeOutlined />
+                                    </Button>
+                                </td>
+                                <td>
+                                    <p>{item.productOrderInfo}</p>
+                                </td>
+                                <td>
+                                    <p style={{ color: getStatusStyle(item.status).color }}>
+                                        {getStatusStyle(item.status).text}
+                                    </p>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
 
@@ -142,7 +150,7 @@ const OrderHistoryList = () => {
                 total={sortedData.length}
                 onChange={handlePageChange}
                 showQuickJumper
-                showTotal={(total) => `Total ${total} invoices`}
+                showTotal={(total) => `Tổng: ${total} hóa đơn`}
                 style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
             />
         </div>

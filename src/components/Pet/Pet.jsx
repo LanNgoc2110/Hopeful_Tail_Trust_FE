@@ -109,6 +109,13 @@ const Pet = () => {
         fetchDataPets()
     }, [])
 
+    // Trong tiếng Anh, số 0 đứng trước tên đồ vật (danh từ) luôn được coi là số nhiều (plural) nên hàm này sai
+    // const getTotalText = (total) => {
+    //     if (total === 0) return `Total ${total} pet`;
+    //     if (total === 1) return `Total ${total} pet`;
+    //     return `Total ${total} pets`;
+    // };
+
     return (
         <div className='pet-container'>
             <div className="pet-unadopted">
@@ -224,8 +231,6 @@ const Pet = () => {
                                     <p>Tên: {item.name}</p>
                                     <p>Giới tính: {item.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                                     <p>Loài: {item.species === 'Dog' ? 'Chó' : 'Mèo'}</p>
-                                    {/* <p>Tiêm ngừa: {item.vaccination}</p>
-                                    <p>Tình trạng sức khỏe: {item.health_status}</p> */}
                                 </div>
                             </div>
                         ))
@@ -237,7 +242,9 @@ const Pet = () => {
                         pageSize={pageSize}
                         showSizeChanger={false}
                         showQuickJumper
-                        showTotal={(total) => `Total ${total} pets`}
+                        showTotal={(total) => `Tổng: ${total} thú cưng`}
+                        // showTotal={(total) => `Total ${total} pet${total !== 1 ? 's' : ''}`}
+                        // showTotal={getTotalText}
                         onChange={handleChangePage}
                         style={{
                             width: '100%',
@@ -254,30 +261,6 @@ const Pet = () => {
                 <div className="pet-adopted-list">
                     <p className='title'>Hình ảnh thú cưng được nhận nuôi</p>
                     <div className="pet-adopted-list-img">
-                        {/* <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} />
-                        <img src={pet_image} /> */}
-                        {/* <Carousel arrows infinite={true}>
-                            <div className='slide'>
-                                <img src={pet_image} />
-                                <p>haha</p>
-                            </div>
-                            <div className='slide'>
-                                <img src={pet_image} />
-                            </div>
-                            <div className='slide'>
-                                <img src={pet_image} />
-                            </div>
-                            <div className='slide'>
-                                <img src={pet_image} />
-                            </div>
-                        </Carousel> */}
                         <Carousel className="custom-carousel" arrows autoplay infinite={true}>
                             <div className='slide'>
                                 <img src={pet_image} />

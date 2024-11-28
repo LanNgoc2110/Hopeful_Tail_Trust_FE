@@ -419,8 +419,6 @@ const Product = () => {
         fetchDataProducts()
     }, [])
 
-
-
     return (
         <div className='product-container'>
             <div className='product-slide'>
@@ -610,7 +608,7 @@ const Product = () => {
                     pageSize={pageSize}
                     showSizeChanger={false}
                     showQuickJumper
-                    showTotal={(total) => `Total ${total} products`}
+                    showTotal={(total) => `Tổng: ${total} sản phẩm`}
                     onChange={handleChangePage}
                     style={{
                         width: '100%',

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './AdoptionFormHistory.css';
-import { Button, Pagination } from 'antd';
+import { Button, Empty, Pagination } from 'antd';
 import { EyeOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -117,24 +117,31 @@ const AdoptionFormHistory = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentData.map((item) => (
-                        <tr key={item.id}>
-                            <td>
-                                <Button onClick={() => navigate(`/user/adoption-form-history/${item.id}`, { state: { currentPage: currentPage } })}>
-                                    <EyeOutlined />
-                                </Button>
-                            </td>
-                            <td>
-
-                                <p>{item.petFormInfo}</p>
-                            </td>
-                            <td>
-                                <p style={{ color: getStatusStyle(item.status).color }}>
-                                    {getStatusStyle(item.status).text}
-                                </p>
+                    {currentData.length === 0 ? (
+                        <tr>
+                            <td colSpan={3} className='no-data'>
+                                <Empty description="Chưa có đơn xin nhận nuôi thú cưng nào cần được xét duyệt" />
                             </td>
                         </tr>
-                    ))}
+                    ) : (
+                        currentData.map((item) => (
+                            <tr key={item.id}>
+                                <td>
+                                    <Button onClick={() => navigate(`/user/adoption-form-history/${item.id}`, { state: { currentPage: currentPage } })}>
+                                        <EyeOutlined />
+                                    </Button>
+                                </td>
+                                <td>
+                                    <p>{item.petFormInfo}</p>
+                                </td>
+                                <td>
+                                    <p style={{ color: getStatusStyle(item.status).color }}>
+                                        {getStatusStyle(item.status).text}
+                                    </p>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
 
@@ -143,7 +150,7 @@ const AdoptionFormHistory = () => {
                 pageSize={itemsPerPage}
                 total={sortedData.length}
                 showQuickJumper
-                showTotal={(total) => `Total ${total} adoption forms`}
+                showTotal={(total) => `Tổng: ${total} đơn nhận nuôi`}
                 onChange={handlePageChange}
                 style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
             />
