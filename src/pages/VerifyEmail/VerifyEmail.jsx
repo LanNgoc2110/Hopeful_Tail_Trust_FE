@@ -12,22 +12,19 @@ const VerifyEmail = () => {
     const [searchParams] = useSearchParams();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    console.log(searchParams.get('token'));
-    
 
     const handleVerifyEmail = async () => {
         setLoading(true);
         const token = searchParams.get('token');
         try {
-            await authApi.verifyEmail(token);
+            const res = await authApi.verifyEmail(token);
             setLoading(false);
             message.success('Xác nhận email thành công');
             navigate('/');
         } catch (error) {
             setLoading(false);
             message.error(error.response.data.message);
-            // console.log(error);
-
+            console.log(error);
         }
     }
 
