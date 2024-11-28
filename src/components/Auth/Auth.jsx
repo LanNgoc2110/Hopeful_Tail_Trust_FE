@@ -3,7 +3,7 @@ import { Button, Divider, message } from 'antd';
 import './Auth.css'
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-import { UserOutlined, HomeFilled, MailOutlined, HomeOutlined, PhoneOutlined } from '@ant-design/icons';
+import { UserOutlined, HomeFilled, MailOutlined, HomeOutlined, PhoneOutlined, LockOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import google_img from '/assets/google.png'
@@ -25,6 +25,7 @@ export default function Auth({ comp }) {
       username: '',
       email: '',
       password: '',
+      fullname: '',
       address: '',
       phoneNumber: ''
     },
@@ -32,10 +33,13 @@ export default function Auth({ comp }) {
       username: comp === "Register"
         ? Yup.string().max(30, "* Tên người dùng không được vượt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
       // email: Yup.string().matches(`^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{7,}$`, 'Email không chính xác').required('Required'),
-      email: Yup.string().matches(
-        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "* Email không hợp lệ"
-      ).required('* Bắt buộc'),
+      email: comp === "Register"
+        ? Yup.string().matches(
+          /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, "* Email không hợp lệ"
+        ).required('* Bắt buộc') : Yup.string(),
       password: Yup.string().min(6, "* Mật khẩu phải có ít nhất 6 ký tự trở lên").required("* Bắt buộc"),
+      fullname: comp === "Register"
+        ? Yup.string().max(30, "* Tên người dùng không được vềt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
       address: comp === "Register"
         ? Yup.string().required("* Bắt buộc") : Yup.string(),
       phoneNumber:
@@ -76,7 +80,7 @@ export default function Auth({ comp }) {
 
           if (response.data.error_code === 0) {
             messageApi.destroy()
-            message.success("Đăng ký thành công");
+            message.success("Đăng ký thành công, vui lòng kiểm tra email để xác thực tài khoản trước khi đăng nhập");
             navigate("/login");
           }
         }
@@ -155,11 +159,11 @@ export default function Auth({ comp }) {
             <Input
               className='input'
               size="large"
-              placeholder="Email"
+              placeholder={comp === "Login" ? "Nhập username hoặc email" : "Email"}
               prefix={comp === "Login" ? <UserOutlined /> : <MailOutlined />}
               id="email"
               name="email"
-              type="email"
+              type="text"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
@@ -170,6 +174,7 @@ export default function Auth({ comp }) {
 
             {/* Password */}
             <Input.Password
+              prefix={<LockOutlined />}
               className='input'
               size='large'
               placeholder="Mật khẩu"
@@ -188,6 +193,21 @@ export default function Auth({ comp }) {
             {/* Confirm Password (only for registration) */}
             {comp === "Register" && (
               <>
+              <Input
+                  className='input'
+                  size="large"
+                  placeholder="Họ tên"
+                  prefix={<UserOutlined />}
+                  id="fullname"
+                  name="fullname"
+                  type=""
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  value={formik.values.fullname}
+                />
+                {formik.errors.email && formik.touched.fullname && (
+                  <p className="message-error">{formik.errors.fullname}</p>
+                )}
                 <Input
                   className='input'
                   size="large"

@@ -1,9 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './VerifyEmail.css'
 import check_img from '/assets/checked.png'
-import { Link } from 'react-router-dom'
+import { useNavigate, useSearchParams, } from 'react-router-dom'
+import { authApi } from '../../apis/auth.request'
+import { message } from 'antd'
+import {
+    LoadingOutlined
+} from '@ant-design/icons';
 
 const VerifyEmail = () => {
+    const [searchParams] = useSearchParams();
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    console.log(searchParams.get('token'));
+    
+
+    const handleVerifyEmail = async () => {
+        setLoading(true);
+        const token = searchParams.get('token');
+        try {
+            await authApi.verifyEmail(token);
+            setLoading(false);
+            message.success('Xác nhận email thành công');
+            navigate('/');
+        } catch (error) {
+            setLoading(false);
+            message.error(error.response.data.message);
+            // console.log(error);
+
+        }
+    }
+
     return (
         <div className='verify-email-whole-container'>
             <div className="verify-email-container">
@@ -18,18 +45,13 @@ const VerifyEmail = () => {
                         Một email xác nhận sẽ được gửi tới địa chỉ email bạn đã đăng ký.
                         Vui lòng kiểm tra hộp thư (bao gồm cả mục spam/quảng cáo) và nhấp vào
                         liên kết trong email để hoàn tất quá trình xác thực tài khoản.
-                         <br/> <br/>
-                        Nếu bạn không nhận được email trong vài phút, hãy kiểm tra lại địa chỉ 
+                        <br /> <br />
+                        Nếu bạn không nhận được email trong vài phút, hãy kiểm tra lại địa chỉ
                         email hoặc thử gửi lại yêu cầu xác nhận.
                     </p>
-                    {/* <p className='content'>
-            Đơn hàng của quý khách với mã số XXXXX đã được thanh toán thành công vào lúc 21:39.
-            Chúng tôi sẽ nhanh chóng xử lý và gửi hàng đến quý khách trong thời gian sớm nhất.
-            Cảm ơn sự tin tưởng của quý khách!
-          </p> */}
-                    <Link to="/" className="verify-email-btn">
-                        <button>Xác thực mail</button>
-                    </Link>
+                    <div className="verify-email-btn">
+                        <button disabled={loading} onClick={() => handleVerifyEmail()}> {loading && <LoadingOutlined style={{ marginRight: '10px' }} />} Xác thực mail</button>
+                    </div>
                 </div>
             </div>
         </div>
