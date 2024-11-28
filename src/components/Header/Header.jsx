@@ -7,7 +7,7 @@ import {
     LogoutOutlined
 } from '@ant-design/icons'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { getToken } from '../../utils/Token'
+import { getToken, getUserFromToken } from '../../utils/Token'
 import { Avatar, Dropdown, message, Space } from 'antd'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/actions/auth.action'
@@ -17,6 +17,7 @@ const Header = () => {
     const dispatch = useDispatch()
     const location = useLocation()
     const token = getToken();
+    const { user } = getUserFromToken();
 
 
     const handleClick = () => {
@@ -57,7 +58,7 @@ const Header = () => {
         navigate("/")
     }
 
-    const items = [
+    const itemsUser = [
         {
             label: "Cart",
             key: '1',
@@ -73,6 +74,21 @@ const Header = () => {
         {
             label: "Log out",
             key: '3',
+            icon: <LogoutOutlined />,
+            onClick: handleLogout,
+        },
+    ];
+
+    const itemsAdmin = [
+        {
+            label: "Management",
+            key: '1',
+            icon: <UserOutlined />,
+            onClick: () => {navigate('/admin/admin-home')},
+        },
+        {
+            label: "Log out",
+            key: '2',
             icon: <LogoutOutlined />,
             onClick: handleLogout,
         },
@@ -138,7 +154,7 @@ const Header = () => {
                         Đăng nhập
                     </li> */}
                     {token ? (
-                        <Dropdown menu={{ items }} trigger={['click']} className='dropdown' >
+                        <Dropdown menu={{ items: user.role == "user" ? itemsUser : itemsAdmin }} trigger={['click']} className='dropdown' >
                             <a onClick={(e) => e.preventDefault()}>
                                 <Space>
                                     <Avatar

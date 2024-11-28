@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import './App.css'
 import Home from './pages/Home/Home'
 import Login from './pages/Auth/Login'
@@ -29,8 +29,20 @@ import AdoptionFormInfo from './components/User/AdoptionForm/AdoptionFormInfo'
 import OrderHistoryList from './components/User/OrderHistory/OrderHistoryList'
 import OrderHistoryInfo from './components/User/OrderHistory/OrderHistoryInfo'
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail'
+import { getUserFromToken } from './utils/Token'
+import CheckRole from './pages/ErrorPage/CheckRole'
+import { useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
 
 function App() {
+  const { token } = useSelector((state) => state.authReducer);
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const { user } = getUserFromToken();
+    setUser(user);
+  }, [token])
+
   return (
     <>
       <Routes>
@@ -52,18 +64,18 @@ function App() {
         <Route path="verify-email" element={<VerifyEmail />} />
 
         {/* User */}
-        <Route path='/user/*' element={<User />}>
+        <Route path='/user/*' element={user?.role === 'user' ? <User /> : <Navigate to="/"/>}>
           <Route path="user-profile" element={<UserProfile />} />
-          <Route path="adoption-form-history" element={<AdoptionFormHistory/>}/>
-          <Route path="adoption-form-history/:id" element={<AdoptionFormInfo/>}/>
-          <Route path="order-history-list" element={<OrderHistoryList/>}/>
-          <Route path="order-history-list/:id" element={<OrderHistoryInfo/>}/>
+          <Route path="adoption-form-history" element={<AdoptionFormHistory />} />
+          <Route path="adoption-form-history/:id" element={<AdoptionFormInfo />} />
+          <Route path="order-history-list" element={<OrderHistoryList />} />
+          <Route path="order-history-list/:id" element={<OrderHistoryInfo />} />
         </Route>
 
         {/* Admin */}
         <Route
           path="/admin/*"
-          element={<Admin />}
+          element={user?.role === 'admin' ? <Admin /> : <CheckRole authMessage="Chỉ admin mới có thể đăng nhập" />}
         >
           <Route path="admin-home" element={<Dashboard />} />
           <Route path="manage-product" element={<ManageProduct />} />

@@ -104,7 +104,7 @@ const AdoptionForm = () => {
                 {!isLoading && pet ? (
                     <div className="pet-info">
                         <div className="pet-info-left">
-                            <img src={pet.image} />
+                            <img src={pet.image.url} />
                         </div>
                         <div className="pet-info-right">
                             <p>Tên thú cưng: {pet.name}</p>

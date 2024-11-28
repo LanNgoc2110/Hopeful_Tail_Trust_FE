@@ -11,7 +11,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../redux/actions/auth.action';
 import { authApi } from '../../apis/auth.request';
 import store from "../../store/ReduxStore";
-import { useEffect } from 'react';
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 export default function Auth({ comp }) {
   const dispatch = useDispatch();
@@ -87,6 +88,23 @@ export default function Auth({ comp }) {
   });
 
   const navigate = useNavigate()
+
+  const handleLoginSuccess = async (response) => {
+    try {
+      const res = await axios.post('https://backend-exe-2.vercel.app/api/auth/google/callback', {
+        token: response.credential,
+      });
+
+      localStorage.setItem('token', res.data.token);
+      alert('Login successful!');
+    } catch (error) {
+      console.error('Error during Google login:', error);
+    }
+  };
+
+  const handleLoginFailure = (error) => {
+    console.error('Login failed:', error);
+  };
 
   return (
     <div className='auth-whole-container'>
@@ -245,12 +263,18 @@ export default function Auth({ comp }) {
             <Divider className='divider-text'>Hoặc với</Divider>
           </div>
 
-          <div className="login_google-btn">
-            <button>
+          {/* <div className="login_google-btn">
+            <button onClick={() => handleLoginSuccess()}>
               <img src={google_img} /> <p>  &ensp; Đăng nhập bằng Google</p>
             </button>
+          </div> */}
+          <div className="login_google-btn">
+            <GoogleLogin
+              onSuccess={handleLoginSuccess}
+              onError={handleLoginFailure}
+              client_id="745062279110-15fh8s0cu6d6t248pvkll42sa7src4u3.apps.googleusercontent.com"
+            />
           </div>
-
         </div>
       </div>
     </div >

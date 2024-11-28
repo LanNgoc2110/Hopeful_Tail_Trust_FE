@@ -10,7 +10,7 @@ import {
     LoadingOutlined
 } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPetById } from '../../redux/actions/pets.action';
+import { getPetById } from '../../redux/actions/pets.action'; 
 import not_found from "/assets/not-found.png"
 import { getUserFromToken } from '../../utils/Token';
 
@@ -43,10 +43,10 @@ const PetDetail = () => {
 
 
     // Kiểm tra nếu không có dữ liệu thú cưng, chuyển hướng lại trang chính
-    if (!location.state || !location.state.pet) {
-        navigate('/');
-        return null;
-    }
+    // if (!location.state || !location.state.pet) {
+    //     navigate('/');
+    //     return null;
+    // }
 
     // const pet = location.state.pet;  // Dữ liệu thú cưng được truyền từ Pet.jsx
 
@@ -105,8 +105,8 @@ const PetDetail = () => {
                     <p className='title'>Thú cưng</p>
                     <div className="pet_detail-height">
                         <div className="pet_detail-left">
-                            {/* <img src={pet.image.url} /> */}
-                            <img src={pet_image} />
+                            <img src={pet.image.url}/>
+                            {/* <img src={pet_image} /> */}
                         </div>
                         <div className="pet_detail-right">
                             <div className="pet_detail-content">
@@ -118,7 +118,7 @@ const PetDetail = () => {
                                 <p>Tuổi: {pet.age}</p>
                                 <p>Tiêm ngừa: {pet.vaccinated} /3</p>
                                 <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
-                                <p>Mô tả: {pet.description} {pet.description} </p>
+                                <p>Mô tả: {pet.description} </p>
                                 <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                                 <button
                                     className='adoption-request-btn'
