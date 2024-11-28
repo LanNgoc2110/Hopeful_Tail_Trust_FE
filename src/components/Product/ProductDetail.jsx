@@ -324,7 +324,7 @@ const ProductDetail = () => {
                     pageSize={pageSize}
                     showSizeChanger={false}
                     showQuickJumper
-                    showTotal={(total) => `Total ${total} comments`}
+                    showTotal={(total) => `Tổng: ${total} bình luận`}
                     onChange={handleChangePage}
                     style={{
                         width: '100%',

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './DonationHistoryList.css';
-import { Button, Pagination } from 'antd';
-import { EyeOutlined } from '@ant-design/icons';
+import { Empty, Pagination } from 'antd';
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const DonationHistoryList = () => {
@@ -133,10 +132,10 @@ const DonationHistoryList = () => {
                             <p>Mã giao dịch</p>
                         </th>
                         <th>
-                            <p>Số tiền thanh toán</p>
+                            <p>Số tiền quyên góp</p>
                         </th>
                         <th>
-                            <p>Thời gian thanh toán</p>
+                            <p>Thời gian quyên góp</p>
                         </th>
                         <th>
                             <p>Trạng thái</p>
@@ -144,24 +143,32 @@ const DonationHistoryList = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {currentData.map((item) => (
-                        <tr key={item.id}>
-                            <td>
-                                <p>{item.donationCode}</p>
-                            </td>
-                            <td>
-                                <p>{item.donationPrice.toLocaleString('vi-VN')} VND</p>
-                            </td>
-                            <td>
-                                <p>{item.donationTime}</p>
-                            </td>
-                            <td>
-                                <p style={{ color: getStatusStyle(item.status).color }}>
-                                    {getStatusStyle(item.status).text}
-                                </p>
+                    {currentData.length === 0 ? (
+                        <tr>
+                            <td colSpan={4} className='no-data'>
+                                <Empty description="Bạn vẫn chưa có lần quyên góp nào!" />
                             </td>
                         </tr>
-                    ))}
+                    ) : (
+                        currentData.map((item) => (
+                            <tr key={item.id}>
+                                <td>
+                                    <p>{item.donationCode}</p>
+                                </td>
+                                <td>
+                                    <p>{item.donationPrice.toLocaleString('vi-VN')} VND</p>
+                                </td>
+                                <td>
+                                    <p>{item.donationTime}</p>
+                                </td>
+                                <td>
+                                    <p style={{ color: getStatusStyle(item.status).color }}>
+                                        {getStatusStyle(item.status).text}
+                                    </p>
+                                </td>
+                            </tr>
+                        ))
+                    )}
                 </tbody>
             </table>
 
@@ -171,7 +178,7 @@ const DonationHistoryList = () => {
                 total={sortedData.length}
                 onChange={handlePageChange}
                 showQuickJumper
-                showTotal={(total) => `Total ${total} invoices`}
+                showTotal={(total) => `Tổng: ${total} giao dịch`}
                 style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
             />
         </div>
