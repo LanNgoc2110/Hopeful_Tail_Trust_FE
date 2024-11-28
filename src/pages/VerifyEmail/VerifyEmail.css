@@ -83,3 +83,9 @@
     background-color: #eeae0a;
     transition: 0.3s ease;
 }
+
+.verify-email-content .verify-email-btn button:disabled {
+    background-color: lightgray;
+    color: gray;
+    cursor: not-allowed;
+}
