@@ -9,6 +9,6 @@ export const authApi = {
         return API.post('/auth/login', data)
     },
     verifyEmail: (token) => {
-        return API.post(`/auth/verify-email?token=${token}`)
+        return API.get(`/auth/verify-email?token=${token}`)
     }
 }
