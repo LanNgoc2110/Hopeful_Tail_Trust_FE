@@ -116,7 +116,7 @@ const PetDetail = () => {
                                 <p>Màu lông: {translations.coatColor[pet.coatColor] || pet.coatColor}</p>
                                 <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                                 <p>Tuổi: {pet.age}</p>
-                                <p>Tiêm ngừa: {pet.vaccinated} /3</p>
+                                <p>Tiêm ngừa: {pet.vaccinated} /4</p>
                                 <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
                                 <p>Mô tả: {pet.description} </p>
                                 <p>Địa chỉ trạm cứu hộ: {pet.location}</p>

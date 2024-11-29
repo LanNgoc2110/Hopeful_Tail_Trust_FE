@@ -5,15 +5,18 @@ import {
     DeleteOutlined,
     EditOutlined,
     CloseOutlined,
-    FilterOutlined,
     EyeOutlined
 } from '@ant-design/icons'
-import { Button, ConfigProvider, Input, Table } from 'antd'
+import { Button, ConfigProvider, Input, message, Popconfirm, Select, Table } from 'antd'
 import React, { useEffect, useState } from 'react'
 import '../AdminTheme.css'
-import ModalCreate from './ModalCreate'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPetByQuery } from '../../../redux/actions/pets.action'
+import { useNavigate } from 'react-router-dom'
+import optionSpecies from '../../../data/optionSpecies.json'
+import optionSex from '../../../data/optionSex.json'
+import optrionVaccinated from '../../../data/optionVaccinated.json'
+import { petApi } from '../../../apis/pet.request'
 
 const themeCustome = {
 
@@ -21,152 +24,44 @@ const themeCustome = {
 
 export default function Pet() {
     const dispatch = useDispatch();
-    const [search, setSearch] = useState({
-        name: "",
+    const navigate = useNavigate();
+    const [search, setSearch] = useState("");
+    const [dataFilter, setDataFilter] = useState({
         breed: "",
         coatColor: "",
         sex: "",
         species: "",
         vaccinated: "",
-    });
-    const [paginate, setPaginate] = useState({
         page: 1,
-        limit: 10
+        limit: 5
     });
     const [moreEdit, setMoreEdit] = useState(null);
-    const [isOpenCreate, setIsOpenCreate] = useState(false)
+    const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [callback, setCallback] = useState(false);
-    const { isLoading, error, payload: pets } = useSelector(state => state.petsReducer);
+    const { isLoading, error, payload } = useSelector(state => state.petsReducer);
+
+    const handleDeletePet = async (id) => {
+        try {
+            const res = await petApi.deletePet(id);
+            message.success('Xoá thú cưng thành công');
+            setCallback(!callback);
+        } catch (error) {
+            message.error(error.response.data.message);
+        }
+    }
 
     useEffect(() => {
         dispatch(getPetByQuery(
-            search.name,
-            search.breed,
-            search.coatColor,
-            search.sex,
-            search.species,
-            search.vaccinated,
-            paginate.page,
-            paginate.limit
+            search,
+            dataFilter.breed,
+            dataFilter.coatColor,
+            dataFilter.sex,
+            dataFilter.species,
+            dataFilter.vaccinated,
+            dataFilter.page,
+            dataFilter.limit
         ));
-    }, [search, paginate, callback]);
-    
-    console.log(pets);
-    
-
-    const dataPets = [
-        {
-            key: '1',
-            name: "Fluffy",
-            sex: "Female",
-            age: 2,
-            species: "Cat",
-            breed: "Labrador",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id"
-        },
-        {
-            key: '2',
-            name: "Max",
-            sex: "Male",
-            age: 3,
-            species: "Dog",
-            breed: "Beagle",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id2"
-        },
-        {
-            key: '3',
-            name: "Bella",
-            sex: "Female",
-            age: 1,
-            species: "Cat",
-            breed: "Siamese",
-            vaccinated: false,
-            healthStatus: "Slightly injured",
-            image_id: "sample_image_id3"
-        },
-        {
-            key: '4',
-            name: "Charlie",
-            sex: "Male",
-            age: 4,
-            species: "Dog",
-            breed: "Poodle",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id4"
-        },
-        {
-            key: '5',
-            name: "Daisy",
-            sex: "Female",
-            age: 2,
-            species: "Rabbit",
-            breed: "Dutch",
-            vaccinated: false,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id5"
-        },
-        {
-            key: '6',
-            name: "Oscar",
-            sex: "Male",
-            age: 5,
-            species: "Cat",
-            breed: "Persian",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id6"
-        },
-        {
-            key: '7',
-            name: "Milo",
-            sex: "Male",
-            age: 1,
-            species: "Dog",
-            breed: "Golden Retriever",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id7"
-        },
-        {
-            key: '8',
-            name: "Luna",
-            sex: "Female",
-            age: 2,
-            species: "Cat",
-            breed: "Maine Coon",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id8"
-        },
-        {
-            key: '9',
-            name: "Buddy",
-            sex: "Male",
-            age: 3,
-            species: "Dog",
-            breed: "Bulldog",
-            vaccinated: false,
-            healthStatus: "Injured",
-            image_id: "sample_image_id9"
-        },
-        {
-            key: '10',
-            name: "Coco",
-            sex: "Female",
-            age: 2,
-            species: "Cat",
-            breed: "Russian Blue",
-            vaccinated: true,
-            healthStatus: "Healthy",
-            image_id: "sample_image_id10"
-        }
-    ];
-
+    }, [search, dataFilter, callback]);
 
     const columns = [
         {
@@ -198,7 +93,6 @@ export default function Pet() {
             title: 'Vaccinated',
             dataIndex: 'vaccinated',
             key: 'vaccinated',
-            render: (vaccinated) => (vaccinated ? 'Yes' : 'No'),
         },
         {
             title: 'Health Status',
@@ -207,75 +101,144 @@ export default function Pet() {
         },
         {
             title: 'Image',
-            dataIndex: 'image_id',
-            key: 'image_id',
-            render: (image_id) => <img src={"https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg"} alt="Animal" width={50} />,
+            dataIndex: 'image',
+            key: 'image',
+            render: (image) => <img src={image.url} alt="Animal" width={50} />,
         },
         {
             title: 'Options',
             key: 'pet_options',
             width: '200px',
             render: (text, record) => <>
-                {moreEdit == record.key ?
+                {moreEdit == record._id ?
                     <div className='edit-btn-option'>
-                        <Button icon={<DeleteOutlined />} />
-                        <Button icon={<EditOutlined />} />
-                        <Button icon={<EyeOutlined />} />
+                        <Popconfirm
+                            title="Xóa thú cưng"
+                            description="Bạn có chắc là muốn xóa thú cưng này không?"
+                            onConfirm={() => handleDeletePet(record._id)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button danger icon={<DeleteOutlined />} />
+                        </Popconfirm>
+                        <Button onClick={() => navigate(`/admin/manage-pet/edit-pet/${record._id}`)} icon={<EditOutlined />} />
                         <Button
                             size='small'
                             type='text'
                             onClick={() => setMoreEdit(null)}
                             icon={<CloseOutlined style={{ color: 'var(--color-font-admin)' }} />} />
-                    </div> : <Button onClick={() => setMoreEdit(record.key)} icon={<MoreOutlined />} />}
+                    </div> : <Button onClick={() => setMoreEdit(record._id)} icon={<MoreOutlined />} />}
             </>
         },
     ];
 
     const showModalCreate = () => {
-        setIsOpenCreate(true);
+        // setIsOpenCreate(true);
+        navigate('/admin/manage-pet/create-pet');
     };
-    const handleCancelCreate = () => {
-        setIsOpenCreate(false);
+    const handleCancelFilter = () => {
+        setIsOpenFilter(false);
     };
+
+    const handleChangeSize = (current, size) => {
+        setDataFilter({
+            ...dataFilter,
+            page: current,
+            limit: size
+        })
+        // console.log(current, size);
+    }
 
     return (
         <ConfigProvider theme={themeCustome}>
             <h1>Quản lý thú cưng</h1>
-            <div className="search">
+            <div className="search" style={{ gap: '20px' }}>
                 <Input
-                    onChange={(e) => setSearch(prev => ({ ...prev, name: e.target.value }))}
+                    allowClear
+                    onChange={(e) => setSearch(e.target.value)}
                     className='input-search'
                     size="large"
                     placeholder="Tìm kiếm theo tên..."
                     prefix={<SearchOutlined style={{ color: 'var(--color-font-admin)' }} />} />
-                <button
+                {/* <button
                     className="btn-filter"
-                // onClick={() => setIsModalFilterOpen(true)}
+                    onClick={() => setIsOpenFilter(true)}
                 >
                     <FilterOutlined />
                     <span>Filter</span>
-                </button>
+                </button> */}
                 <button className="create" onClick={showModalCreate} >
                     <PlusOutlined />
                     <span>Thêm thú cứng mới</span>
                 </button>
+                <Input
+                    allowClear
+                    onChange={(e) => setDataFilter({ ...dataFilter, breed: e.target.value })}
+                    className='input-search'
+                    size="large"
+                    placeholder="Giống"
+                    style={{ width: '10%' }}
+                />
+                <Select
+                    allowClear
+                    placeholder='Loài'
+                    style={{
+                        width: '10%',
+                    }}
+                    onChange={(e) => setDataFilter({ ...dataFilter, species: e || "" })}
+                    options={optionSpecies}
+                />
+                <Select
+                    allowClear
+                    placeholder='Giới tính'
+                    style={{
+                        width: '10%',
+                    }}
+                    onChange={(e) => setDataFilter({ ...dataFilter, sex: e || "" })}
+                    options={optionSex}
+                />
+                <Select
+                    allowClear
+                    placeholder='Tiêm ngừa'
+                    style={{
+                        width: '10%',
+                    }}
+                    onChange={(e) => setDataFilter({ ...dataFilter, vaccinated: e || "" })}
+                    options={optrionVaccinated}
+                />
+                <Input
+                    allowClear
+                    onChange={(e) => setDataFilter({ ...dataFilter, coatColor: e.target.value })}
+                    className='input-search'
+                    size="large"
+                    placeholder="Màu lông"
+                    style={{ width: '10%' }}
+                />
             </div>
-
-            {/* modal */}
-            <ModalCreate
-                isOpenCreate={isOpenCreate}
-                handleCancelCreate={handleCancelCreate}
-                setIsOpenCreate={setIsOpenCreate}
-                setCallback={setCallback}
-            />
 
             <div className="table">
                 <Table
                     columns={columns}
-                    dataSource={dataPets}
+                    dataSource={payload?.data}
+                    loading={isLoading}
                     pagination={{
-                        pageSize: 10,
+                        current: payload?.currentPage,
+                        pageSize: 5,
+                        total: payload?.totalPets,
+                        showQuickJumper: true,
+                        onChange: (page, pageSize) => {
+                            setDataFilter({
+                                ...dataFilter,
+                                page: page,
+                                limit: pageSize
+                            })
+                        }
                     }}
+                    title={() => (
+                        <div>
+                            Tổng số Pets: {payload?.totalPets || 0} {/* Hiển thị tổng số Pets */}
+                        </div>
+                    )}
                 />
             </div>
         </ConfigProvider>

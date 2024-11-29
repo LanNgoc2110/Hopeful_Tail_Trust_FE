@@ -26,7 +26,7 @@
 }
 
 /* chỉnh dấu /  */
-:where(.css-dev-only-do-not-override-11lehqq).ant-breadcrumb .ant-breadcrumb-separator {
+.back-to-adoption .ant-breadcrumb .ant-breadcrumb-separator {
     color: black;
     padding-top: 0.3%;
 }
