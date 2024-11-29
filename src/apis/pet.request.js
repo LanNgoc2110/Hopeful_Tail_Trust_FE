@@ -13,4 +13,13 @@ export const petApi = {
     getPetById: (id) => {
         return API.get(`/pets/${id}`)
     },
+    addPet: (data) => {
+        return API.post('/pets/add', data)
+    },
+    deletePet: (id) => {
+        return API.delete(`/pets/delete/${id}`)
+    },
+    updatePet: (id, data) => {
+        return API.put(`/pets/update/${id}`, data)
+    },
 }

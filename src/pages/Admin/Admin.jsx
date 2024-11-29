@@ -25,22 +25,33 @@ const items = [
         route: "admin-home",
     },
     {
-        key: "news",
-        icon: <SnippetsOutlined />,
-        label: "Quản lý tin tức",
-        route: "manage-news",
-    },
-    {
         key: "pet",
         icon: <BaiduOutlined />,
         label: "Quản lý thú cưng",
-        route: "manage-pet",
+        children: [
+            {
+                key: "pet-list",
+                label: "Danh sách thú cưng",
+                route: "manage-pet",
+            },
+            {
+                key: "pet-adoption",
+                label: "Đơn xin nhận nuôi",
+                route: "adopted-management",
+            },
+        ]
     },
     {
         key: "product",
         icon: <ProductOutlined />,
         label: "Quản lý sản phẩm",
         route: "manage-product",
+    },
+    {
+        key: "news",
+        icon: <SnippetsOutlined />,
+        label: "Quản lý đơn hàng",
+        route: "manage-order",
     }
 ]
 
@@ -80,14 +91,27 @@ export default function Admin() {
 
     const selectedKey = items.find((item) =>
         location.pathname.includes(item.route)
-      )?.key;
-    
-      const handleMenuClick = (e) => {
-        const selectedItem = items.find((item) => item.key === e.key);
+    )?.key;
+
+    const handleMenuClick = (e) => {
+        let selectedItem;
+        items.forEach((item) => {
+            if (item.key === e.key) {
+                selectedItem = item;
+            }
+            if (item.children) {
+                item.children.forEach((child) => {
+                    if (child.key === e.key) {
+                        selectedItem = child;
+                    }
+                })
+            }
+        })
         if (selectedItem?.route) {
-          navigate(selectedItem.route);
+            navigate(selectedItem.route);
         }
-      };
+    };
+
     const handleLogout = () => {
         dispatch(logout());
         message.success("Đăng xuất thành công");
@@ -113,7 +137,8 @@ export default function Admin() {
                         </div>
                         <Menu
                             mode="inline"
-                            selectedKeys={[selectedKey]}
+                            // selectedKeys={[selectedKey]}
+                            defaultSelectedKeys={[selectedKey]}
                             style={{ height: '100%', outline: "none" }}
                             onClick={handleMenuClick}
                             items={items}
@@ -160,7 +185,7 @@ export default function Admin() {
                         style={{
                             margin: isAdminHome ? '0' : '24px 16px',
                             padding: 24,
-                            minHeight: 280,
+                            minHeight: 590,
                             background: isAdminHome ? 'none' : colorBgContainer,
                             borderRadius: isAdminHome ? '0' : borderRadiusLG,
                         }}

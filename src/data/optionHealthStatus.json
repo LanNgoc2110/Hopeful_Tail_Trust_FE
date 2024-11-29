@@ -1,0 +1,18 @@
+[
+    {
+        "value": "Healthy",
+        "label": "Khỏe mạnh"
+    },
+    {
+        "value": "Sick",
+        "label": "Bệnh"
+    },
+    {
+        "value": "Injured",
+        "label": "Bị thương"
+    },
+    {
+        "value": "Recovering",
+        "label": "Đang hồi phục"
+    }
+]

@@ -8,13 +8,13 @@
 .search .input-search {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     border-radius: 8px;
-    width: 300px;
+    width: 20%;
     height: 35px;
     font-size: 14px;
 
 }
 
-.search .btn-filter{
+.search .btn-filter {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,7 +28,7 @@
     border-radius: 8px;
 }
 
-.search .create{
+.search .create {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -65,11 +65,23 @@
     border-color: #f2c23d !important;
     background: #ffffff !important;
 }
+
 /* chỉnh nút OK */
 .ant-btn-primary {
     background-color: #f2c23d !important;
     box-shadow: 0px 5px 30px 0px rgba(248, 208, 100, 0.11);
 }
+
 .ant-btn-primary:not(:disabled):not(.ant-btn-disabled):hover {
     background-color: #f2b818 !important;
+}
+
+/* chỉnh thanh Select */
+.ant-select-selector:hover {
+    border-color: #f8d064 !important;
+}
+
+.ant-select-focused .ant-select-selector {
+    border-color: #f8d064 !important;
+    box-shadow: 0 0 0 1px #f8d064 !important;
 }

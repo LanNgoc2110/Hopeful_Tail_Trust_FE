@@ -21,7 +21,7 @@ const VerifyEmail = () => {
                 const res = await authApi.verifyEmail(token);
                 setLoading(false);
                 message.success('Xác nhận email thành công');
-                navigate('/');
+                navigate('/login');
             }
         } catch (error) {
             setLoading(false);

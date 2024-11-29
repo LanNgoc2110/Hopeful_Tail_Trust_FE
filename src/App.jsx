@@ -15,7 +15,7 @@ import User from './pages/User/User'
 import Admin from './pages/Admin/Admin'
 import ManageProduct from './components/Admin/Products/Product'
 import ManagePet from './components/Admin/Pets/Pet'
-import ManageNews from './components/Admin/News/News'
+import ManageOrder from './components/Admin/Orders/Orders'
 import Dashboard from './components/Admin/Revenue/Revenue'
 import CartPage from './pages/CartPage/CartPage'
 import PaymentPage from './pages/PaymentPage/PaymentPage'
@@ -29,20 +29,24 @@ import AdoptionFormInfo from './components/User/AdoptionForm/AdoptionFormInfo'
 import OrderHistoryList from './components/User/OrderHistory/OrderHistoryList'
 import OrderHistoryInfo from './components/User/OrderHistory/OrderHistoryInfo'
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail'
+import CreatePet from './components/Admin/Pets/CreatePet'
 import DonationHistoryList from './components/User/DonationHistory/DonationHistoryList'
 import { getUserFromToken } from './utils/Token'
 import CheckRole from './pages/ErrorPage/CheckRole'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
+import EditPet from './components/Admin/Pets/EditPet'
 
 function App() {
-  const { token } = useSelector((state) => state.authReducer);
+  const { payload } = useSelector((state) => state.authReducer);
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const { user } = getUserFromToken();
+    // console.log(user);
+
     setUser(user);
-  }, [token])
+  }, [payload]);
 
   return (
     <>
@@ -65,13 +69,13 @@ function App() {
         <Route path="verify-email" element={<VerifyEmail />} />
 
         {/* User */}
-        <Route path='/user/*' element={user?.role === 'user' ? <User /> : <Navigate to="/"/>}>
+        <Route path='/user/*' element={user?.role === 'user' ? <User /> : <Navigate to="/" />}>
           <Route path="user-profile" element={<UserProfile />} />
           <Route path="adoption-form-history" element={<AdoptionFormHistory />} />
           <Route path="adoption-form-history/:id" element={<AdoptionFormInfo />} />
           <Route path="order-history-list" element={<OrderHistoryList />} />
           <Route path="order-history-list/:id" element={<OrderHistoryInfo />} />
-          <Route path="donation-history-list" element={<DonationHistoryList/>}/>
+          <Route path="donation-history-list" element={<DonationHistoryList />} />
         </Route>
 
         {/* Admin */}
@@ -82,7 +86,11 @@ function App() {
           <Route path="admin-home" element={<Dashboard />} />
           <Route path="manage-product" element={<ManageProduct />} />
           <Route path="manage-pet" element={<ManagePet />} />
-          <Route path="manage-news" element={<ManageNews />} />
+          {/* <Route path="manage-pet/*" element={<ManagePet />}> */}
+          <Route path="manage-pet/create-pet" element={<CreatePet />} />
+          <Route path="manage-pet/edit-pet/:id" element={<EditPet />} />
+          {/* </Route> */}
+          <Route path="manage-order" element={<ManageOrder />} />
         </Route>
 
         <Route path="/cart" element={<CartPage />} />

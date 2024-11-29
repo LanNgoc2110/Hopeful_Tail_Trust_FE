@@ -16,7 +16,7 @@ const themeCustome = {
 
 }
 
-export default function News() {
+export default function Orders() {
     const [moreEdit, setMoreEdit] = useState(null);
     const [isOpenCreate, setIsOpenCreate] = useState(false)
     const [callback, setCallback] = useState(false);

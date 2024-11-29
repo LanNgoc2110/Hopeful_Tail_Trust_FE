@@ -10,7 +10,13 @@ export const petsReducer = (
         case actionsType.PETS_SUCCESS:
             return { isLoading: false, error: "", payload: payload };
         case actionsType.GET_PET_BY_QUERY:
-            return { isLoading: false, error: "", payload: payload };
+            // console.log(payload);
+            
+            // return { isLoading: false, error: "", payload: payload.data };
+            const sortedData = payload.data.sort((a, b) => {
+                return new Date(b.createdAt) - new Date(a.createdAt);
+            });
+            return { isLoading: false, error: "", payload: {...payload, data: sortedData} };
         case actionsType.GET_PET_BY_ID:
             return { isLoading: false, error: "", payload: payload.data };
         case actionsType.PETS_FAIL:
