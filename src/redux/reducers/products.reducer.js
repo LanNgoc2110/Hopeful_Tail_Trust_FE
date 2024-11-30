@@ -9,8 +9,10 @@ export const productsReducer = (
             return { isLoading: true, error: "", payload: null };
         case actionsType.PRODUCTS_SUCCESS:
             return { isLoading: false, error: "", payload: payload };
+        case actionsType.GET_PRODUCT_BY_QUERY:
+            return { isLoading: false, error: "", payload: payload };
         case actionsType.GET_PRODUCT_BY_ID:
-            return { isLoading: false, error: "", payload: payload.product };
+            return { isLoading: false, error: "", payload: payload.data };
         case actionsType.PRODUCTS_FAIL:
             return { isLoading: false, error: payload, payload: null };
         default:

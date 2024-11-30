@@ -360,7 +360,10 @@ const Product = () => {
         return (
             (!categoryValue || product.category === categoryValue) &&
             (!priceValue || (product.price >= priceValue[0] && product.price <= priceValue[1])) &&
-            (ratingValue !== null && ratingValue !== undefined ? product.rating === ratingValue : true) &&
+            // (ratingValue !== null && ratingValue !== undefined ? product.averageRating === ratingValue : true) &&
+            (ratingValue !== null && ratingValue !== undefined
+                ? product.averageRating >= ratingValue && product.averageRating < ratingValue + 1
+                : true) &&
             (!searchTerm || product.name.toLowerCase().includes(searchTermLower))
             // dành cho nút search có thể search tất cả
             // (
@@ -596,7 +599,7 @@ const Product = () => {
                             </div>
                             <p className='product-name'>{item.name}</p>
                             <p className='product-price'>{item.price.toLocaleString('vi-VN')} VNĐ</p>
-                            <Rate allowHalf disabled value={item.rating} />
+                            <Rate allowHalf disabled value={item.averageRating} />
                         </div>
                     ))
                 )}

@@ -18,45 +18,10 @@ import { useDispatch } from 'react-redux'
 const { TextArea } = Input
 const { Dragger } = Upload;
 
-const props = {
-    name: 'file',
-    multiple: false,
-    customRequest: async (options) => {
-        const { file, onSuccess, onError } = options;
-        const formData = new FormData(); // Tạo FormData để gửi dữ liệu file
-        formData.append('files', file);
-        console.log(file);
-
-        try {
-            const response = await mediaApi.uploadImage(formData); // Gọi API upload
-            onSuccess(response.data); // Gọi callback thành công của Ant Design
-            message.success(`${file.name} file uploaded successfully.`);
-        } catch (error) {
-            console.log(error);
-
-            onError(error); // Gọi callback thất bại của Ant Design
-            message.error(`${file.name} file upload failed.`);
-        }
-    },
-    onChange(info) {
-        const { status } = info.file;
-        if (status === 'uploading') {
-            console.log('Uploading file...', info.file);
-        }
-        if (status === 'done') {
-            console.log('File upload successful:', info.file);
-        } else if (status === 'error') {
-            console.error('File upload failed:', info.file);
-        }
-    },
-    onDrop(e) {
-        console.log('Dropped files', e.dataTransfer.files);
-    },
-};
-
 export default function EditPet() {
     const navigate = useNavigate()
     const [isLoading, setIsLoading] = React.useState(false)
+    const [image, setImage] = React.useState(null)
     const [pet, setPet] = React.useState(null)
 
     const id = useParams().id;
@@ -79,6 +44,7 @@ export default function EditPet() {
                     image_id: res.data.data.image.id,
                     location: res.data.data.location
                 });
+                setImage(res.data.data.image.url);
             } catch (error) {
                 message.error('Không thể lấy thông tin thú cưng.');
             }
@@ -99,6 +65,50 @@ export default function EditPet() {
         }
     }
 
+    const props = {
+        name: 'file',
+        multiple: false,
+        customRequest: async (options) => {
+            const { file, onSuccess, onError } = options;
+            const formData = new FormData(); // Tạo FormData để gửi dữ liệu file
+            formData.append('files', file);
+
+            try {
+                const response = await mediaApi.uploadImage(formData); // Gọi API upload
+                // console.log(response.data);
+                setImage(response.data.url)
+                setPet({ ...pet, image_id: response.data.id })
+                message.success(`${file.name} file uploaded successfully.`);
+                onSuccess(response.data); // Gọi callback thành công của Ant Design
+            } catch (error) {
+                onError(error); // Gọi callback thất bại của Ant Design
+                message.error(`${file.name} file upload failed.`);
+            }
+        },
+        onChange(info) {
+            const { status } = info.file;
+            if (status === 'uploading') {
+                console.log('Uploading file...');
+            }
+            if (status === 'done') {
+                console.log('File upload successful');
+            } else if (status === 'error') {
+                console.error('File upload failed:', info.file);
+            }
+        },
+        async onRemove(file) {
+            try {
+                const response = await mediaApi.deleteImage(pet.image_id); // Gọi API upload
+                // console.log(response.data);
+                setImage(null)
+                setPet({ ...pet, image_id: "" })
+            } catch (error) {
+                console.error('File upload failed:', error);
+            }
+        }
+
+    };
+
     return (
         <div style={{ padding: '1% 2%' }}>
             <div className="back-to-pet-list">
@@ -114,14 +124,21 @@ export default function EditPet() {
                 <h1 style={{ width: '100%' }}>Cập nhật thú cưng</h1>
                 <div className='create-pet-left-container'>
                     <Dragger {...props}>
-                        <p className="ant-upload-drag-icon">
-                            <InboxOutlined />
-                        </p>
-                        <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                        <p className="ant-upload-hint">
-                            Support for a single or bulk upload. Strictly prohibited from uploading company data or other
-                            banned files.
-                        </p>
+                        {!image ? (
+                            <>
+                                <p className="ant-upload-drag-icon">
+                                    <InboxOutlined />
+                                </p>
+                                <p className="ant-upload-text">Nhấp chuột hoặc kéo thả file ảnh tại đây</p>
+                                <p className="ant-upload-hint">
+                                Hỗ trợ tải lên một lần. Nghiêm cấm tải lên dữ liệu công ty hoặc các tệp bị cấm khác.
+                                </p>
+                            </>
+                        ) : (
+                            <div style={{ padding: '20px', textAlign: 'center' }}>
+                                <img src={image} style={{ width: '100%' }} />
+                            </div>
+                        )}
                     </Dragger>
                 </div>
                 <div className='create-pet-right-container'>

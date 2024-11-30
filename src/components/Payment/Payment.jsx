@@ -2,23 +2,28 @@ import React, { useEffect, useState } from 'react'
 import './Payment.css'
 import { useFormik } from 'formik'
 import * as Yup from "yup";
+import { invoiceApi } from '../../apis/invoice.request';
+import { message } from 'antd';
 
 const Payment = () => {
+  const cart = JSON.parse(localStorage.getItem('checkoutProducts'))
+  const [messageApi, contextHolder] = message.useMessage();
+
   const formik = useFormik({
     initialValues: {
-      // lastName: "",
+      lastName: "",
       // firstName: "",
-      fullName: "",
+      // fullName: "",
       street: "",
       ward: "",
       district: "",
       city: "",
-      phone: ""
+      phoneNumber: ""
     },
     validationSchema: Yup.object({
-      // lastName: Yup.string().required("* Không được để trống"),
+      lastName: Yup.string().required("* Không được để trống"),
       // firstName: Yup.string().required("* Không được để trống"),
-      fullName: Yup.string().required("* Không được để trống"),
+      // fullName: Yup.string().required("* Không được để trống"),
       street: Yup.string().required("* Không được để trống"),
       city: Yup.string()
         .notOneOf(["0"], "* Bắt buộc phải chọn Tỉnh/Thành phố")
@@ -29,7 +34,7 @@ const Payment = () => {
       ward: Yup.string()
         .notOneOf(["0"], "* Bắt buộc phải chọn Phường/Xã")
         .required("* Không được để trống"),
-      phone: Yup.string()
+      phoneNumber: Yup.string()
         // .matches(`[^a-zA-Z]+`, "* Chỉ được nhập số")
         .matches(/^\S+$/, "* Số điện thoại không được chứa khoảng trắng")
         .matches(/^\d+$/, "* Chỉ được nhập số")
@@ -40,7 +45,26 @@ const Payment = () => {
     }),
 
     onSubmit: async (values) => {
-      alert("Gửi câu hỏi thành công")
+      // console.log(values);
+      messageApi.loading("Xin đợi trong giây lát");
+      try {
+        const data = {
+          ...values,
+          amount: 0,
+          totalAmount: cart.totalAmount,
+          cartItemIds: cart.cartItems
+        };
+        // console.log(data);
+        
+        const response = await invoiceApi.payment(data);
+        messageApi.destroy();
+        window.location.href = response.data.checkoutUrl
+        
+      } catch (error) {
+        messageApi.destroy();
+        console.log(error);
+        message.error(error.response.data.message);
+      }
     }
   })
 
@@ -61,6 +85,8 @@ const Payment = () => {
       .then((cityData) => {
         if (cityData.error === 0) {
           setCityList(cityData.data);
+          // console.log(cityData.data);
+
         }
       });
   }, []);
@@ -97,8 +123,24 @@ const Payment = () => {
 
   // sau khi dùng formik 
   useEffect(() => {
-    if (formik.values.city !== '0') {
-      fetch(`https://esgoo.net/api-tinhthanh/2/${formik.values.city}.htm`)
+    //phần đã cmt là tìm theo id
+    // if (formik.values.city !== '0') {
+    //   fetch(`https://esgoo.net/api-tinhthanh/2/${formik.values.city}.htm`)
+    //     .then((response) => response.json())
+    //     .then((districtData) => {
+    //       if (districtData.error === 0) {
+    //         setDistrictList(districtData.data);
+    //         console.log(districtData.data);
+
+    //         setWardList([]);
+    //         formik.setFieldValue('district', '0'); // Reset District
+    //         formik.setFieldValue('ward', '0');    // Reset Ward
+    //       }
+    //     });
+    // }
+    const selectedCity = cityList.find(city => city.full_name === formik.values.city);
+    if (selectedCity) {
+      fetch(`https://esgoo.net/api-tinhthanh/2/${selectedCity.id}.htm`)
         .then((response) => response.json())
         .then((districtData) => {
           if (districtData.error === 0) {
@@ -112,8 +154,9 @@ const Payment = () => {
   }, [formik.values.city]);
 
   useEffect(() => {
-    if (formik.values.district !== '0') {
-      fetch(`https://esgoo.net/api-tinhthanh/3/${formik.values.district}.htm`)
+    const selectedDistrict = districtList.find(district => district.full_name === formik.values.district);
+    if (selectedDistrict) {
+      fetch(`https://esgoo.net/api-tinhthanh/3/${selectedDistrict.id}.htm`)
         .then((response) => response.json())
         .then((wardData) => {
           if (wardData.error === 0) {
@@ -160,13 +203,13 @@ const Payment = () => {
 
           <input
             placeholder='Họ Tên'
-            name="fullName"
-            value={formik.values.fullName}
+            name="lastName"
+            value={formik.values.lastName}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          {formik.errors.fullName && formik.touched.fullName && (
-            <p className='message-error'>{formik.errors.fullName}</p>
+          {formik.errors.lastName && formik.touched.lastName && (
+            <p className='message-error'>{formik.errors.lastName}</p>
           )}
 
           <select
@@ -187,7 +230,7 @@ const Payment = () => {
             {/* {selectedCity === '0' && <option value="0">Chọn Tỉnh/Thành</option>} */}
             <option value="0">Chọn Tỉnh/Thành</option>
             {cityList.map((val_city) => (
-              <option key={val_city.id} value={val_city.id}>
+              <option key={val_city.id} value={val_city.full_name}>
                 {val_city.full_name}
               </option>
             ))}
@@ -197,7 +240,7 @@ const Payment = () => {
           )}
 
           <select
-          // className={`${ selectedDistrict !== '0' ? 'selected' : ''}`}
+            // className={`${ selectedDistrict !== '0' ? 'selected' : ''}`}
             className={`${formik.values.district && formik.values.district !== '0' ? 'selected' : ''}`}
             id="district"
             name="district"
@@ -214,7 +257,7 @@ const Payment = () => {
             {/* {selectedDistrict === '0' && <option value="0">Chọn Quận/Huyện</option>} */}
             <option value="0">Chọn Quận/Huyện</option>
             {districtList.map((val_district) => (
-              <option key={val_district.id} value={val_district.id}>
+              <option key={val_district.id} value={val_district.full_name}>
                 {val_district.full_name}
               </option>
             ))}
@@ -224,7 +267,7 @@ const Payment = () => {
           )}
 
           <select
-          // className={`${ selectedWard !== '0' ? 'selected' : ''}`}
+            // className={`${ selectedWard !== '0' ? 'selected' : ''}`}
             className={`${formik.values.ward && formik.values.ward !== '0' ? 'selected' : ''}`}
             id="ward"
             name="ward"
@@ -238,7 +281,7 @@ const Payment = () => {
             {/* {selectedWard === '0' && <option value="0">Chọn Phường/Xã</option>} */}
             <option value="0">Chọn Phường/Xã</option>
             {wardList.map((val_ward) => (
-              <option key={val_ward.id} value={val_ward.id}>
+              <option key={val_ward.id} value={val_ward.full_name}>
                 {val_ward.full_name}
               </option>
             ))}
@@ -260,13 +303,13 @@ const Payment = () => {
 
           <input
             placeholder='Số diện thoại'
-            name="phone"
-            value={formik.values.phone}
+            name="phoneNumber"
+            value={formik.values.phoneNumber}
             onBlur={formik.handleBlur}
             onChange={formik.handleChange}
           />
-          {formik.errors.phone && formik.touched.phone && (
-            <p className='message-error'>{formik.errors.phone}</p>
+          {formik.errors.phoneNumber && formik.touched.phoneNumber && (
+            <p className='message-error'>{formik.errors.phoneNumber}</p>
           )}
 
 

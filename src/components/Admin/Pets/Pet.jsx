@@ -15,7 +15,8 @@ import { getPetByQuery } from '../../../redux/actions/pets.action'
 import { useNavigate } from 'react-router-dom'
 import optionSpecies from '../../../data/optionSpecies.json'
 import optionSex from '../../../data/optionSex.json'
-import optrionVaccinated from '../../../data/optionVaccinated.json'
+import optionVaccinated from '../../../data/optionVaccinated.json'
+import optionHealthStatus from '../../../data/optionHealthStatus.json'
 import { petApi } from '../../../apis/pet.request'
 
 const themeCustome = {
@@ -36,9 +37,8 @@ export default function Pet() {
         limit: 5
     });
     const [moreEdit, setMoreEdit] = useState(null);
-    const [isOpenFilter, setIsOpenFilter] = useState(false);
     const [callback, setCallback] = useState(false);
-    const { isLoading, error, payload } = useSelector(state => state.petsReducer);
+    const { isLoading, payload } = useSelector(state => state.petsReducer);
 
     const handleDeletePet = async (id) => {
         try {
@@ -65,42 +65,54 @@ export default function Pet() {
 
     const columns = [
         {
-            title: 'Name',
+            title: 'Tên',
             dataIndex: 'name',
             key: 'pet_name',
         },
         {
-            title: 'Sex',
+            title: 'Giới tính',
             dataIndex: 'sex',
             key: 'sex',
+            render: (sex) => {
+                const matchedOption = optionSex.find(option => option.value === sex);
+                return matchedOption ? matchedOption.label : sex;
+            }
         },
         {
-            title: 'Age',
+            title: 'Tuổi',
             dataIndex: 'age',
             key: 'age',
         },
         {
-            title: 'Species',
+            title: 'Loài',
             dataIndex: 'species',
             key: 'species',
+            render: (species) => {
+                const matchedOption = optionSpecies.find(option => option.value === species);
+                return matchedOption ? matchedOption.label : species;
+            }
         },
         {
-            title: 'Breed',
+            title: 'Giống',
             dataIndex: 'breed',
             key: 'breed',
         },
         {
-            title: 'Vaccinated',
+            title: 'Tiêm ngừa',
             dataIndex: 'vaccinated',
             key: 'vaccinated',
         },
         {
-            title: 'Health Status',
+            title: 'Tình trạng',
             dataIndex: 'healthStatus',
             key: 'healthStatus',
+            render: (healthStatus) => {
+                const matchedOption = optionHealthStatus.find(option => option.value === healthStatus);
+                return matchedOption ? matchedOption.label : healthStatus; 
+            }
         },
         {
-            title: 'Image',
+            title: 'Ảnh',
             dataIndex: 'image',
             key: 'image',
             render: (image) => <img src={image.url} alt="Animal" width={50} />,
@@ -136,18 +148,6 @@ export default function Pet() {
         // setIsOpenCreate(true);
         navigate('/admin/manage-pet/create-pet');
     };
-    const handleCancelFilter = () => {
-        setIsOpenFilter(false);
-    };
-
-    const handleChangeSize = (current, size) => {
-        setDataFilter({
-            ...dataFilter,
-            page: current,
-            limit: size
-        })
-        // console.log(current, size);
-    }
 
     return (
         <ConfigProvider theme={themeCustome}>
@@ -204,7 +204,7 @@ export default function Pet() {
                         width: '10%',
                     }}
                     onChange={(e) => setDataFilter({ ...dataFilter, vaccinated: e || "" })}
-                    options={optrionVaccinated}
+                    options={optionVaccinated}
                 />
                 <Input
                     allowClear

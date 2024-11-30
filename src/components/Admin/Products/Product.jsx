@@ -7,192 +7,212 @@ import {
     CloseOutlined,
     FilterOutlined
 } from '@ant-design/icons'
-import { Button, ConfigProvider, Input, Table } from 'antd'
-import React, { useState } from 'react'
+import { Button, ConfigProvider, Input, InputNumber, message, Popconfirm, Select, Switch, Table } from 'antd'
+import React, { useEffect, useState } from 'react'
 import '../AdminTheme.css'
-import ModalCreate from './ModalCreate'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { getProductsByQuery } from '../../../redux/actions/products.action'
+import { productApi } from '../../../apis/product.request'
+import optionCategory from '../../../data/optionCategory.json'
 
 const themeCustome = {
-    
+
 }
 
 export default function Product() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [search, setSearch] = useState("");
+    const [dataFilter, setDataFilter] = useState({
+        category: "",
+        minPrice: "",
+        maxPrice: "",
+        page: 1,
+        limit: 5,
+        sort: true,
+        inStock: false
+    });
     const [moreEdit, setMoreEdit] = useState(null);
-    const [isOpenCreate, setIsOpenCreate] = useState(false)
     const [callback, setCallback] = useState(false);
+    const { isLoading, payload } = useSelector(state => state.productsReducer);
 
-    const dataProducts = [
-        {
-            key: '1',
-            description: 'Red T-shirt',
-            stock: 50,
-            sold: 120,
-            productCode: 'RT001',
-            dateAdded: '2023-01-15',
-        },
-        {
-            key: '2',
-            description: 'Blue Jeans',
-            stock: 30,
-            sold: 80,
-            productCode: 'BJ002',
-            dateAdded: '2023-02-20',
-        },
-        {
-            key: '3',
-            description: 'Black Sneakers',
-            stock: 25,
-            sold: 60,
-            productCode: 'BS003',
-            dateAdded: '2023-03-05',
-        },
-        {
-            key: '4',
-            description: 'Green Hoodie',
-            stock: 40,
-            sold: 90,
-            productCode: 'GH004',
-            dateAdded: '2023-03-25',
-        },
-        {
-            key: '5',
-            description: 'Yellow Cap',
-            stock: 70,
-            sold: 200,
-            productCode: 'YC005',
-            dateAdded: '2023-04-10',
-        },
-        {
-            key: '6',
-            description: 'White Socks',
-            stock: 100,
-            sold: 300,
-            productCode: 'WS006',
-            dateAdded: '2023-04-15',
-        },
-        {
-            key: '7',
-            description: 'Purple Scarf',
-            stock: 20,
-            sold: 50,
-            productCode: 'PS007',
-            dateAdded: '2023-05-01',
-        },
-        {
-            key: '8',
-            description: 'Brown Belt',
-            stock: 60,
-            sold: 110,
-            productCode: 'BB008',
-            dateAdded: '2023-05-20',
-        },
-        {
-            key: '9',
-            description: 'Orange Gloves',
-            stock: 15,
-            sold: 45,
-            productCode: 'OG009',
-            dateAdded: '2023-06-01',
-        },
-        {
-            key: '10',
-            description: 'Pink Backpack',
-            stock: 35,
-            sold: 70,
-            productCode: 'PB010',
-            dateAdded: '2023-06-15',
-        },
-    ];
+    useEffect(() => {
+        dispatch(getProductsByQuery(
+            search,
+            dataFilter.category,
+            dataFilter.minPrice,
+            dataFilter.maxPrice,
+            dataFilter.page,
+            dataFilter.limit,
+            dataFilter.sort,
+            dataFilter.inStock
+        ));
+    }, [search, dataFilter, callback]);
+
+    const handleDeleteProduct = async (id) => {
+        try {
+            const res = await productApi.deleteProduct(id);
+            message.success('Xoá sản phẩm thành công');
+            setCallback(!callback);
+        } catch (error) {
+            message.error(error.response.data.message);
+        }
+    }
 
     const columns = [
         {
-            title: 'Description',
-            dataIndex: 'description',
-            key: 'description',
+            title: 'Mã sản phẩm',
+            dataIndex: 'code',
+            key: 'productCode',
         },
         {
-            title: 'Stock',
-            dataIndex: 'stock',
-            key: 'stock',
+            title: 'Tên sản phẩm',
+            dataIndex: 'name',
+            key: 'name',
         },
         {
-            title: 'Sold',
+            title: 'Giá',
+            dataIndex: 'price',
+            key: 'price',
+        },
+        {
+            title: 'Loại',
+            dataIndex: 'category',
+            key: 'category',
+        },
+        {
+            title: 'Số lượng',
+            dataIndex: 'quantity',
+            key: 'quantity',
+        },
+        {
+            title: 'Đã bán',
             dataIndex: 'sold',
             key: 'sold',
         },
         {
-            title: 'Product Code',
-            dataIndex: 'productCode',
-            key: 'productCode',
-        },
-        {
-            title: 'Date Added',
-            dataIndex: 'dateAdded',
-            key: 'dateAdded',
+            title: 'Ảnh',
+            dataIndex: 'image',
+            key: 'image',
+            render: (image) => <img src={image.url} alt="Animal" width={50} />,
         },
         {
             title: 'Options',
             key: 'options',
             width: '200px',
             render: (text, record) => <>
-                {moreEdit == record.key ?
+                {moreEdit == record.id ?
                     <div className='edit-btn-option'>
-                        <Button icon={<DeleteOutlined />} />
-                        <Button icon={<EditOutlined />} />
+                        <Popconfirm
+                            title="Xóa sản phẩm"
+                            description="Bạn có chắc là muốn xóa sản phẩm này không?"
+                            onConfirm={() => handleDeleteProduct(record.id)}
+                            okText="Yes"
+                            cancelText="No"
+                        >
+                            <Button danger icon={<DeleteOutlined />} />
+                        </Popconfirm>
+                        <Button onClick={() => navigate(`/admin/manage-product/edit-product/${record.id}`)} icon={<EditOutlined />} />
                         <Button
                             size='small'
                             type='text'
                             onClick={() => setMoreEdit(null)}
                             icon={<CloseOutlined style={{ color: 'var(--color-font-admin)' }} />} />
-                    </div> : <Button onClick={() => setMoreEdit(record.key)} icon={<MoreOutlined />} />}
+                    </div> : <Button onClick={() => setMoreEdit(record.id)} icon={<MoreOutlined />} />}
             </>
         },
     ];
 
-    const showModalCreate = () => {
-        setIsOpenCreate(true);
-    };
-    const handleCancelCreate = () => {
-        setIsOpenCreate(false);
-    };
-
     return (
         <ConfigProvider theme={themeCustome}>
             <h1>Quản lý sản phẩm</h1>
-            <div className="search">
+            <div className="search" style={{ gap: '20px' }}>
                 <Input
+                    allowClear
                     className='input-search'
                     size="large"
+                    onChange={(e) => setSearch(e.target.value)}
                     placeholder="Tìm kiếm theo tên..."
                     prefix={<SearchOutlined style={{ color: 'var(--color-font-admin)' }} />} />
-                <button
-                    className="btn-filter"
-                // onClick={() => setIsModalFilterOpen(true)}
-                >
-                    <FilterOutlined />
-                    <span>Filter</span>
-                </button>
-                <button className="create" onClick={showModalCreate} >
+
+                <Select
+                    allowClear
+                    placeholder='Loại sản phảm'
+                    style={{
+                        width: '11%',
+                    }}
+                    onChange={(e) => setDataFilter({ ...dataFilter, species: e || "" })}
+                    options={optionCategory}
+                />
+
+                <InputNumber
+                    controls={false}
+                    onChange={(e) => setDataFilter({ ...dataFilter, minPrice: e || "" })}
+                    suffix="VND"
+                    style={{ width: '15%' }}
+                    placeholder='Giá thấp nhất'
+                    formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                    parser={(value) => value?.replace(/[^0-9]/g, '')}
+                />
+
+                <InputNumber
+                    controls={false}
+                    onChange={(e) => setDataFilter({ ...dataFilter, maxPrice: e || "" })}
+                    suffix="VND"
+                    style={{ width: '15%' }}
+                    placeholder='Giá cao nhất'
+                    formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
+                    parser={(value) => value?.replace(/[^0-9]/g, '')}
+                />
+
+                <Select
+                    defaultValue={dataFilter.sort}
+                    style={{
+                        width: '10%',
+                    }}
+                    onChange={(e) => setDataFilter({ ...dataFilter, sort: e })}
+                    options={[
+                        {
+                            value: true,
+                            label: 'Giá tăng dần'
+                        },
+                        {
+                            value: false,
+                            label: 'Giá giảm dần'
+                        }
+                    ]}
+                />
+
+                <button className="create" onClick={() => navigate('/admin/manage-product/create-product')}>
                     <PlusOutlined />
                     <span>Thêm sản phẩm mới</span>
                 </button>
             </div>
 
-            {/* modal */}
-            <ModalCreate
-                isOpenCreate={isOpenCreate}
-                handleCancelCreate={handleCancelCreate}
-                setIsOpenCreate={setIsOpenCreate}
-                setCallback={setCallback}
-            />
-
             <div className="table">
                 <Table
                     columns={columns}
-                    dataSource={dataProducts}
+                    dataSource={payload?.data}
+                    loading={isLoading}
                     pagination={{
-                        pageSize: 10,
+                        current: payload?.currentPage,
+                        pageSize: 5,
+                        total: payload?.totalProducts,
+                        showQuickJumper: true,
+                        onChange: (page, pageSize) => {
+                            setDataFilter({
+                                ...dataFilter,
+                                page: page,
+                                limit: pageSize
+                            })
+                        }
                     }}
+                    title={() => (
+                        <div>
+                            Tổng số sản phẩm: {payload?.totalProducts || 0}
+                        </div>
+                    )}
                 />
             </div>
         </ConfigProvider>
