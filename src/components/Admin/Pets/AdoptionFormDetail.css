@@ -1,0 +1,166 @@
+.adoption_form_detail-container {
+    margin: 2% 2%;
+    height: 80%;
+    width: 96%;
+    font-family: var(--font-inter);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* chỉnh breadcumb */
+.adoption_form_detail-container .back-to-adoption_form_history{
+    width: 100%;
+}
+.back-to-adoption_form_history .breadcrumb{
+    padding-left: 3%;
+    /* font-size: 15px; */
+    font-family: var(--font-inter);
+}
+.back-to-adoption_form_history .breadcrumb .b-title-1{
+    color: rgb(44, 44, 44);
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+/* chỉnh dấu */
+:where(.css-dev-only-do-not-override-11lehqq).ant-breadcrumb .ant-breadcrumb-separator {
+    color: black;
+    padding-top: 0.3%;
+}
+
+.back-to-adoption_form_history .breadcrumb .b-title-2{
+    color: rgb(61, 61, 61);
+    /* text-transform: capitalize; */
+    cursor: pointer;
+    margin: 0;
+    padding: 6px 10px 3px;
+    border-radius: 5px;
+}
+.back-to-adoption_form_history .breadcrumb .b-title-2:hover{
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+
+/* đơn xin nhận nuôi */
+.adoption_form_detail-container .adoption_form_detail-form {
+    width: 76%;
+    margin: 4% 13% 5%;
+    padding: 4% 5% 5%;
+    background-color: #FAFAFA;
+    box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.2);
+}
+
+.adoption_form_detail-form h1 {
+    text-align: center;
+    font-size: 28px;
+    color: #02033B;
+    margin-bottom: 5%;
+}
+
+.adoption_form_detail-form .pet-info {
+    width: 100%;
+    display: flex;
+}
+
+.adoption_form_detail-form .pet-info .pet-info-left {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.adoption_form_detail-form .pet-info .pet-info-left img {
+    width: 75%;
+    height: 280px;
+    border-radius: 5px;
+}
+
+.adoption_form_detail-form .pet-info .pet-info-right {
+    width: 47%;
+    padding-right: 3%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.adoption_form_detail-form .pet-info .pet-info-right p{
+    width: 100%;
+    font-size: 16px;
+    margin: 2.5% 0;
+}
+.adoption_form_detail-form .pet-info .pet-info-right p:nth-of-type(2), 
+.adoption_form_detail-form .pet-info .pet-info-right p:nth-of-type(3),
+.adoption_form_detail-form .pet-info .pet-info-right p:nth-of-type(4),
+.adoption_form_detail-form .pet-info .pet-info-right p:nth-of-type(5){
+    width: 50%;
+}
+
+
+.adoption_form_detail-form .adopter-info {
+    width: 95%;
+    padding-left: 5%;
+    margin-top: 5%;
+}
+.adoption_form_detail-form .adopter-info p{
+    width: 100%;
+    font-size: 16px;
+    margin: 0 0 1% 0;
+}
+.adoption_form_detail-form .adopter-info span{
+    color: red
+}
+.adoption_form_detail-form .adopter-info input{
+    width: 100%;
+    margin-top: 1%;
+    margin-bottom: 2%;
+    padding: 1.5% 5% 1.5% 3%;
+    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc;     
+}
+.adoption_form_detail-form .adopter-info input:focus{
+    outline: none;
+}
+.adoption_form_detail-form .adopter-info input::placeholder{
+    font-family: var(--font-inter);
+}
+.adoption_form_detail-form .adopter-info input[readonly] {
+    cursor: not-allowed; /* Hiển thị biểu tượng cấm */
+    background-color: #fdfdfd;
+    color: rgb(90, 90, 90)
+}
+.adoption_form_detail-form .adopter-info input:nth-of-type(1){
+    text-transform: capitalize;
+}
+
+.adoption_form_detail-form .adoption_form-notice{
+    width: 100%;
+    font-size: 16px;
+    padding: 0 5%;
+}
+
+.adoption_form_detail-form .adoption_form-btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 5%;
+}
+.adoption_form_detail-form .adoption_form-btn button{
+    width: 45%;
+    padding: 2% 0;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    font-family: var(--font-inter);
+    font-size: 16px;
+    cursor: pointer;
+}
+.adoption_form_detail-form .adoption_form-btn button:nth-of-type(1){
+    background-color: rgb(14, 179, 14);
+}
+.adoption_form_detail-form .adoption_form-btn button:nth-of-type(1):hover{
+    background-color: rgb(15, 196, 15);
+}
+.adoption_form_detail-form .adoption_form-btn button:nth-of-type(2){
+    background-color: rgb(218, 8, 8);
+}
+.adoption_form_detail-form .adoption_form-btn button:nth-of-type(2):hover{
+    background-color: rgb(238, 36, 36);
+}

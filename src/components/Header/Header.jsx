@@ -162,11 +162,12 @@ const Header = () => {
                                     navigate("/cart")
                                     window.scrollTo(0, 0);
                                 }}
+                                className={location.pathname.startsWith("/cart") ? "active" : ""}
                             >
                                 <ShoppingCartOutlined />
-                                <div className="cart-quantity">
+                                {/* <div className="cart-quantity">
                                     1
-                                </div>
+                                </div> */}
                             </li>
                             <Dropdown menu={{ items: user.role == "user" ? itemsUser : itemsAdmin }} trigger={['click']} className='dropdown' placement='bottom'
                                 open={isDropdownVisible} // Kiểm soát trạng thái dropdown

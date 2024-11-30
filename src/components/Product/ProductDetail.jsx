@@ -201,8 +201,8 @@ const ProductDetail = () => {
                     <p className='sub-title'>❤️ Nơi cung cấp tất cả thú cưng cần❤️</p>
                     <div className="product_detail-height">
                         <div className="product_detail-left">
-                            {/* <img src={product.image.url} /> */}
-                            <img src={pet_image} />
+                            <img src={product.image.url} />
+                            {/* <img src={pet_image} /> */}
                         </div>
                         <div className="product_detail-right">
                             <div className="product_detail-content">
@@ -210,10 +210,10 @@ const ProductDetail = () => {
                                 <p className='product-detail-description'><span>Mô tả: </span> {product.description} </p>
                                 <p className='product_detail-code'> <span>Mã sản phẩm: </span>{product.code}</p>
                                 <p className='product_detail-category'> <span>Phân loại: </span> {product.category}</p>
-                                <p className='product_detail-price'> <span>Giá gốc: </span>  {product.price} VNĐ</p>
                                 <p className='product_detail-support'><span>Hỗ trợ: </span> {product.supportPercentage}%</p>
+                                <p className='product_detail-price'></p>
                                 <div className='product_detail-rating'><span>Đánh giá: </span> &#160; <Rate allowHalf disabled value={product.averageRating} /></div>
-                                <p className='product_detail-old_price'> <span>Giá: </span>{product.oldPrice} VNĐ</p>
+                                <p className='product_detail-old_price'> <span>Giá: </span>{product.oldPrice.toLocaleString('vi-VN')} VNĐ</p>
                                 <div className='product-detail-quantity_wanted'>
                                     <span>Số lượng: </span>
                                     <button onClick={() => handleDecrease()}>-</button>
@@ -226,6 +226,96 @@ const ProductDetail = () => {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div className="rating-filter">
+                        <Button
+                            className={selectedRating === null ? "rating-filter-btn active" : ""}
+                            onClick={() => handleFilterRating(null)}
+                        >
+                            Tất cả bình luận
+                        </Button>
+                        <Button
+                            className={selectedRating === 0 ? "rating-filter-btn active" : ""}
+                            onClick={() => handleFilterRating(0)}
+                        >
+                            ⭐️ 0
+                        </Button>
+                        <Button
+                            className={selectedRating === 1 ? "rating-filter-btn active" : ""}
+                            onClick={() => handleFilterRating(1)}
+                        >
+                            ⭐️ 1
+                        </Button>
+                        <Button
+                            className={selectedRating === 2 ? "rating-filter-btn active" : ""}
+                            onClick={() => handleFilterRating(2)}
+                        >
+                            ⭐️ 2
+                        </Button>
+                        <Button
+                            className={selectedRating === 3 ? "rating-filter-btn active" : ""}
+                            onClick={() => handleFilterRating(3)}
+                        >
+                            ⭐️ 3
+                        </Button>
+                        <Button
+                            className={selectedRating === 4 ? "rating-filter-btn active" : "rating-filter-btn"}
+                            onClick={() => handleFilterRating(4)}
+                        >
+                            ⭐️ 4
+                        </Button>
+                        <Button
+                            className={selectedRating === 5 ? "rating-filter-btn active" : "rating-filter-btn"}
+                            onClick={() => handleFilterRating(5)}
+                        >
+                            ⭐️ 5
+                        </Button>
+                    </div>
+
+                    <div className="list-comment">
+                        {isLoadingReview ? (
+                            <Skeleton
+                                avatar
+                                paragraph={{
+                                    rows: 2,
+                                }}
+                            />
+                        ) :
+                /*product.comments*/filteredComments.length > 0 ? (
+                    /*product.comments*/paginatedComments.map((comment) => (
+                            <div key={comment._id} className="comment-item">
+                                <img src={'https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg'} className="comment-user-img" />
+                                <div className="comment-text">
+                                    <p className='comment-username'>{comment.userName}</p>
+                                    <div className="comment-user-rating">
+                                        <Rate disabled value={comment.rating} />
+                                    </div>
+                                    <p className='comment-user-content'>{comment.comment}</p>
+                                </div>
+                            </div>
+                        ))
+                            ) : (
+                                <p className='no-comment'>Chưa có nhận xét nào</p>
+                            )}
+                        <Pagination
+                            current={currentCommentPage}
+                            // total={product.comments.length}
+                            total={filteredComments.length}
+                            pageSize={pageSize}
+                            showSizeChanger={false}
+                            showQuickJumper
+                            showTotal={(total) => `Tổng: ${total} bình luận`}
+                            onChange={handleChangePage}
+                            style={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'center',
+                                marginTop: '3%',
+                                paddingBottom: "40px",
+                                fontFamily: "Inter, san-serif",
+                                fontSize: "17px"
+                            }}
+                        />
                     </div>
                 </>
             ) : !isLoading && (<>
@@ -246,97 +336,6 @@ const ProductDetail = () => {
                     </button>
                 </div>
             </form> */}
-
-            <div className="rating-filter">
-                <Button
-                    className={selectedRating === null ? "rating-filter-btn active" : ""}
-                    onClick={() => handleFilterRating(null)}
-                >
-                    Tất cả bình luận
-                </Button>
-                <Button
-                    className={selectedRating === 0 ? "rating-filter-btn active" : ""}
-                    onClick={() => handleFilterRating(0)}
-                >
-                    ⭐️ 0
-                </Button>
-                <Button
-                    className={selectedRating === 1 ? "rating-filter-btn active" : ""}
-                    onClick={() => handleFilterRating(1)}
-                >
-                    ⭐️ 1
-                </Button>
-                <Button
-                    className={selectedRating === 2 ? "rating-filter-btn active" : ""}
-                    onClick={() => handleFilterRating(2)}
-                >
-                    ⭐️ 2
-                </Button>
-                <Button
-                    className={selectedRating === 3 ? "rating-filter-btn active" : ""}
-                    onClick={() => handleFilterRating(3)}
-                >
-                    ⭐️ 3
-                </Button>
-                <Button
-                    className={selectedRating === 4 ? "rating-filter-btn active" : "rating-filter-btn"}
-                    onClick={() => handleFilterRating(4)}
-                >
-                    ⭐️ 4
-                </Button>
-                <Button
-                    className={selectedRating === 5 ? "rating-filter-btn active" : "rating-filter-btn"}
-                    onClick={() => handleFilterRating(5)}
-                >
-                    ⭐️ 5
-                </Button>
-            </div>
-
-            <div className="list-comment">
-                {isLoadingReview ? (
-                    <Skeleton
-                        avatar
-                        paragraph={{
-                            rows: 2,
-                        }}
-                    />
-                ) :
-                /*product.comments*/filteredComments.length > 0 ? (
-                    /*product.comments*/paginatedComments.map((comment) => (
-                    <div key={comment._id} className="comment-item">
-                        <img src={'https://cdn-media.sforum.vn/storage/app/media/THANHAN/avatar-trang-98.jpg'} className="comment-user-img" />
-                        <div className="comment-text">
-                            <p className='comment-username'>{comment.userName}</p>
-                            <div className="comment-user-rating">
-                                <Rate disabled value={comment.rating} />
-                            </div>
-                            <p className='comment-user-content'>{comment.comment}</p>
-                        </div>
-                    </div>
-                ))
-                    ) : (
-                        <p className='no-comment'>Chưa có nhận xét nào</p>
-                    )}
-                <Pagination
-                    current={currentCommentPage}
-                    // total={product.comments.length}
-                    total={filteredComments.length}
-                    pageSize={pageSize}
-                    showSizeChanger={false}
-                    showQuickJumper
-                    showTotal={(total) => `Tổng: ${total} bình luận`}
-                    onChange={handleChangePage}
-                    style={{
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        marginTop: '3%',
-                        paddingBottom: "40px",
-                        fontFamily: "Inter, san-serif",
-                        fontSize: "17px"
-                    }}
-                />
-            </div>
         </div>
     )
 }

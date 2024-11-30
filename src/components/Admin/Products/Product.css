@@ -1,48 +1,48 @@
-.back-to-pet-list .ant-breadcrumb .ant-breadcrumb-separator {
+.back-to-product-list .ant-breadcrumb .ant-breadcrumb-separator {
     color: black;
     padding-top: 0.1% !important;
 }
 
-.create-pet-container {
+.create-product-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.create-pet-container .create-pet-left-container {
+.create-product-container .create-product-left-container {
     width: 40%;
 }
 
-.create-pet-container .create-pet-right-container {
+.create-product-container .create-product-right-container {
     display: flex;
     flex-wrap: wrap;
     /* justify-content: space-between; */
     width: 50%;
 }
 
-.create-pet-container .create-pet-right-container .pet-info {
+.create-product-container .create-product-right-container .product-info {
     display: flex;
     justify-content: space-between;
     width: 100%;
     margin-bottom: 15px;
 }
 
-.create-pet-container .create-pet-right-container .pet-info input {
+.create-product-container .create-product-right-container .product-info input {
     height: 38px;
 }
 
-.create-pet-container .create-pet-right-container .pet-info .ant-input-number {
+.create-product-container .create-product-right-container .product-info .ant-input-number-outlined {
     height: 38px;
 }
 
-.create-pet-container .create-pet-btn {
+.create-product-container .create-product-btn {
     width: 100%;
     margin-top: 2%;
     display: flex;
     justify-content: center;
 }
 
-.create-pet-container .create-pet-btn button:disabled {
+.create-product-container .create-product-btn button:disabled {
     background-color: #d3d3d3 !important;
     color: #555555;
     cursor: not-allowed;

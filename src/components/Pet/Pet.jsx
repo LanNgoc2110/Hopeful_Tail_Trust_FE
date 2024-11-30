@@ -258,7 +258,7 @@ const Pet = () => {
                     />
                 </div>
 
-                <div className="pet-adopted-list">
+                {/* <div className="pet-adopted-list">
                     <p className='title'>Hình ảnh thú cưng được nhận nuôi</p>
                     <div className="pet-adopted-list-img">
                         <Carousel className="custom-carousel" arrows autoplay infinite={true}>
@@ -279,7 +279,7 @@ const Pet = () => {
                             </div>
                         </Carousel>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )

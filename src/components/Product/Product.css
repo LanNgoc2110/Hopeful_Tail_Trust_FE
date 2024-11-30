@@ -246,6 +246,7 @@ có thể thay đổi sau mỗi lần build. Điều này khiến các rule CSS 
     width: 100%;
     background-image: linear-gradient(#ededed, #E7EFFA);
     height: 300px;
+    object-fit: cover;
 }
 
 .product-item .overlay {

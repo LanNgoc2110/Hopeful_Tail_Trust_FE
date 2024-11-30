@@ -1,0 +1,17 @@
+[
+    {
+        "value": "pending",
+        "label": "Đang xét duyệt",
+        "color": "blue"
+    },
+    {
+        "value": "approved",
+        "label": "Đã duyệt",
+        "color": "green"
+    },
+    {
+        "value": "rejected",
+        "label": "Từ chối",
+        "color": "red"
+    }
+]

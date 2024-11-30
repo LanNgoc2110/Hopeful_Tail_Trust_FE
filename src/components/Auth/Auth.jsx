@@ -194,7 +194,7 @@ export default function Auth({ comp }) {
             {comp === "Register" && (
               <>
               <Input
-                  className='input'
+                  className='input fullname'
                   size="large"
                   placeholder="Họ tên"
                   prefix={<UserOutlined />}
@@ -288,13 +288,13 @@ export default function Auth({ comp }) {
               <img src={google_img} /> <p>  &ensp; Đăng nhập bằng Google</p>
             </button>
           </div> */}
-          <div className="login_google-btn">
+          {/* <div className="login_google-btn">
             <GoogleLogin
               onSuccess={handleLoginSuccess}
               onError={handleLoginFailure}
               client_id="745062279110-15fh8s0cu6d6t248pvkll42sa7src4u3.apps.googleusercontent.com"
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </div >

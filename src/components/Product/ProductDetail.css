@@ -74,6 +74,7 @@
     display: flex;
     flex-wrap: wrap;
     min-height: 450px;
+    margin-bottom: 3%;
 }
 
 .product_detail-left {
@@ -298,7 +299,7 @@
 }
 
 /* chỉnh nút */
-:where(.css-dev-only-do-not-override-11lehqq).ant-btn-default {
+.rating-filter .ant-btn-default {
     font-family: var(--font-inter);
     background-color: white;
     color: black;
@@ -306,7 +307,7 @@
     margin-right: 8px;
 }
 
-:where(.css-dev-only-do-not-override-11lehqq).ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
+.rating-filter .ant-btn-default:not(:disabled):not(.ant-btn-disabled):hover {
     color: #f2c23d;
     border-color: #f2c23d;
     background: #ffffff;

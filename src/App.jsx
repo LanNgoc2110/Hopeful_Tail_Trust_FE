@@ -36,6 +36,10 @@ import CheckRole from './pages/ErrorPage/CheckRole'
 import { useSelector } from 'react-redux'
 import { useEffect, useState } from 'react'
 import EditPet from './components/Admin/Pets/EditPet'
+import CreateProduct from './components/Admin/Products/CreateProduct'
+import EditProduct from './components/Admin/Products/EditProduct'
+import AdoptionFormList from './components/Admin/Pets/AdoptionFormList'
+import AdoptDetail from './components/Admin/Pets/AdoptDetail'
 
 function App() {
   const { payload } = useSelector((state) => state.authReducer);
@@ -84,12 +88,18 @@ function App() {
           element={user?.role === 'admin' ? <Admin /> : <CheckRole authMessage="Chỉ admin mới có thể đăng nhập" />}
         >
           <Route path="admin-home" element={<Dashboard />} />
+
           <Route path="manage-product" element={<ManageProduct />} />
+          <Route path="manage-product/create-product" element={<CreateProduct />} />
+          <Route path="manage-product/edit-product/:id" element={<EditProduct />} />
+
           <Route path="manage-pet" element={<ManagePet />} />
-          {/* <Route path="manage-pet/*" element={<ManagePet />}> */}
           <Route path="manage-pet/create-pet" element={<CreatePet />} />
           <Route path="manage-pet/edit-pet/:id" element={<EditPet />} />
-          {/* </Route> */}
+
+          <Route path="adopted-management" element={<AdoptionFormList />} />
+          <Route path="adopted-management/:id" element={<AdoptDetail />} />
+
           <Route path="manage-order" element={<ManageOrder />} />
         </Route>
 

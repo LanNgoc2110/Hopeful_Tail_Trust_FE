@@ -13,7 +13,7 @@ const Introduction = () => {
         <div className="introduction-container">
             <Vision/>
             <Mission/>
-            <ContactUs/>
+            {/* <ContactUs/> */}
         </div>
         <Footer/>
     </div>
