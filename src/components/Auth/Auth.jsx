@@ -39,7 +39,27 @@ export default function Auth({ comp }) {
         ).required('* Bắt buộc') : Yup.string(),
       password: Yup.string().min(6, "* Mật khẩu phải có ít nhất 6 ký tự trở lên").required("* Bắt buộc"),
       fullname: comp === "Register"
-        ? Yup.string().max(30, "* Tên người dùng không được vềt quá 30 ký tự").required("* Bắt buộc") : Yup.string(),
+        ? Yup.string()
+          // .matches(
+          //   /^[^0-9!@#$%^&*(),.?":{}|<>]*$/,
+          //   "* Không được nhập số và ký tự đặc biệt"
+          // )
+          .matches(
+            /^[^0-9]*$/,
+            "* Họ tên không được nhập số"
+          )
+          .matches(
+            /^[^!@#$%^&*(),.?":{}|<>]*$/,
+            "* Họ tên không được chứa ký tự đặc biệt"
+          )
+          .matches(
+            /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
+            "* Mỗi từ phải viết hoa chữ cái đầu"
+          )
+
+          .max(30, "* Tên người dùng không được vềt quá 30 ký tự")
+          .required("* Bắt buộc")
+        : Yup.string(),
       address: comp === "Register"
         ? Yup.string().required("* Bắt buộc") : Yup.string(),
       phoneNumber:
@@ -150,7 +170,7 @@ export default function Auth({ comp }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.username}
                 />
-                {formik.errors.email && formik.touched.username && (
+                {formik.errors.username && formik.touched.username && (
                   <p className="message-error">{formik.errors.username}</p>
                 )}
               </>
@@ -193,7 +213,7 @@ export default function Auth({ comp }) {
             {/* Confirm Password (only for registration) */}
             {comp === "Register" && (
               <>
-              <Input
+                <Input
                   className='input fullname'
                   size="large"
                   placeholder="Họ tên"
@@ -205,7 +225,7 @@ export default function Auth({ comp }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.fullname}
                 />
-                {formik.errors.email && formik.touched.fullname && (
+                {formik.errors.fullname && formik.touched.fullname && (
                   <p className="message-error">{formik.errors.fullname}</p>
                 )}
                 <Input
@@ -220,7 +240,7 @@ export default function Auth({ comp }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.address}
                 />
-                {formik.errors.email && formik.touched.address && (
+                {formik.errors.address && formik.touched.address && (
                   <p className="message-error">{formik.errors.address}</p>
                 )}
                 <Input
@@ -235,7 +255,7 @@ export default function Auth({ comp }) {
                   onBlur={formik.handleBlur}
                   value={formik.values.phoneNumber}
                 />
-                {formik.errors.email && formik.touched.phoneNumber && (
+                {formik.errors.phoneNumber && formik.touched.phoneNumber && (
                   <p className="message-error">{formik.errors.phoneNumber}</p>
                 )}
               </>
@@ -279,9 +299,9 @@ export default function Auth({ comp }) {
             <a href="">Tạo tài khoản</a> :
             <a href="">Đã có tài khoản</a>} */}
 
-          <div className="divider">
+          {/* <div className="divider">
             <Divider className='divider-text'>Hoặc với</Divider>
-          </div>
+          </div> */}
 
           {/* <div className="login_google-btn">
             <button onClick={() => handleLoginSuccess()}>

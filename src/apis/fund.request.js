@@ -2,15 +2,18 @@ import { Api } from "../utils/BaseUrlServer";
 import { getToken } from "../utils/Token";
 
 const API = Api()
-const token = getToken();
 
 export const fundApi = {
     addFund: (amount) => {
+        const token = getToken();
         return API.post('/fund', amount, {
             headers: { authorization: `Bearer ${token}` },
         })
     },
     getAllFunds: () => {
-        return API.get('/fund')
+        const token = getToken();
+        return API.get('/fund', {
+            headers: { authorization: `Bearer ${token}` },
+        })
     }
 }
