@@ -6,7 +6,7 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    
+
 }
 
 /* chỉnh breadcumb */
@@ -71,52 +71,84 @@
     display: flex;
     justify-content: space-between;
 }
+
 .order_history_info-invoice .invoice-content p {
     padding-bottom: 1%;
     border-bottom: 1px dotted #a0a0a0;
 }
+
 .order_history_info-invoice .invoice-content p:nth-of-type(1) {
     width: 30%;
 }
+
 .order_history_info-invoice .invoice-content p:nth-of-type(2) {
     width: 70%;
     text-align: right;
 }
+
 .order_history_info-invoice .invoice-content .status {
     color: red
 }
 
 
 
-.order_history_info-invoice .invoice-table{
+.order_history_info-invoice .invoice-table {
     width: 100%;
     margin-top: 2%;
 }
 
-.order_history_info-invoice .invoice-table thead tr th{
+.order_history_info-invoice .invoice-table thead tr th {
     padding-bottom: 2%;
 }
 
-.order_history_info-invoice .invoice-table tbody .category-title th{
+.order_history_info-invoice .invoice-table tbody .category-title th {
     text-align: center;
     padding: 1.5% 0 1.5% 0;
     background-color: #f0f0f0;
 }
-.order_history_info-invoice .invoice-table tbody tr td{
+
+.order_history_info-invoice .invoice-table tbody tr td {
     padding: 20px 0;
     border-bottom: 1px solid #e6e6e6;
     font-size: 15px;
     text-align: center;
 }
-.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1){
+
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) {
     display: flex;
 }
-.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) img{
+
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) img {
     width: 100px;
     height: 100px;
     background-image: linear-gradient(#ededed, #E7EFFA);
     border-radius: 20px;
 }
-.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) p{
-    margin: 10% 0 10% 5%
+
+.order_history_info-invoice .invoice-table tbody tr td:nth-of-type(1) p {
+    margin: 10% 0 10% 5%;
+    padding-top: 3%;
+}
+
+.order-rating-btn {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    /* margin-top: 20px; */
+}
+
+.order_history_info-invoice .comment-rating-order {
+    width: 100%;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 1.5%;
+    font-family: var(--font-inter);
+}
+
+.order_history_info-invoice .comment-rating-order {
+    width: 100%;
+    font-size: 18px;
+    line-height: 25px;
+    margin-bottom: 1.5%;
+    font-family: var(--font-inter);
 }

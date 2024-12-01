@@ -86,7 +86,7 @@ const Header = () => {
             label: "Management",
             key: '1',
             icon: <UserOutlined />,
-            onClick: () => {navigate('/admin/admin-home')},
+            onClick: () => { navigate('/admin/admin-home') },
         },
         {
             label: "Log out",
@@ -157,18 +157,20 @@ const Header = () => {
                     </li> */}
                     {token ? (
                         <>
-                            <li
-                                onClick={() => {
-                                    navigate("/cart")
-                                    window.scrollTo(0, 0);
-                                }}
-                                className={location.pathname.startsWith("/cart") ? "active" : ""}
-                            >
-                                <ShoppingCartOutlined />
-                                {/* <div className="cart-quantity">
+                            {user.role == "user" && (
+                                <li
+                                    onClick={() => {
+                                        navigate("/cart")
+                                        window.scrollTo(0, 0);
+                                    }}
+                                    className={location.pathname.startsWith("/cart") ? "active" : ""}
+                                >
+                                    <ShoppingCartOutlined />
+                                    {/* <div className="cart-quantity">
                                     1
                                 </div> */}
-                            </li>
+                                </li>
+                            )}
                             <Dropdown menu={{ items: user.role == "user" ? itemsUser : itemsAdmin }} trigger={['click']} className='dropdown' placement='bottom'
                                 open={isDropdownVisible} // Kiểm soát trạng thái dropdown
                                 onOpenChange={(visible) => setIsDropdownVisible(visible)} // Cập nhật trạng thái

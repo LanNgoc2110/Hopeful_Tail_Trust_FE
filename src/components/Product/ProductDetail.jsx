@@ -42,7 +42,8 @@ const ProductDetail = () => {
 
     const { payload: product, isLoading, error } = useSelector((state) => state.productsReducer);
     const { payload: reviews, isLoading: isLoadingReview } = useSelector((state) => state.commentReducer);
-
+    console.log(product);
+    
     // Kiểm tra nếu không có dữ liệu thú cưng, chuyển hướng lại trang chính
     // if (!location.state || !location.state.product) {
     //     navigate('/');

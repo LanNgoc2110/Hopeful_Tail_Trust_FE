@@ -15,8 +15,8 @@ const PaymentSuccessful = () => {
         { id: 6, name: 'Dry Food for Cat', price: 500000, quantity: 1, img: product_img, category: 'food' },
         { id: 7, name: 'Senior Dog Food', price: 450000, quantity: 1, img: product_img, category: 'food' },
     ];
-
     const navigate = useNavigate();
+    
 
     return (
         <div className='payment_successful-whole-container'>
