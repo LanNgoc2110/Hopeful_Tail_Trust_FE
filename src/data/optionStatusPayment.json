@@ -1,0 +1,17 @@
+[
+    {
+        "value": "Pending",
+        "label": "Đang xử lý",
+        "color": "blue"
+    },
+    {
+        "value": "Paid",
+        "label": "Đã thanh toán",
+        "color": "green"
+    },
+    {
+        "value": "Cancelled",
+        "label": "Đã hủy",
+        "color": "red"
+    }
+]

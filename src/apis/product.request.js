@@ -1,7 +1,6 @@
 import { Api } from "../utils/BaseUrlServer";
 import { getToken } from "../utils/Token";
 const API = Api()
-const token = getToken();
 
 export const productApi = {
     getAllProducts: () => {
@@ -17,6 +16,7 @@ export const productApi = {
     },
 
     addProduct: (data) => {
+        const token = getToken();
         return API.post('/products/add', data, {
             headers: {
                 authorization: `Bearer ${token}`

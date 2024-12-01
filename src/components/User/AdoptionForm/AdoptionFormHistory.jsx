@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './AdoptionFormHistory.css';
-import { Button, Empty, Pagination } from 'antd';
-import { EyeOutlined } from '@ant-design/icons';
+import { Button, Empty, message, Pagination, Spin, Tag } from 'antd';
+import { EyeOutlined, LoadingOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { adoptionApi } from '../../../apis/adoption.request';
+import { petApi } from '../../../apis/pet.request';
+import optionStatusAdopt from '../../../data/optionStatusAdopt.json';
 
 const AdoptionFormHistory = () => {
     // Dữ liệu giả cho bảng
@@ -64,8 +67,43 @@ const AdoptionFormHistory = () => {
         },
     ];
 
+    const [loading, setLoading] = useState(false);
+    const [adoptions, setAdoptions] = useState([]);
+    const [pets, setPets] = useState([]);
+
+    useEffect(() => {
+        const fetchAdoptions = async () => {
+            setLoading(true);
+            try {
+                const res = await adoptionApi.getAllAdoption();
+                // console.log(res);
+                setAdoptions(res.data.data);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                // message.error(error.response.data.message);
+                console.log(error.response.data.message);
+            }
+        }
+        fetchAdoptions();
+
+        const fetchPet = async () => {
+            try {
+                const res = await petApi.getAllPets();
+                // console.log(res);
+                setPets(res.data.data);
+                // setLoading(false);
+            } catch (error) {
+                // setLoading(false);
+                // message.error(error.response.data.message);
+                console.log(error.response.data.message);
+            }
+        }
+        fetchPet();
+    }, []);
+
     // Sắp xếp dữ liệu mới nhất ở trên đầu
-    const sortedData = data.sort((a, b) => b.id - a.id);
+    const sortedData = adoptions?.sort((a, b) => b.id - a.id);
 
     // State cho phân trang
     const [currentPage, setCurrentPage] = useState(1);
@@ -90,70 +128,100 @@ const AdoptionFormHistory = () => {
     }, [location.state]);
 
 
-    const getStatusStyle = (status) => {
-        switch (status) {
-            case 'Đã duyệt':
-                return { color: 'green', text: 'Đã duyệt' };
-            case 'Từ chối':
-                return { color: 'red', text: 'Từ chối' };
-            case 'Chờ duyệt':
-                return { color: 'gray', text: 'Chờ duyệt' };
-            default:
-                return { color: 'black', text: status };
-        }
-    };
+    // const getStatusStyle = (status) => {
+    //     switch (status) {
+    //         case 'Đã duyệt':
+    //             return { color: 'green', text: 'Đã duyệt' };
+    //         case 'Từ chối':
+    //             return { color: 'red', text: 'Từ chối' };
+    //         case 'Chờ duyệt':
+    //             return { color: 'gray', text: 'Chờ duyệt' };
+    //         default:
+    //             return { color: 'black', text: status };
+    //     }
+    // };
+
+    const renderStatus = (status) => {
+        const matchedOption = optionStatusAdopt.find(option => option.value === status);
+        return matchedOption ? (
+            <Tag color={matchedOption.color}>
+                {matchedOption.label}
+            </Tag>
+        ) : (
+            status
+        );
+    }
 
     return (
         <div className="adoption_form_history-container">
-            <table className='adoption_form_history-table'>
-                <thead>
-                    <tr>
-                        <th colSpan={2}>
-                            <p>Thông tin đơn nhận nuôi</p>
-                        </th>
-                        <th>
-                            <p>Trạng thái</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentData.length === 0 ? (
-                        <tr>
-                            <td colSpan={3} className='no-data'>
-                                <Empty description="Chưa có đơn xin nhận nuôi thú cưng nào cần được xét duyệt" />
-                            </td>
-                        </tr>
-                    ) : (
-                        currentData.map((item) => (
-                            <tr key={item.id}>
-                                <td>
-                                    <Button onClick={() => navigate(`/user/adoption-form-history/${item.id}`, { state: { currentPage: currentPage } })}>
-                                        <EyeOutlined />
-                                    </Button>
-                                </td>
-                                <td>
-                                    <p>{item.petFormInfo}</p>
-                                </td>
-                                <td>
-                                    <p style={{ color: getStatusStyle(item.status).color }}>
-                                        {getStatusStyle(item.status).text}
-                                    </p>
-                                </td>
+            {loading ? (
+                <div style={{ textAlign: 'center' }}>
+                    <Spin
+                        indicator={
+                            <LoadingOutlined
+                                style={{
+                                    margin: 150,
+                                    fontSize: 100,
+                                    color: 'var(--color-btn-auth)'
+                                }}
+                                spin />
+                        }
+                    />
+                </div>
+            ) : (
+                <>
+                    <table className='adoption_form_history-table'>
+                        <thead>
+                            <tr>
+                                <th colSpan={2}>
+                                    <p>Thông tin đơn nhận nuôi</p>
+                                </th>
+                                <th>
+                                    <p>Trạng thái</p>
+                                </th>
                             </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {currentData.length === 0 ? (
+                                <tr>
+                                    <td colSpan={3} className='no-data'>
+                                        <Empty description="Chưa có đơn xin nhận nuôi thú cưng nào cần được xét duyệt" />
+                                    </td>
+                                </tr>
+                            ) : (
+                                currentData.map((item) => (
+                                    <tr key={item._id}>
+                                        <td>
+                                            <Button onClick={() => navigate(`/user/adoption-form-history/${item._id}`, { state: { currentPage: currentPage } })}>
+                                                <EyeOutlined />
+                                            </Button>
+                                        </td>
+                                        <td>
+                                            <p>Đơn xin nhận nuôi bé {pets.find((pet) => pet._id === item.pet)?.name} - {pets.find((pet) => pet._id === item.pet)?.breed} - {pets.find((pet) => pet._id === item.pet)?.age} tuổi</p>
+                                        </td>
+                                        <td>
+                                            {/* <p style={{ color: getStatusStyle(item.status).color }}>
+                                        {getStatusStyle(item.status).text}
+                                    </p> */}
+                                            {renderStatus(item.status)}
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
 
-            <Pagination
-                current={currentPage}
-                pageSize={itemsPerPage}
-                total={sortedData.length}
-                showQuickJumper
-                showTotal={(total) => `Tổng: ${total} đơn nhận nuôi`}
-                onChange={handlePageChange}
-                style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
-            />
+                    <Pagination
+                        current={currentPage}
+                        pageSize={itemsPerPage}
+                        total={sortedData.length}
+                        showQuickJumper
+                        showTotal={(total) => `Tổng: ${total} đơn nhận nuôi`}
+                        onChange={handlePageChange}
+                        style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
+                    />
+                </>
+            )}
         </div>
     );
 };

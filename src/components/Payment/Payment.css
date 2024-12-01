@@ -50,7 +50,7 @@
     margin: 1.5% 0;
     padding: 2% 1% 2% 1.5%;
     font-size: 14px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 .payment-left input:focus{
     outline: none;
@@ -109,12 +109,12 @@
 }
 
 .payment-info .payment-info-left p:last-child{
-    margin-top: 15%;
+    margin-top: 10%;
     border-top: 1px solid gray;
     padding-top: 8%;
 }
 .payment-info .payment-info-right p:last-child{
-    margin-top: 15%;
+    margin-top: 10%;
     border-top: 1px solid gray;
     padding-top: 8%;
 }

@@ -16,8 +16,8 @@ const AdoptionForm = () => {
     const navigate = useNavigate();
     const id = useParams().id;
     const [isLoadingForm, setIsLoadingForm] = useState(false);
-    const {user} = getUserFromToken()
-    
+    const { user } = getUserFromToken()
+
 
     useEffect(() => {
         dispatch(getPetById(id))
@@ -36,9 +36,21 @@ const AdoptionForm = () => {
         validationSchema: Yup.object({
             name: Yup.string()
                 // .matches(
-                //     /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
-                //     "* Mỗi từ phải viết hoa chữ cái đầu"
+                //   /^[^0-9!@#$%^&*(),.?":{}|<>]*$/,
+                //   "* Không được nhập số và ký tự đặc biệt"
                 // )
+                .matches(
+                    /^[^0-9]*$/,
+                    "* Họ tên không được nhập số"
+                )
+                .matches(
+                    /^[^!@#$%^&*(),.?":{}|<>]*$/,
+                    "* Họ tên không được chứa ký tự đặc biệt"
+                )
+                .matches(
+                    /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
+                    "* Mỗi từ phải viết hoa chữ cái đầu"
+                )
                 .required("* Không được để trống"),
             address: Yup.string().required("* Không được để trống"),
             phone: Yup.string()
@@ -60,7 +72,7 @@ const AdoptionForm = () => {
         onSubmit: async (values) => {
             setIsLoadingForm(true);
             try {
-                if(user){
+                if (user) {
                     const data = {
                         petId: id,
                         name: values.name,
@@ -69,11 +81,11 @@ const AdoptionForm = () => {
                         cccd: values.cccd,
                     }
                     await adoptionApi.createAdoption(data);
-                    
+
                     setIsLoadingForm(false);
                     message.success("Đơn xin nhận nuôi thú cưng thành công.");
                     navigate("/user/adoption-form-history");
-                }else{
+                } else {
                     message.warning("Vui lòng đăng nhập trước khi truy cập.");
                     setIsLoadingForm(false);
                 }
@@ -81,7 +93,7 @@ const AdoptionForm = () => {
                 setIsLoadingForm(false);
                 message.error(error.response.data.message);
                 // console.log(error);
-                
+
             }
         }
     })
@@ -172,7 +184,7 @@ const AdoptionForm = () => {
                     ⚠️ Lưu ý: Khi quyết định nhận nuôi thú cưng, bạn cần cam kết mang lại một môi trường sống an toàn, yêu thương và chăm sóc tốt nhất cho chúng. Việc bỏ rơi hoặc thiếu trách nhiệm có thể gây ảnh hưởng nghiêm trọng đến sức khỏe và tinh thần của thú cưng. Xin hãy cân nhắc kỹ trước khi gửi yêu cầu nhận nuôi.
                 </p>
                 <div className="adoption_form-btn">
-                    <button disabled={isLoadingForm} type='submit'>{isLoadingForm && <LoadingOutlined style={{ marginRight: 10 }}/>}Gửi yêu cầu nhận nuôi</button>
+                    <button disabled={isLoadingForm} type='submit'>{isLoadingForm && <LoadingOutlined style={{ marginRight: 10 }} />}Gửi yêu cầu nhận nuôi</button>
                 </div>
             </form>
         </div>

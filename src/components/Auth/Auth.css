@@ -134,7 +134,7 @@ có thể gây vấn đề trong quá trình deploy, vì chúng sẽ thay đổi
     padding-left: 2% !important;
 }
 .ant-input-affix-wrapper > input.ant-input#fullname{
-    text-transform: capitalize !important;
+    /* text-transform: capitalize !important; */
 }
 .ant-input-outlined:hover {
     border-color: #f8d064 !important;

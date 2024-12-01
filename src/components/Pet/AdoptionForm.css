@@ -98,7 +98,7 @@
 }
 
 .adoption_form .adopter-info input:nth-of-type(1) {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 
 

@@ -21,7 +21,20 @@ const Payment = () => {
       phoneNumber: ""
     },
     validationSchema: Yup.object({
-      lastName: Yup.string().required("* Không được để trống"),
+      lastName: Yup.string()
+        .matches(
+          /^[^0-9]*$/,
+          "* Họ tên không được nhập số"
+        )
+        .matches(
+          /^[^!@#$%^&*(),.?":{}|<>]*$/,
+          "* Họ tên không được chứa ký tự đặc biệt"
+        )
+        .matches(
+          /^[A-ZÀ-Ỹ][a-zà-ỹ]*(\s[A-ZÀ-Ỹ][a-zà-ỹ]*)*$/,
+          "* Mỗi từ phải viết hoa chữ cái đầu"
+        )
+        .required("* Không được để trống"),
       // firstName: Yup.string().required("* Không được để trống"),
       // fullName: Yup.string().required("* Không được để trống"),
       street: Yup.string().required("* Không được để trống"),
@@ -55,11 +68,11 @@ const Payment = () => {
           cartItemIds: cart.cartItems
         };
         // console.log(data);
-        
+
         const response = await invoiceApi.payment(data);
         messageApi.destroy();
         window.location.href = response.data.checkoutUrl
-        
+
       } catch (error) {
         messageApi.destroy();
         console.log(error);
@@ -321,16 +334,16 @@ const Payment = () => {
 
           <div className="payment-info">
             <div className="payment-info-left">
-              <p>Mã đơn hàng</p>
+              {/* <p>Mã đơn hàng</p> */}
               <p>Sản phẩm</p>
-              <p>Phí giao hàng</p>
+              {/* <p>Phí giao hàng</p> */}
               <p>Tổng giá</p>
             </div>
             <div className="payment-info-right">
-              <p>sadhiuh</p>
-              <p>3.000.000 VND</p>
-              <p>20.000 VND</p>
-              <p>3.020.000 VND</p>
+              {/* <p>sadhiuh</p> */}
+              <p>{cart.totalAmount.toLocaleString('vi-VN')} VND</p>
+              {/* <p>20.000 VND</p> */}
+              <p>{cart.totalAmount.toLocaleString('vi-VN')} VND</p>
             </div>
           </div>
 

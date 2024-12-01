@@ -38,7 +38,15 @@
     font-family: var(--font-inter);
 }
 .user_profile-form input:nth-of-type(3){
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
+}
+
+.user_profile-form .message-error{
+    width: 85%;
+    color: red;
+    font-family: var(--font-inter);
+    margin: 0 0 2%!important;
+    padding-left: 15%;
 }
 
 .user_profile-form .update-save-btn{

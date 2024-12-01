@@ -70,6 +70,9 @@ có thể gây lỗi sau khi deploy, vì định danh này thay đổi ở mỗi
     width: 57%;
     padding-left: 13%;
 }
+.order_history-table tbody tr td:nth-of-type(2) span{
+    font-weight: bold;
+}
 
 .order_history-table tbody tr td:nth-of-type(3) {
     width: 20%;

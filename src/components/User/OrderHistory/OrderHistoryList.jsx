@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import './OrderHistoryList.css';
-import { Button, Empty, Pagination } from 'antd';
-import { EyeOutlined } from '@ant-design/icons';
+import { Button, Empty, Pagination, Spin, Tag } from 'antd';
+import { EyeOutlined, LoadingOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { invoiceApi } from '../../../apis/invoice.request';
+import optionStatusPayment from '../../../data/optionStatusPayment.json';
 
 const OrderHistoryList = () => {
     // Dữ liệu giả cho bảng đơn hàng
@@ -64,8 +66,41 @@ const OrderHistoryList = () => {
         },
     ];
 
+    const [invoices, setInvoices] = useState([]);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        const fetchOrders = async () => {
+            try {
+                const res = await invoiceApi.getOrders();
+                // console.log(res);
+
+                // const invoicesData = res.data.data;
+                // if (!invoicesData) {
+                //     throw new Error("Invoices data không tồn tại hoặc sai cấu trúc.");
+                // }
+
+                // const userFunds = invoicesData.filter((invoice) => invoice.user && invoice.user?._id === user.id);
+                // // console.log(userFunds);
+
+                // if (userFunds) {
+                //     setFunds(userFunds);
+                // }
+                setInvoices(res.data.data);
+                setLoading(false);
+            } catch (error) {
+                setLoading(false);
+                console.log(error.response.data.message);
+
+            }
+        }
+        fetchOrders();
+    }, []);
+
     // Sắp xếp dữ liệu mới nhất ở trên đầu
-    const sortedData = data.sort((a, b) => b.id - a.id);
+    // const sortedData = data.sort((a, b) => b.id - a.id);
+    const sortedData = invoices?.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
     // State cho phân trang
     const [currentPage, setCurrentPage] = useState(1);
@@ -102,57 +137,87 @@ const OrderHistoryList = () => {
         }
     };
 
+    const renderStatus = (status) => {
+        const matchedOption = optionStatusPayment.find(option => option.value === status);
+        return matchedOption ? (
+            <Tag color={matchedOption.color}>
+                {matchedOption.label}
+            </Tag>
+        ) : (
+            status
+        );
+    }
+
     return (
         <div className="order_history-container">
-            <table className='order_history-table'>
-                <thead>
-                    <tr>
-                        <th colSpan={2}>
-                            <p>Thông tin đơn hàng</p>
-                        </th>
-                        <th>
-                            <p>Trạng thái</p>
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentData.length === 0 ? (
-                        <tr>
-                            <td colSpan={3} className='no-data'>
-                                <Empty description="Chưa có hóa đơn mua hàng nào" />
-                            </td>
-                        </tr>
-                    ) : (
-                        currentData.map((item) => (
-                            <tr key={item.id}>
-                                <td>
-                                    <Button onClick={() => navigate(`/user/order-history-list/${item.id}`, { state: { currentPage: currentPage } })}>
-                                        <EyeOutlined />
-                                    </Button>
-                                </td>
-                                <td>
-                                    <p>{item.productOrderInfo}</p>
-                                </td>
-                                <td>
-                                    <p style={{ color: getStatusStyle(item.status).color }}>
-                                        {getStatusStyle(item.status).text}
-                                    </p>
-                                </td>
+            {loading ? (
+                <div style={{ textAlign: 'center' }}>
+                    <Spin
+                        indicator={
+                            <LoadingOutlined
+                                style={{
+                                    margin: 150,
+                                    fontSize: 100,
+                                    color: 'var(--color-btn-auth)'
+                                }}
+                                spin />
+                        }
+                    />
+                </div>
+            ) : (
+                <>
+                    <table className='order_history-table'>
+                        <thead>
+                            <tr>
+                                <th colSpan={2}>
+                                    <p>Thông tin đơn hàng</p>
+                                </th>
+                                <th>
+                                    <p>Trạng thái</p>
+                                </th>
                             </tr>
-                        ))
-                    )}
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {currentData.length === 0 ? (
+                                <tr>
+                                    <td colSpan={3} className='no-data'>
+                                        <Empty description="Chưa có hóa đơn mua hàng nào" />
+                                    </td>
+                                </tr>
+                            ) : (
+                                currentData.map((item) => (
+                                    <tr key={item._id}>
+                                        <td>
+                                            <Button onClick={() => navigate(`/user/order-history-list/${item._id}`, { state: { currentPage: currentPage, order: item } })}>
+                                                <EyeOutlined />
+                                            </Button>
+                                        </td>
+                                        <td>
+                                            <p>Đơn hàng mã <span>{item.orderCode}</span> đã đặt lúc <span>{item.createdAt}</span> </p>
+                                        </td>
+                                        <td>
+                                            {/* <p style={{ color: getStatusStyle(item.status).color }}>
+                                        {getStatusStyle(item.status).text}
+                                    </p> */}
+                                            {renderStatus(item.status)}
+                                        </td>
+                                    </tr>
+                                ))
+                            )}
+                        </tbody>
+                    </table>
 
-            <Pagination
-                current={currentPage}
-                pageSize={itemsPerPage}
-                total={sortedData.length}
-                onChange={handlePageChange}
-                showQuickJumper
-                showTotal={(total) => `Tổng: ${total} hóa đơn`}
-                style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
-            />
+                    <Pagination
+                        current={currentPage}
+                        pageSize={itemsPerPage}
+                        total={sortedData.length}
+                        onChange={handlePageChange}
+                        showQuickJumper
+                        showTotal={(total) => `Tổng: ${total} hóa đơn`}
+                        style={{ marginTop: '16px', textAlign: 'center', justifyContent: 'center' }}
+                    />
+                </>
+            )}
         </div>
     );
 };
