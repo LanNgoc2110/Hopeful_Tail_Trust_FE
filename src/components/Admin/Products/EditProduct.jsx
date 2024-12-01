@@ -27,23 +27,23 @@ export default function EditProduct() {
     const fetchProduct = async () => {
       try {
         const res = await productApi.getProductById(id);
-        // console.log(res.data.product);
+        // console.log(res.data.data);
 
         setProduct({
-          name: res.data.product.name,
-          description: res.data.product.description,
-          price: res.data.product.price,
-          oldPrice: res.data.product.oldPrice,
-          image_id: res.data.product.image_id,
-          category: res.data.product.category,
-          quantity: res.data.product.quantity,
-          code: res.data.product.code,
-          supportPercentage: res.data.product.supportPercentage
+          name: res.data.data.name,
+          description: res.data.data.description,
+          price: res.data.data.price,
+          oldPrice: res.data.data.oldPrice,
+          image_id: res.data.data.image.url,
+          category: res.data.data.category,
+          quantity: res.data.data.quantity,
+          code: res.data.data.code,
+          supportPercentage: res.data.data.supportPercentage
         });
-        setImage(res.data.product.image_id);
+        setImage(res.data.data.image.url);
       } catch (error) {
-        message.error('Không thể lấy thông tin thú cưng.');
-        // console.log(error);
+        message.error('Không thể lấy thông tin sản phẩm.');
+        console.log(error);
 
       }
     };
@@ -175,13 +175,13 @@ export default function EditProduct() {
               controls={false}
               onChange={(e) => setProduct({ ...product, price: e || 0 })}
               suffix="VND"
-              style={{ width: '48%' }}
+              style={{ width: '100%' }}
               placeholder='Giá gốc'
               formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
               parser={(value) => value?.replace(/[^0-9]/g, '')}
             />
 
-            <InputNumber
+            {/* <InputNumber
               value={product?.oldPrice}
               controls={false}
               onChange={(e) => setProduct({ ...product, oldPrice: e || 0 })}
@@ -190,7 +190,7 @@ export default function EditProduct() {
               placeholder='Giá'
               formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
               parser={(value) => value?.replace(/[^0-9]/g, '')}
-            />
+            /> */}
           </div>
           <div className='product-info'>
             <Select

@@ -10,9 +10,10 @@ import {
     LoadingOutlined
 } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getPetById } from '../../redux/actions/pets.action'; 
+import { getPetById } from '../../redux/actions/pets.action';
 import not_found from "/assets/not-found.png"
 import { getUserFromToken } from '../../utils/Token';
+import optionHealthStatus from '../../data/optionHealthStatus.json';
 
 const PetDetail = () => {
     const location = useLocation();  // Lấy dữ liệu thú cưng từ state
@@ -61,6 +62,15 @@ const PetDetail = () => {
         },
     };
 
+    const renderHealthStatus = (status) => {
+        const matchedOption = optionHealthStatus.find(option => option.value === status);
+        return matchedOption ? (
+            matchedOption.label
+        ) : (
+            status
+        );
+    }
+
     return (
         <div className='pet_detail-container'>
             {isLoading &&
@@ -105,7 +115,7 @@ const PetDetail = () => {
                     <p className='title'>Thú cưng</p>
                     <div className="pet_detail-height">
                         <div className="pet_detail-left">
-                            <img src={pet.image.url}/>
+                            <img src={pet.image.url} />
                             {/* <img src={pet_image} /> */}
                         </div>
                         <div className="pet_detail-right">
@@ -117,7 +127,7 @@ const PetDetail = () => {
                                 <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                                 <p>Tuổi: {pet.age}</p>
                                 <p>Tiêm ngừa: {pet.vaccinated} /4</p>
-                                <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                                <p>Tình trạng sức khỏe: {renderHealthStatus(pet.healthStatus)}</p>
                                 <p>Mô tả: {pet.description} </p>
                                 <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                                 <button

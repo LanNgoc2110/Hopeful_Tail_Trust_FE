@@ -87,6 +87,8 @@ const OrderHistoryList = () => {
                 // if (userFunds) {
                 //     setFunds(userFunds);
                 // }
+                // console.log(res.data.data);
+                
                 setInvoices(res.data.data);
                 setLoading(false);
             } catch (error) {
