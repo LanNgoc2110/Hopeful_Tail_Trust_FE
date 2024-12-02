@@ -151,13 +151,13 @@ export default function CreateProduct() {
                             controls={false}
                             onChange={(e) => setProduct({ ...product, price: e || 0 })}
                             suffix="VND"
-                            style={{ width: '48%' }}
+                            style={{ width: '100%' }}
                             placeholder='Giá gốc'
                             formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                             parser={(value) => value?.replace(/[^0-9]/g, '')}
                         />
 
-                        <InputNumber
+                        {/* <InputNumber
                             controls={false}
                             onChange={(e) => setProduct({ ...product, oldPrice: e || 0 })}
                             suffix="VND"
@@ -165,7 +165,7 @@ export default function CreateProduct() {
                             placeholder='Giá'
                             formatter={(value) => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, '.')}
                             parser={(value) => value?.replace(/[^0-9]/g, '')}
-                        />
+                        /> */}
                     </div>
                     <div className='product-info'>
                         <Select
