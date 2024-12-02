@@ -333,6 +333,7 @@ có thể thay đổi sau mỗi lần build. Điều này khiến các rule CSS 
     height: 220px;
     margin: 20px 30px;
     border-radius: 25px;
+    object-fit: cover;
 }
 
 

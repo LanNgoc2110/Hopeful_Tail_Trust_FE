@@ -214,7 +214,7 @@ const ProductDetail = () => {
                                 <p className='product_detail-support'><span>Hỗ trợ: </span> {product.supportPercentage}%</p>
                                 <p className='product_detail-price'></p>
                                 <div className='product_detail-rating'><span>Đánh giá: </span> &#160; <Rate allowHalf disabled value={product.averageRating} /></div>
-                                <p className='product_detail-old_price'> <span>Giá: </span>{product.oldPrice.toLocaleString('vi-VN')} VNĐ</p>
+                                <p className='product_detail-old_price'> <span>Giá: </span>{product.price.toLocaleString('vi-VN')} VNĐ</p>
                                 <div className='product-detail-quantity_wanted'>
                                     <span>Số lượng: </span>
                                     <button onClick={() => handleDecrease()}>-</button>
