@@ -305,7 +305,8 @@ const Cart = () => {
                             <td>
                               <div className="cart-product-price">
                                 <p>{product.subtotal.toLocaleString('vi-VN')} VND</p>
-                                <button onClick={e => handleDeleteProduct(product._id, e)}>
+                                {/* <button onClick={e => handleDeleteProduct(product._id, e)}> */}
+                                <button>
                                   <img src={trash_img} alt="Delete" />
                                 </button>
                               </div>

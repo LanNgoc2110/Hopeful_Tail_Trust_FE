@@ -7,6 +7,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { adoptionApi } from '../../../apis/adoption.request';
 import { petApi } from '../../../apis/pet.request';
 import './AdoptionFormDetail.css'
+import optionHealthStatus from '../../../data/optionHealthStatus.json';
 
 export default function AdoptionFormDetail() {
     const [isLoading, setIsLoading] = useState(true);
@@ -62,6 +63,15 @@ export default function AdoptionFormDetail() {
         }
     }
 
+    const renderHealthStatus = (status) => {
+        const matchedOption = optionHealthStatus.find(option => option.value === status);
+        return matchedOption ? (
+            matchedOption.label
+        ) : (
+            status
+        );
+    }
+
     return (
         <div className='adoption_form_detail-container'>
             <div className="back-to-adoption_form_history">
@@ -97,8 +107,8 @@ export default function AdoptionFormDetail() {
                             <p>Giới tính: {pet.sex}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Màu lông: {pet.coatColor}</p>
-                            <p>Tiêm ngừa: {pet.vaccinated}</p>
-                            <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                            <p>Tiêm ngừa: {pet.vaccinated}/4</p>
+                            <p>Tình trạng sức khỏe: {renderHealthStatus(pet.healthStatus)}</p>
                             <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                         </div>
                     </div>

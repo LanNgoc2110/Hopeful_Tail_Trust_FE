@@ -49,6 +49,7 @@ const Pet = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     const [pets, setPets] = useState([])
+    const [adoptedPets, setAdoptedPets] = useState([])
 
     const onSearch = (value) => {
         setSearchTerm(value.trim().toLowerCase());
@@ -102,12 +103,22 @@ const Pet = () => {
         setIsLoading(true);
         const fetchDataPets = async () => {
             const response = await petApi.getAllPets()
-            setPets(response.data.data || [])
+            const petList = response.data.data.filter(pet => pet.status === 'available')
+            setPets(petList || [])
+            setAdoptedPets(response.data.data.filter(pet => pet.status === 'adopted') || [])
             setIsLoading(false);
             // console.log(response);
         }
         fetchDataPets()
     }, [])
+
+    const chunkArray = (array, size) =>
+        array.reduce((result, item, index) => {
+            const groupIndex = Math.floor(index / size);
+            if (!result[groupIndex]) result[groupIndex] = [];
+            result[groupIndex].push(item);
+            return result;
+        }, []);
 
     // Trong tiếng Anh, số 0 đứng trước tên đồ vật (danh từ) luôn được coi là số nhiều (plural) nên hàm này sai
     // const getTotalText = (total) => {
@@ -262,7 +273,7 @@ const Pet = () => {
                     <p className='title'>Hình ảnh thú cưng được nhận nuôi</p>
                     <div className="pet-adopted-list-img">
                         <Carousel className="custom-carousel" arrows autoplay infinite={true}>
-                            <div className='slide'>
+                            {/* <div className='slide'>
                                 <img src={pet_image} />
                                 <img src={pet_image} />
                                 <img src={pet_image} />
@@ -276,7 +287,24 @@ const Pet = () => {
                                 <img src={pet_image} />
                                 <img src={pet_image} />
                                 <img src={pet_image} />
-                            </div>
+                            </div> */}
+                            {/* {adoptedPets.map((pet, index) => (
+                                <div key={pet.id} className="slide">
+                                    <img src={pet.image.url} alt={`Pet ${index + 1}`} />
+                                </div>
+                            ))} */}
+                            {
+                                (() => {
+                                    const groupedPets = chunkArray(adoptedPets, 3);
+                                    return groupedPets.map((group, groupIndex) => (
+                                        <div key={groupIndex} className="slide">
+                                            {group.map((pet) => (
+                                                <img key={pet._id} src={pet.image.url} alt={`Pet ${pet._id}`} />
+                                            ))}
+                                        </div>
+                                    ));
+                                })()
+                            }
                         </Carousel>
                     </div>
                 </div>
