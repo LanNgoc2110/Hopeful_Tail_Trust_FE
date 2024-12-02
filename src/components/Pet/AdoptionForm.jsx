@@ -10,6 +10,7 @@ import { getPetById } from '../../redux/actions/pets.action';
 import { message, Skeleton } from 'antd';
 import { getUserFromToken } from '../../utils/Token';
 import { adoptionApi } from '../../apis/adoption.request';
+import optionHealthStatus from '../../data/optionHealthStatus.json';
 
 const AdoptionForm = () => {
     const dispatch = useDispatch();
@@ -98,6 +99,15 @@ const AdoptionForm = () => {
         }
     })
 
+    const renderHealthStatus = (status) => {
+        const matchedOption = optionHealthStatus.find(option => option.value === status);
+        return matchedOption ? (
+            matchedOption.label
+        ) : (
+            status
+        );
+    }
+
     return (
         <div className='adoption_form-container'>
             <form className='adoption_form' onSubmit={formik.handleSubmit}>
@@ -120,13 +130,13 @@ const AdoptionForm = () => {
                         </div>
                         <div className="pet-info-right">
                             <p>Tên thú cưng: {pet.name}</p>
-                            <p>Loài: {pet.species} </p>
+                            <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'} </p>
                             <p>Giống: {pet.breed}</p>
-                            <p>Giới tính: {pet.sex}</p>
+                            <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Màu lông: {pet.coatColor}</p>
                             <p>Tiêm ngừa: {pet.vaccinated}/4</p>
-                            <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                            <p>Tình trạng sức khỏe: {renderHealthStatus(pet.healthStatus)}</p>
                             <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                         </div>
                     </div>

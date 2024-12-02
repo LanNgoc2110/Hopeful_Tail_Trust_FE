@@ -102,9 +102,9 @@ export default function AdoptionFormDetail() {
                         </div>
                         <div className="pet-info-right">
                             <p>Tên thú cưng: {pet.name}</p>
-                            <p>Loài: {pet.species} </p>
+                            <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'} </p>
                             <p>Giống: {pet.breed}</p>
-                            <p>Giới tính: {pet.sex}</p>
+                            <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Màu lông: {pet.coatColor}</p>
                             <p>Tiêm ngừa: {pet.vaccinated}/4</p>

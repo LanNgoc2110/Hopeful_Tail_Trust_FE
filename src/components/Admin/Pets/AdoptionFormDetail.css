@@ -72,6 +72,7 @@
     width: 75%;
     height: 280px;
     border-radius: 5px;
+    object-fit: cover;
 }
 
 .adoption_form_detail-form .pet-info .pet-info-right {

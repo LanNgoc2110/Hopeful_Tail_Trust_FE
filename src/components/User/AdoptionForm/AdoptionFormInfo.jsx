@@ -7,6 +7,7 @@ import pet_image from '/assets/pitbull.png';
 import { petApi } from '../../../apis/pet.request';
 import { adoptionApi } from '../../../apis/adoption.request';
 import optionStatusAdopt from '../../../data/optionStatusAdopt.json';
+import optionHealthStatus from '../../../data/optionHealthStatus.json';
 
 const AdoptionFormInfo = () => {
     const location = useLocation();  // Lấy dữ liệu currentPage từ state
@@ -36,6 +37,15 @@ const AdoptionFormInfo = () => {
         }
         fetchAdopt();
     }, [id])
+
+    const renderHealthStatus = (status) => {
+        const matchedOption = optionHealthStatus.find(option => option.value === status);
+        return matchedOption ? (
+            matchedOption.label
+        ) : (
+            status
+        );
+    }
 
     return (
         <div className='adoption_form_info-container'>
@@ -79,13 +89,13 @@ const AdoptionFormInfo = () => {
                         </div>
                         <div className="pet-info-right">
                             <p>Tên thú cưng: {pet.name}</p>
-                            <p>Loài: {pet.species} </p>
+                            <p>Loài: {pet.species === 'Cat' ? 'Mèo' : 'Chó'} </p>
                             <p>Giống: {pet.breed}</p>
-                            <p>Giới tính: {pet.sex}</p>
+                            <p>Giới tính: {pet.sex === 'Female' ? 'Cái' : 'Đực'}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Màu lông: {pet.coatColor}</p>
                             <p>Tiêm ngừa: {pet.vaccinated}/4</p>
-                            <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
+                            <p>Tình trạng sức khỏe: {renderHealthStatus(pet.healthStatus)}</p>
                             <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                         </div>
                     </div>
