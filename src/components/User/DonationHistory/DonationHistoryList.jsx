@@ -185,7 +185,7 @@ const DonationHistoryList = () => {
                                 <p>Số tiền quyên góp</p>
                             </th>
                             <th>
-                                {/* <p>Thời gian quyên góp</p> */}
+                                <p>Thời gian quyên góp</p>
                             </th>
                             <th>
                                 <p>Trạng thái</p>
@@ -209,7 +209,7 @@ const DonationHistoryList = () => {
                                         <p>{item.amount.toLocaleString('vi-VN')} VND</p>
                                     </td>
                                     <td>
-                                        {/* <p>{item.donationTime}</p> */}
+                                        <p>{item.createdAt}</p>
                                     </td>
                                     <td>
                                         {/* <p style={{ color: getStatusStyle(item.status).color }}>

@@ -4,7 +4,9 @@ import { Button, Empty, Pagination, Spin, Tag } from 'antd';
 import { EyeOutlined, LoadingOutlined } from '@ant-design/icons';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { invoiceApi } from '../../../apis/invoice.request';
+import { cartApi } from '../../../apis/cart.request';
 import optionStatusPayment from '../../../data/optionStatusPayment.json';
+import { getUserFromToken } from '../../../utils/Token';
 
 const OrderHistoryList = () => {
     // Dữ liệu giả cho bảng đơn hàng
@@ -66,6 +68,7 @@ const OrderHistoryList = () => {
         },
     ];
 
+    const { user } = getUserFromToken();
     const [invoices, setInvoices] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -74,27 +77,33 @@ const OrderHistoryList = () => {
         const fetchOrders = async () => {
             try {
                 const res = await invoiceApi.getOrders();
-                // console.log(res);
-
-                // const invoicesData = res.data.data;
-                // if (!invoicesData) {
-                //     throw new Error("Invoices data không tồn tại hoặc sai cấu trúc.");
-                // }
-
-                // const userFunds = invoicesData.filter((invoice) => invoice.user && invoice.user?._id === user.id);
-                // // console.log(userFunds);
-
-                // if (userFunds) {
-                //     setFunds(userFunds);
-                // }
                 // console.log(res.data.data);
+
+                const invoicesData = res.data.data;
+                if (!invoicesData) {
+                    throw new Error("Invoices data không tồn tại hoặc sai cấu trúc.");
+                }
+
+                const cartData = await cartApi.getAllCart("");
+                // console.log(cartData.data.data.);
                 
-                setInvoices(res.data.data);
+                if (cartData.data.data.cartItems.length === 0) {
+                    throw new Error("Không có cart nào tồn tại.");
+                }
+
+                const cartIds = new Set(cartData.data.data.cartItems.map(cart => cart._id));
+                const matchedInvoices = invoicesData.filter(invoice =>
+                    invoice.cartItem && invoice.cartItem.some(cartId => cartIds.has(cartId))
+                );
+            
+                // console.log("Danh sách invoices phù hợp:", matchedInvoices);
+
+                // setInvoices(res.data.data);
+                setInvoices(matchedInvoices);
                 setLoading(false);
             } catch (error) {
                 setLoading(false);
                 console.log(error.response.data.message);
-
             }
         }
         fetchOrders();

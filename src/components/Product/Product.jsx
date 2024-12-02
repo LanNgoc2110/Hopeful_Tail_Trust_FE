@@ -353,7 +353,7 @@ const Product = () => {
         setCurrentPage(1);     // Reset to the first page
     };
 
-    const pageSize = 21;
+    const pageSize = 15;
 
     const filteredProducts = /*listProduct*/products.filter(product => {
         const searchTermLower = searchTerm.toLowerCase();
@@ -405,12 +405,14 @@ const Product = () => {
     useEffect(() => {
         setIsLoading(true);
         const fetchDataProducts = async () => {
-            const response = await productApi.getAllProducts()
+            const response = await productApi.getProducts()
             setIsLoading(false);
             // console.log(response);
             // setProducts(response.data.data || [])
 
             const productData = response.data.data || [];
+            console.log(productData);
+            
             setProducts(productData);
 
             // Trích xuất danh mục duy nhất từ dữ liệu sản phẩm

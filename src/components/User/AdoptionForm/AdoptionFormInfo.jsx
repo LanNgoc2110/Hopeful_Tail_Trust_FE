@@ -84,7 +84,7 @@ const AdoptionFormInfo = () => {
                             <p>Giới tính: {pet.sex}</p>
                             <p>Tuổi: {pet.age}</p>
                             <p>Màu lông: {pet.coatColor}</p>
-                            <p>Tiêm ngừa: {pet.vaccinated}</p>
+                            <p>Tiêm ngừa: {pet.vaccinated}/4</p>
                             <p>Tình trạng sức khỏe: {pet.healthStatus}</p>
                             <p>Địa chỉ trạm cứu hộ: {pet.location}</p>
                         </div>

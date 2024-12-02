@@ -22,6 +22,7 @@ export default function AdoptionFormList() {
     })
 
     useEffect(() => {
+        setLoading(true);
         const fetchAdoptedPets = async () => {
             try {
                 const response = await adoptionApi.getAllAdoption();
@@ -41,10 +42,11 @@ export default function AdoptionFormList() {
 
                 const pets = await Promise.all(petPromises);
                 const filteredPets = pets.filter(pet => pet !== null);
-
+                setLoading(false);
                 setPet(filteredPets);
                 setData(response.data.data);
             } catch (error) {
+                setLoading(false);
                 console.error('Error fetching adopted pets:', error);
             }
         }

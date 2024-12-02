@@ -7,6 +7,10 @@ export const productApi = {
         return API.get('/products/all')
     },
 
+    getProducts: (page, limit) => {
+        return API.get(`/products/all?page=${page}&limit=${limit}`)
+    },
+
     getProductById: (id) => {
         return API.get(`/products/${id}`)
     },

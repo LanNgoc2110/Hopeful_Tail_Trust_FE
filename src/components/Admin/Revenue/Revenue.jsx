@@ -1,6 +1,6 @@
 import { Breadcrumb, Layout, theme } from 'antd'
 import { Content } from 'antd/es/layout/layout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const data = [
@@ -26,6 +26,10 @@ export default function Revenue() {
     },
   } = theme.useToken();
 
+  useEffect(() => {
+    
+  }, [])
+
   return (
     <>
       <Content
@@ -36,6 +40,7 @@ export default function Revenue() {
           borderRadius: borderRadiusLG,
         }}
       >
+        <h1>Doanh thu theo tháng</h1>
         <ResponsiveContainer width="100%" height={400}>
           <AreaChart data={data} margin={{ top: 50, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
