@@ -94,6 +94,7 @@
     height: 100%; /* Đảm bảo chiều cao đầy đủ */
     max-height: 100%; /* Đảm bảo không vượt quá container cha */
     position: absolute; /* Đảm bảo hình ảnh giữ được tỷ lệ trong container */
+    object-fit: cover;
 }
 
 .product_detail-right {
