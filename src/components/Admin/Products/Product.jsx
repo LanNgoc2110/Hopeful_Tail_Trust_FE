@@ -62,6 +62,12 @@ export default function Product() {
 
     const columns = [
         {
+            title: 'Ảnh',
+            dataIndex: 'image',
+            key: 'image',
+            render: (image) => <img src={image.url} alt="Animal" width={50} />,
+        },
+        {
             title: 'Mã sản phẩm',
             dataIndex: 'code',
             key: 'productCode',
@@ -72,9 +78,10 @@ export default function Product() {
             key: 'name',
         },
         {
-            title: 'Giá',
+            title: 'Giá (VND)',
             dataIndex: 'price',
             key: 'price',
+            render: (text) => `${text.toLocaleString('vi-VN')}`
         },
         {
             title: 'Loại',
@@ -90,12 +97,6 @@ export default function Product() {
             title: 'Đã bán',
             dataIndex: 'sold',
             key: 'sold',
-        },
-        {
-            title: 'Ảnh',
-            dataIndex: 'image',
-            key: 'image',
-            render: (image) => <img src={image.url} alt="Animal" width={50} />,
         },
         {
             title: 'Options',
@@ -204,7 +205,6 @@ export default function Product() {
                             setDataFilter({
                                 ...dataFilter,
                                 page: page,
-                                limit: pageSize
                             })
                         }
                     }}

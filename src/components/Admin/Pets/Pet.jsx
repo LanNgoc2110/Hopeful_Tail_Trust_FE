@@ -65,6 +65,12 @@ export default function Pet() {
 
     const columns = [
         {
+            title: 'Ảnh',
+            dataIndex: 'image',
+            key: 'image',
+            render: (image) => <img src={image.url} alt="Animal" width={50} />,
+        },
+        {
             title: 'Tên',
             dataIndex: 'name',
             key: 'pet_name',
@@ -110,12 +116,6 @@ export default function Pet() {
                 const matchedOption = optionHealthStatus.find(option => option.value === healthStatus);
                 return matchedOption ? matchedOption.label : healthStatus; 
             }
-        },
-        {
-            title: 'Ảnh',
-            dataIndex: 'image',
-            key: 'image',
-            render: (image) => <img src={image.url} alt="Animal" width={50} />,
         },
         {
             title: 'Options',

@@ -15,4 +15,10 @@ export const invoiceApi = {
             headers: { authorization: `Bearer ${token}` },
         })
     },
+    getOrderByOrderCode: (orderCode) => {
+        const token = getToken()
+        return API.get(`/invoices/orderCode/${orderCode}`, {
+            headers: { authorization: `Bearer ${token}` },
+        })
+    }
 }
