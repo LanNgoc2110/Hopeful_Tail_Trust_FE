@@ -45,7 +45,9 @@ const PaymentSuccessful = () => {
 
         const fetchProduct = async () => {
             try {
-                const res = await productApi.getAllProducts()
+                const res = await productApi.getProducts()
+                // console.log(res.data.data);
+                
                 setProducts(res.data.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
