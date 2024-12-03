@@ -45,7 +45,9 @@ const PaymentSuccessful = () => {
 
         const fetchProduct = async () => {
             try {
-                const res = await productApi.getAllProducts()
+                const res = await productApi.getProducts()
+                // console.log(res.data.data);
+                
                 setProducts(res.data.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
@@ -130,9 +132,11 @@ const PaymentSuccessful = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr className='category-title'>
-                                    <th colSpan={3}>Thức ăn</th>
-                                </tr>
+                                {order?.cartItem.filter(product => product.category === 'Thức ăn').length > 0 && (
+                                    <tr className='category-title'>
+                                        <th colSpan={3}>Thức ăn</th>
+                                    </tr>
+                                )}
                                 {order?.cartItem.filter(product => product.category === 'Thức ăn').map((product) => {
                                     const tmpProduct = products.find(tmpProduct => tmpProduct.id === product.productId);
                                     return (
@@ -147,9 +151,11 @@ const PaymentSuccessful = () => {
                                     )
                                 })}
 
-                                <tr className='category-title'>
-                                    <th colSpan={3}>Vật dụng</th>
-                                </tr>
+                                {order?.cartItem.filter(product => product.category === 'Vật dụng').length > 0 && (
+                                    <tr className='category-title'>
+                                        <th colSpan={3}>Vật dụng</th>
+                                    </tr>
+                                )}
                                 {order?.cartItem.filter(product => product.category === 'Vật dụng').map((product) => {
                                     const tmpProduct = products.find(tmpProduct => tmpProduct.id === product.productId);
                                     return (

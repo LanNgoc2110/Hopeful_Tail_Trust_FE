@@ -58,7 +58,7 @@ const OrderHistoryInfo = () => {
 
         const fetchProduct = async () => {
             try {
-                const res = await productApi.getAllProducts()
+                const res = await productApi.getProducts()
                 setProducts(res.data.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
