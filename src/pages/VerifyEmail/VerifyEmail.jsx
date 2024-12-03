@@ -40,14 +40,15 @@ const VerifyEmail = () => {
                         <img src={check_img} />
                     </div>
                     <p className="title">Hãy kiểm tra hộp thư email của bạn</p>
-                    <p className="content">
+                    {/* <p className="content">
                         Một email xác nhận sẽ được gửi tới địa chỉ email bạn đã đăng ký.
                         Vui lòng kiểm tra hộp thư (bao gồm cả mục spam/quảng cáo) và nhấp vào
                         liên kết trong email để hoàn tất quá trình xác thực tài khoản.
                         <br /> <br />
                         Nếu bạn không nhận được email trong vài phút, hãy kiểm tra lại địa chỉ
                         email hoặc thử gửi lại yêu cầu xác nhận.
-                    </p>
+                    </p> */}
+                    <p>Sau khi xác thực thành công, tài khoản của bạn sẽ được kích hoạt.</p>
                     <div className="verify-email-btn">
                         <button disabled={loading} onClick={() => handleVerifyEmail()}> {loading && <LoadingOutlined style={{ marginRight: '10px' }} />} Xác thực mail</button>
                     </div>
